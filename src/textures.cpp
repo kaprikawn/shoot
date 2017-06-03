@@ -39,7 +39,13 @@ void Textures::drawFrame( DrawFrameParams& params ) {
   dstRect.w = params.w * params.scale;
   dstRect.h = params.h * params.scale;
   
-  SDL_RenderCopyEx( TheGame::Instance() -> getRenderer(), textureMaps_[ "hero" ], &srcRect, &dstRect, 0, 0, SDL_FLIP_NONE );
+  if( params.flip ) {
+    flip_ = SDL_FLIP_HORIZONTAL;
+  } else {
+    flip_ = SDL_FLIP_NONE;
+  }
+  
+  SDL_RenderCopyEx( TheGame::Instance() -> getRenderer(), textureMaps_[ params.id ], &srcRect, &dstRect, 0, 0, flip_ );
   
 }
 

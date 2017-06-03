@@ -15,6 +15,8 @@ class Textures {
     SDL_Rect          srcRect;
     SDL_Rect          dstRect;
     
+    SDL_RendererFlip  flip_;
+    
     static Textures*  instance_;
 
     std::map<std::string, SDL_Texture*> textureMaps_;

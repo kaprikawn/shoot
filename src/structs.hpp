@@ -64,5 +64,26 @@ struct DrawFrameParams {
   bool flip = false;
 };
 
+enum SpriteState {
+    DEFAULT = 0
+  , MOVING  = 1
+  , DYING   = 2
+  , DODGING = 3
+};
+
+enum buttons {
+    RIGHT = 0
+  , LEFT  = 1
+  , UP    = 2
+  , DOWN  = 3
+  , FIRE  = 4
+  , ROLL  = 5
+  , BOMB  = 6
+  , START = 7
+  , QUIT  = 8
+  , OK    = 9
+  , BACK  = 10
+};
+
 
 #endif //STRUCTS_HPP

@@ -7,7 +7,7 @@
       , "textureID"         : "hero"
       , "filename"          : "assets/hero.png"
       , "x"                 : 300
-      , "y"                 : 425
+      , "y"                 : 380
       , "hb_left_adjust"    : 32
       , "hb_right_adjust"   : 32
       , "hb_top_adjust"     : 160

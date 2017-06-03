@@ -28,7 +28,9 @@ bool PlayState::onEnter() {
 }
 
 void PlayState::update( float dt, Uint32 msFrameDiff ) {
-  
+  for( int i = 0; i < spritesSize_; i++ ) {
+    sprites_[i] -> update( dt, msFrameDiff );
+  }
 }
 
 void PlayState::render() {

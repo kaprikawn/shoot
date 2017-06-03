@@ -8,7 +8,7 @@ class InputHandler {
   private:
     
     // keyboard
-    const Uint8*  keystates_;
+    const Uint8*  keystates_ = SDL_GetKeyboardState( NULL );
     void          onKeyDown();
     void          onKeyUp();
     bool          gamepadsInitialised_ = false;
