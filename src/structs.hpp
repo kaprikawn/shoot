@@ -28,6 +28,7 @@ struct StateData {
 
 
 struct  ObjectData {
+  int   spriteID;
   int   width;
   int   height;
   int   x;
@@ -49,6 +50,18 @@ struct  ObjectData {
   
   std::vector<StateData>  stateData;
   std::vector<Path>       pathData;
+};
+
+struct DrawFrameParams {
+  std::string id;
+  int x;
+  int y;
+  int w;
+  int h;
+  float scale;
+  int currentRow;
+  int currentFrame;
+  bool flip = false;
 };
 
 

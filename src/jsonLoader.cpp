@@ -2,6 +2,8 @@
 #include <fstream>
 #include "jsonLoader.hpp"
 #include "json.hpp"
+#include "textures.hpp"
+#include "game.hpp"
 
 std::vector<ObjectData*> JsonLoader::getObjectData( std::string filename ) {
   std::ifstream fin( filename, std::ifstream::binary );
@@ -26,6 +28,8 @@ std::vector<ObjectData*> JsonLoader::getObjectData( std::string filename ) {
     newObjectData -> filename          = o[ "properties" ][ "filename" ];
     newObjectData -> hp                = o[ "properties" ][ "hp" ];
     newObjectData -> spawnTime         = o[ "properties" ][ "spawnTime" ];
+    
+    TheTextures::Instance() -> load( o[ "properties" ][ "filename" ], o[ "properties" ][ "textureID" ], TheGame::Instance() -> getRenderer() );
     
     nlohmann::json sdRoot           = o[ "stateData" ];
     

@@ -3,18 +3,18 @@
 
 #include <string>
 #include "SDL.h"
-//#include "Sprite.hpp"
+#include "sprite.hpp"
 
 class GameState {
   protected:
     GameState() {}
     
-    //std::vector <Sprite*> sprites_;
+    std::vector <Sprite*> sprites_;
     
     //std::vector<std::unique_ptr<Sprite>> sprites;
     
-    int spritesSize   = 0;
-    int nextSpriteID  = 0;
+    int spritesSize_   = 0;
+    //int nextSpriteID  = 0;
     
   public:
     virtual ~GameState() {}

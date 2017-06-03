@@ -1,11 +1,11 @@
 [ 
   {
     "properties" : {
-        "objectType"        : "Player"
+        "objectType"        : "Hero"
       , "height"            : 310
       , "width"             : 227
-      , "textureID"         : "player"
-      , "filename"          : "assets/player.png"
+      , "textureID"         : "hero"
+      , "filename"          : "assets/hero.png"
       , "x"                 : 300
       , "y"                 : 425
       , "hb_left_adjust"    : 32

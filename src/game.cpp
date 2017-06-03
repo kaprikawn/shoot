@@ -44,7 +44,11 @@ void Game::update( float dt, Uint32 msFrameDiff ) {
 }
 
 void Game::render() {
-
+  SDL_RenderClear( renderer_ );
+  
+  gameStateMachine_ -> render();
+  
+  SDL_RenderPresent( renderer_ );
 }
 
 void Game::clean() {

@@ -29,6 +29,8 @@ class Game {
     void quit();
     
     bool gameRunning() { return running_; }
+    
+    SDL_Renderer* getRenderer() const { return renderer_; }
 
     static Game* Instance() {
       if( instance_ == 0 ) {
