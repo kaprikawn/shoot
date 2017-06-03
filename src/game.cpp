@@ -1,6 +1,7 @@
 #include <iostream>
 #include "game.hpp"
 #include "inputHandler.hpp"
+#include "playState.hpp"
 
 Game* Game::instance_ = 0;
 
@@ -28,7 +29,7 @@ bool Game::init( const char* title, int xpos, int ypos, int width, int height, i
   TheInputHandler::Instance() -> initialiseJoysticks();
   
   gameStateMachine_ = new GameStateMachine();
-  //gameStateMachine -> changeState( new PlayState() );
+  gameStateMachine_ -> changeState( new PlayState() );
   
   running_ = true;
   

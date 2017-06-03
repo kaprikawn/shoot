@@ -1,0 +1,157 @@
+[ 
+  {
+    "properties" : {
+        "objectType"        : "Player"
+      , "height"            : 310
+      , "width"             : 227
+      , "textureID"         : "player"
+      , "filename"          : "assets/player.png"
+      , "x"                 : 300
+      , "y"                 : 425
+      , "hb_left_adjust"    : 32
+      , "hb_right_adjust"   : 32
+      , "hb_top_adjust"     : 160
+      , "hb_bottom_adjust"  : 20
+      , "hp"                : 1
+      , "spawnTime"         : 0
+        }
+      , "stateData" : [
+          {
+              "id"          : "DEFAULT"
+            , "spriteState" : 0
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 1
+                  , "currentRow"      : 1
+                  , "frameDelay"      : 350
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"       : false
+                  
+                }
+              ]
+          }
+          , {
+              "id"          : "MOVING"
+            , "spriteState" : 1
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 2
+                  , "maxFrame"        : 9
+                  , "currentRow"      : 1
+                  , "frameDelay"      : 100
+                  , "swapFrameAfter"  : 100
+                  , "swapAnimAfter"   : 100
+                  , "oscillate"       : false
+                  
+                }
+              ]
+          }
+          , { "spriteState" : 2, "skip" : true }
+          , { "spriteState" : 3, "skip" : true }
+          , {
+              "id"          : "DODGING"
+            , "spriteState" : 4
+            , "skip"        : false
+            , "fixedAnim"   : true
+            , "animation"   : [
+                {
+                    "minFrame"        : 10
+                  , "maxFrame"        : 10
+                  , "currentRow"      : 1
+                  , "frameDelay"      : 300
+                  , "swapFrameAfter"  : 300
+                  , "swapAnimAfter"   : 300
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 11
+                  , "maxFrame"        : 11
+                  , "currentRow"      : 1
+                  , "frameDelay"      : 250
+                  , "swapFrameAfter"  : 250
+                  , "swapAnimAfter"   : 250
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 12
+                  , "maxFrame"        : 12
+                  , "currentRow"      : 1
+                  , "frameDelay"      : 200
+                  , "swapFrameAfter"  : 200
+                  , "swapAnimAfter"   : 200
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 13
+                  , "maxFrame"        : 13
+                  , "currentRow"      : 1
+                  , "frameDelay"      : 150
+                  , "swapFrameAfter"  : 150
+                  , "swapAnimAfter"   : 150
+                  , "oscillate"       : false
+                }
+              ]
+          }
+        ]
+  }
+  , {
+    "properties" : {
+        "objectType"        : "Target"
+      , "height"            : 48
+      , "width"             : 48
+      , "textureID"         : "target"
+      , "filename"          : "assets/target.png"
+      , "x"                 : 500
+      , "y"                 : 100
+      , "hb_left_adjust"    : 0
+      , "hb_right_adjust"   : 0
+      , "hb_top_adjust"     : 0
+      , "hb_bottom_adjust"  : 0
+      , "hp"                : 1
+      , "spawnTime"         : 0
+        }
+      , "stateData" : [
+          {
+              "id"          : "DEFAULT"
+            , "spriteState" : 0
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 0
+                  , "currentRow"      : 1
+                  , "frameDelay"      : 10000
+                  , "swapFrameAfter"  : 10000
+                  , "swapAnimAfter"   : 10000
+                  , "oscillate"       : false
+                }
+              ]
+          }
+          , { "spriteState" : 1, "skip" : true }
+          , {
+              "id"          : "FIRING"
+            , "spriteState" : 2
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 1
+                  , "currentRow"      : 1
+                  , "frameDelay"      : 100
+                  , "swapFrameAfter"  : 100
+                  , "swapAnimAfter"   : 100
+                  , "oscillate"       : false
+                }
+              ]
+          }
+        ]
+  }
+]
