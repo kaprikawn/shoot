@@ -9,8 +9,11 @@ Animation::Animation( std::vector<StateData>& stateData ) {
 void Animation::changeState( int newSpriteState ) {
   animationData_.clear();
   
+  //printf( "changing to state %d\n", newSpriteState );
+  
   for( unsigned int i = 0; i < stateData_.size(); i++ ) {
     if( stateData_[i].spriteState == newSpriteState ) {
+      fixedAnim_ = stateData_[i].fixedAnim;
       for( unsigned int a = 0; a < stateData_[i].animData.size(); a++ ) {
         animationData_.push_back( stateData_[i].animData[a] );
       }
@@ -29,18 +32,29 @@ bool Animation::determineFrame( int spriteState, float dt, Uint32 mfFrameDiff
   msSinceLastChange_ += mfFrameDiff;
   frameNum_ = currentFrame;
   
-  changeFrame_ = false;
+  changeFrame_ = returnVar_ = false;
   if( animationData_.empty() || spriteState != lastSpriteState_ ) {
     Animation::changeState( spriteState );
+    currentIndex_ = 0;
   }
   
-  if( msSinceLastChange_ > animationData_[ currentIndex_ ].duration ) {
+  if( fixedAnim_ && msSinceLastChange_ > animationData_[ currentIndex_ ].duration ) {
+    currentIndex_++;
+    if( currentIndex_ >= animationData_.size() ) {
+      returnVar_ = true; // tell calling function that fixed animation has finished
+    }
+    msSinceLastChange_ = 0;
+    changeFrame_ = true;
+  } else if( msSinceLastChange_ > animationData_[ currentIndex_ ].duration ) {
     changeFrame_ = true;
     msSinceLastChange_ = 0;
+  } else if( spriteState != lastSpriteState_ ) {
+    changeFrame_ = true;
   }
   
   if( changeFrame_ ) {
     frameNum_ += frameStep_;
+    
   }
   
   if( frameNum_ > animationData_[ currentIndex_ ].maxFrame ) {
@@ -55,6 +69,6 @@ bool Animation::determineFrame( int spriteState, float dt, Uint32 mfFrameDiff
   currentRow = 1;
   scale = 1.0f;
   
-  return false;
+  return returnVar_;
 }
 

@@ -66,11 +66,11 @@ struct DrawFrameParams {
 };
 
 enum SpriteState {
-    DEFAULT = 0
-  , MOVING  = 1
-  , DYING   = 2
-  , DODGING = 3
-  , FIRING  = 4
+    DEFAULT   = 0
+  , MOVING    = 1
+  , FIRING    = 2
+  , DYING     = 3
+  , DODGING   = 4
 };
 
 enum buttons {
@@ -85,6 +85,10 @@ enum buttons {
   , QUIT  = 8
   , OK    = 9
   , BACK  = 10
+};
+
+enum lastDirection {
+  DIR_LEFT, DIR_RIGHT
 };
 
 

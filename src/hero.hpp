@@ -7,6 +7,7 @@
 class Hero : public Sprite {
   
   private:
+    int   lastDirection_ = 0;
     
     
   public:

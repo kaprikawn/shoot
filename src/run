@@ -15,7 +15,9 @@ then
   exit 1
 fi
 
-./game
-
+if [ $HOSTNAME != badger ]
+then
+  ./game
+fi
 exit 0
 

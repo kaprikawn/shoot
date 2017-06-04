@@ -1,4 +1,4 @@
-# target
+# SHOOT (working title)
 Target shooter game
 
 Acknowledgements
