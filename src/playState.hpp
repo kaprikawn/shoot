@@ -16,9 +16,9 @@ class PlayState : public GameState {
     Hero*     hero_;
     Target*   target_;
     
+    int projectileType_ = 0;
+    
   public:
-    
-    
     
     virtual bool onEnter();
     virtual void update( float dt, Uint32 msFrameDiff );
@@ -26,6 +26,7 @@ class PlayState : public GameState {
     virtual bool onExit();
     
     void  add( Sprite* sprite );
+    void  spawnProjectile( int projectileType, Sprite* originSprite );
     
     virtual std::string getStateID() const { return s_playID; }
     

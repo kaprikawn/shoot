@@ -7,8 +7,9 @@
 class Hero : public Sprite {
   
   private:
-    int   lastDirection_ = 0;
-    
+  
+    int     lastDirection_  = 0;
+    Uint32  bombCooldown_   = 0;
     
   public:
     

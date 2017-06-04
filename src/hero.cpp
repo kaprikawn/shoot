@@ -7,12 +7,19 @@ Hero::Hero( ObjectData* objectData ) : Sprite( objectData ) {
 }
 
 void Hero::handleInput() {
-
+  
+  spawnProjectile_ = 0;
+  
   if( spriteState_ == DYING ) { return; }
   
   if( spriteState_ == MOVING || spriteState_ == FIRING || spriteState_ == DEFAULT ) {
     if( TheInputHandler::Instance() -> isPressed( DODGE ) ) {
       spriteState_ = DODGING;
+    }
+    
+    if( TheInputHandler::Instance() -> isPressed( BOMB ) && bombCooldown_ > 1000 ) {
+      spawnProjectile_ = 2;
+      bombCooldown_ = 0;
     }
   }
   
@@ -55,6 +62,8 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
     Hero::handleInput();
     Sprite::update( dt, msFrameDiff );
   }
+  
+  bombCooldown_ += msFrameDiff;
 }
 
 void Hero::render() {

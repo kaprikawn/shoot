@@ -24,6 +24,8 @@ class Sprite {
     bool        ignoreScale_ = false;
     bool        fixedAnimDone_; // used only for fixed animations
     
+    int         spawnProjectile_ = 0; // number refers to type of projectile
+    
   public:
     Sprite( ObjectData* objectData );
     virtual ~Sprite(){}
@@ -32,6 +34,11 @@ class Sprite {
     virtual void render ();
     virtual void clean  ();
     
+    int spawnProjectile() {
+      return spawnProjectile_;
+    }
+    
+    Movement getMovement() { return movement_; }
     
 };
 

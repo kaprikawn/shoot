@@ -91,5 +91,16 @@ enum lastDirection {
   DIR_LEFT, DIR_RIGHT
 };
 
+enum ProjectileTypes {
+    UNDEF, BULLET, PBOMB, EBOMB
+};
+
+struct ProjectileData {
+  int type;
+  int srcX;
+  int srcY;
+  int dstX;
+  int dstY;
+};
 
 #endif //STRUCTS_HPP
