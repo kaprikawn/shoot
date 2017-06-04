@@ -5,7 +5,7 @@
 
 Textures* Textures::instance_ = 0;
 
-bool Textures::load( std::string filename, std::string id, SDL_Renderer* renderer ) {
+bool Textures::load( std::string filename, std::string id ) {
   if( !loadedIDs_.empty() ) {
     for( unsigned int i = 0; i < loadedIDs_.size(); i++ ) {
       if( id == loadedIDs_[i] ) {
@@ -17,7 +17,7 @@ bool Textures::load( std::string filename, std::string id, SDL_Renderer* rendere
   tempSurface_ = IMG_Load( filename.c_str() );
   if( tempSurface_ == 0 ) { return false; }
   
-  texture_ = SDL_CreateTextureFromSurface( renderer, tempSurface_ );
+  texture_ = SDL_CreateTextureFromSurface( TheGame::Instance() -> getRenderer(), tempSurface_ );
   SDL_FreeSurface( tempSurface_ );
   
   if( texture_ != 0 ) {
@@ -25,6 +25,15 @@ bool Textures::load( std::string filename, std::string id, SDL_Renderer* rendere
     loadedIDs_.push_back( id );
   }
   return false; // reaching here means something went wrong
+}
+
+void Textures::draw( std::string id, int x, int y, int w, int h ) {
+  srcRect.x = dstRect.x = x;
+  srcRect.y = dstRect.y = y;
+  srcRect.w = dstRect.w = w;
+  srcRect.h = dstRect.h = h;
+  
+  SDL_RenderCopyEx( TheGame::Instance() -> getRenderer(), textureMaps_[ id ], &srcRect, &dstRect, 0, 0, SDL_FLIP_NONE );
 }
 
 void Textures::drawFrame( DrawFrameParams& params ) {

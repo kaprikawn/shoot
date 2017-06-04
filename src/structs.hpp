@@ -2,6 +2,7 @@
 #define STRUCTS_HPP
 
 #include <vector>
+#include "SDL.h"
 
 struct Path {
   int x;
@@ -10,13 +11,13 @@ struct Path {
 };
 
 struct AnimationData {
-  int   currentRow      = 1;
-  int   minFrame        = 0;
-  int   maxFrame        = 0;
-  int   frameDelay      = 1000;
-  int   swapFrameAfter  = 1000;
-  int   swapAnimAfter   = 1000;
-  bool  oscillate       = false;
+  int     currentRow      = 1;
+  int     minFrame        = 0;
+  int     maxFrame        = 0;
+  Uint32  duration        = 1000;
+  int     swapFrameAfter  = 1000;
+  int     swapAnimAfter   = 1000;
+  bool    oscillate       = false;
 };
 
 struct StateData {
@@ -69,6 +70,7 @@ enum SpriteState {
   , MOVING  = 1
   , DYING   = 2
   , DODGING = 3
+  , FIRING  = 4
 };
 
 enum buttons {
@@ -77,7 +79,7 @@ enum buttons {
   , UP    = 2
   , DOWN  = 3
   , FIRE  = 4
-  , ROLL  = 5
+  , DODGE = 5
   , BOMB  = 6
   , START = 7
   , QUIT  = 8

@@ -13,14 +13,16 @@ class Sprite {
     
     DrawFrameParams renderParams_;
     
-    
-    Animation   animation_;
     Health      health_;
     Movement    movement_; // position / velocity etc
     Vector      velocity_;
+    Animation   animation_; // animation handler
     
     int         spriteID_;
     int         spriteState_ = 0;
+    
+    bool        ignoreScale_ = false;
+    bool        fixedAnimDone_; // used only for fixed animations
     
   public:
     Sprite( ObjectData* objectData );

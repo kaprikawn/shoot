@@ -26,7 +26,7 @@
                     "minFrame"        : 0
                   , "maxFrame"        : 1
                   , "currentRow"      : 1
-                  , "frameDelay"      : 350
+                  , "duration"      : 350
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
                   , "oscillate"       : false
@@ -44,7 +44,7 @@
                     "minFrame"        : 2
                   , "maxFrame"        : 9
                   , "currentRow"      : 1
-                  , "frameDelay"      : 100
+                  , "duration"        : 100
                   , "swapFrameAfter"  : 100
                   , "swapAnimAfter"   : 100
                   , "oscillate"       : false
@@ -64,7 +64,7 @@
                     "minFrame"        : 10
                   , "maxFrame"        : 10
                   , "currentRow"      : 1
-                  , "frameDelay"      : 300
+                  , "duration"        : 300
                   , "swapFrameAfter"  : 300
                   , "swapAnimAfter"   : 300
                   , "oscillate"       : false
@@ -73,7 +73,7 @@
                     "minFrame"        : 11
                   , "maxFrame"        : 11
                   , "currentRow"      : 1
-                  , "frameDelay"      : 250
+                  , "duration"        : 250
                   , "swapFrameAfter"  : 250
                   , "swapAnimAfter"   : 250
                   , "oscillate"       : false
@@ -82,7 +82,7 @@
                     "minFrame"        : 12
                   , "maxFrame"        : 12
                   , "currentRow"      : 1
-                  , "frameDelay"      : 200
+                  , "duration"        : 200
                   , "swapFrameAfter"  : 200
                   , "swapAnimAfter"   : 200
                   , "oscillate"       : false
@@ -91,7 +91,7 @@
                     "minFrame"        : 13
                   , "maxFrame"        : 13
                   , "currentRow"      : 1
-                  , "frameDelay"      : 150
+                  , "duration"        : 150
                   , "swapFrameAfter"  : 150
                   , "swapAnimAfter"   : 150
                   , "oscillate"       : false
@@ -127,7 +127,7 @@
                     "minFrame"        : 0
                   , "maxFrame"        : 0
                   , "currentRow"      : 1
-                  , "frameDelay"      : 10000
+                  , "duration"        : 10000
                   , "swapFrameAfter"  : 10000
                   , "swapAnimAfter"   : 10000
                   , "oscillate"       : false
@@ -145,7 +145,7 @@
                     "minFrame"        : 0
                   , "maxFrame"        : 1
                   , "currentRow"      : 1
-                  , "frameDelay"      : 100
+                  , "duration"        : 100
                   , "swapFrameAfter"  : 100
                   , "swapAnimAfter"   : 100
                   , "oscillate"       : false

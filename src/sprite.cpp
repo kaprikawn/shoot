@@ -6,7 +6,8 @@
 Sprite::Sprite( ObjectData* objectData ) : 
     health_( objectData -> hp )
   , movement_( objectData -> x, objectData -> y )
-  , velocity_( 0, 0 ) {
+  , velocity_( 0, 0 )
+  , animation_( objectData -> stateData ) {
   
   objectData_ = objectData;
   
@@ -25,11 +26,16 @@ void Sprite::update( float dt, Uint32 mfFrameDiff ) {
     renderParams_.flip = false;
   }
   
-  animation_.determineFrame( spriteState_, dt, mfFrameDiff
+  
+  // determine current animation frame
+  // returns true if sprite was in a fixed animation that is now finished
+  fixedAnimDone_ = animation_.determineFrame( spriteState_, dt, mfFrameDiff
     , renderParams_.currentFrame
     , renderParams_.currentRow
     , renderParams_.scale
   );
+  
+  
   
   
 }

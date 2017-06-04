@@ -27,8 +27,9 @@ class Textures {
     
     ~Textures(){}
     
-    bool load( std::string filename, std::string id, SDL_Renderer* renderer );
+    bool load( std::string filename, std::string id );
     void drawFrame( DrawFrameParams& params );
+    void draw( std::string id, int x, int y, int w, int h );
     
     static Textures* Instance() {
       if( instance_ == 0 ) {

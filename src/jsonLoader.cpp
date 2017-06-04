@@ -29,7 +29,7 @@ std::vector<ObjectData*> JsonLoader::getObjectData( std::string filename ) {
     newObjectData -> hp                = o[ "properties" ][ "hp" ];
     newObjectData -> spawnTime         = o[ "properties" ][ "spawnTime" ];
     
-    TheTextures::Instance() -> load( o[ "properties" ][ "filename" ], o[ "properties" ][ "textureID" ], TheGame::Instance() -> getRenderer() );
+    TheTextures::Instance() -> load( o[ "properties" ][ "filename" ], o[ "properties" ][ "textureID" ] );
     
     nlohmann::json sdRoot           = o[ "stateData" ];
     
@@ -52,7 +52,7 @@ std::vector<ObjectData*> JsonLoader::getObjectData( std::string filename ) {
           newAnimationData.minFrame       = a[ "minFrame" ];
           newAnimationData.maxFrame       = a[ "maxFrame" ];
           newAnimationData.currentRow     = a[ "currentRow" ];
-          newAnimationData.frameDelay     = a[ "frameDelay" ];
+          newAnimationData.duration       = a[ "duration" ];
           newAnimationData.swapFrameAfter = a[ "swapFrameAfter" ];
           newAnimationData.swapAnimAfter  = a[ "swapAnimAfter" ];
           newAnimationData.oscillate      = a[ "oscillate" ];

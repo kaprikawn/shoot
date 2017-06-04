@@ -3,6 +3,7 @@
 #include "playState.hpp"
 #include "jsonLoader.hpp"
 #include "structs.hpp"
+#include "textures.hpp"
 
 const std::string PlayState::s_playID = "PLAY";
 
@@ -19,10 +20,15 @@ bool PlayState::onEnter() {
     if( objectData[i] -> objectType == "Hero" ) {
       hero_ = new Hero( objectData[i] );
       PlayState::add( hero_ );
+    } else if( objectData[i] -> objectType == "Target" ) {
+      target_ = new Target( objectData[i] );
+      PlayState::add( target_ );
     }
     
     
   }
+  
+  TheTextures::Instance() -> load( "assets/level1Background.png", "background" );
   
   return true;
 }
@@ -34,6 +40,9 @@ void PlayState::update( float dt, Uint32 msFrameDiff ) {
 }
 
 void PlayState::render() {
+  
+  TheTextures::Instance() -> draw( "background", 0, 0, 1280, 720 );
+  
   for( int i = 0; i < spritesSize_; i++ ) {
     sprites_[i] -> render();
   }

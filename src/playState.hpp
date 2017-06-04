@@ -6,13 +6,15 @@
 #include "SDL.h"
 #include "gameState.hpp"
 #include "hero.hpp"
+#include "target.hpp"
 #include "sprite.hpp"
 
 class PlayState : public GameState {
   private:
     static const std::string  s_playID;
     
-    Hero* hero_;
+    Hero*     hero_;
+    Target*   target_;
     
   public:
     
