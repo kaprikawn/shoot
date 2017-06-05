@@ -44,7 +44,7 @@ void Textures::drawFrame( DrawFrameParams& params ) {
   srcRect.h = params.h;
   
   dstRect.x = params.x;
-  dstRect.y = params.y;
+  dstRect.y = params.y + params.elevation;
   dstRect.w = params.w * params.scale;
   dstRect.h = params.h * params.scale;
   

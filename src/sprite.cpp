@@ -7,7 +7,11 @@ Sprite::Sprite( ObjectData* objectData ) :
     health_( objectData -> hp )
   , movement_( objectData -> x, objectData -> y )
   , velocity_( 0, 0 )
-  , animation_( objectData -> stateData ) {
+  , animation_( objectData -> stateData )
+  , elevationP_( 0, 0 )
+  , elevationV_( 0, 0 )
+  , elevationG_( 0, 0 )
+   {
   
   objectData_ = objectData;
   
@@ -19,6 +23,13 @@ Sprite::Sprite( ObjectData* objectData ) :
 
 void Sprite::update( float dt, Uint32 mfFrameDiff ) {
   movement_.updatePosition( velocity_, dt );
+  
+  elevationP_ = elevationP_ + elevationV_ * dt;
+  elevationV_ = elevationV_ + elevationG_ * dt;
+  
+  float elevation = elevationP_.getY();
+  if( elevation > 0.0f ) { elevation = 0.0f; }
+  renderParams_.elevation = elevation;
   
   if( velocity_.getX() < 0 ) {
     renderParams_.flip = true;

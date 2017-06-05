@@ -18,6 +18,10 @@ class Sprite {
     Vector      velocity_;
     Animation   animation_; // animation handler
     
+    Vector      elevationP_; // elevation postition
+    Vector      elevationV_; // elevation vector
+    Vector      elevationG_; // elevation gravity
+    
     int         spriteID_;
     int         spriteState_ = 0;
     

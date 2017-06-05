@@ -59,6 +59,7 @@ struct DrawFrameParams {
   int y;
   int w;
   int h;
+  float elevation = 0.0f;
   float scale;
   int currentRow;
   int currentFrame;

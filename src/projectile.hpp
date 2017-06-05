@@ -3,11 +3,14 @@
 
 #include "sprite.hpp"
 #include "structs.hpp"
+#include "vector.hpp"
 
 class Projectile : public Sprite {
   
   private:
     int projectileType_ = 0;
+    
+    
     
     
   public:
