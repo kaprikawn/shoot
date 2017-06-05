@@ -62,6 +62,7 @@ void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
   projectileData.srcY = newObjectData -> y;
   projectileData.dstX = target_ -> getMovement().getSpriteCenter().getX();
   projectileData.dstY = target_ -> getMovement().getSpriteCenter().getY();
+  projectileData.speedFactor = 1.8f;
   
   Projectile* newProjectile = new Projectile( newObjectData, projectileData );
   PlayState::add( newProjectile );

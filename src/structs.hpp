@@ -97,11 +97,12 @@ enum ProjectileTypes {
 };
 
 struct ProjectileData {
-  int type;
-  int srcX;
-  int srcY;
-  int dstX;
-  int dstY;
+  int   type;
+  int   srcX;
+  int   srcY;
+  int   dstX;
+  int   dstY;
+  float speedFactor;
 };
 
 #endif //STRUCTS_HPP

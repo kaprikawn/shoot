@@ -11,8 +11,6 @@ class Projectile : public Sprite {
     int projectileType_ = 0;
     
     
-    
-    
   public:
     
     //Projectile( int x, int y, int destinationX, int destinationY, int speed, bool deleteAtDestination, bool isHostile, bool isPlayerGenerated );
