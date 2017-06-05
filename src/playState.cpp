@@ -39,8 +39,8 @@ void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
   //projectileData -> spriteID
   newObjectData -> width      = 30;
   newObjectData -> height     = 30;
-  newObjectData -> x          = hero_ -> getMovement().getCoordinates().getX();
-  newObjectData -> y          = hero_ -> getMovement().getCoordinates().getY();
+  newObjectData -> x          = hero_ -> getMovement().getSpriteCenter().getX();
+  newObjectData -> y          = hero_ -> getMovement().getSpriteCenter().getY();
   newObjectData -> objectType = "projectile";
   newObjectData -> textureID  = "bomb";
   newObjectData -> name       = "proj";
@@ -60,8 +60,8 @@ void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
   projectileData.type = PBOMB;
   projectileData.srcX = newObjectData -> x;
   projectileData.srcY = newObjectData -> y;
-  projectileData.dstX = target_ -> getMovement().getCoordinates().getX();
-  projectileData.dstY = target_ -> getMovement().getCoordinates().getY();
+  projectileData.dstX = target_ -> getMovement().getSpriteCenter().getX();
+  projectileData.dstY = target_ -> getMovement().getSpriteCenter().getY();
   
   Projectile* newProjectile = new Projectile( newObjectData, projectileData );
   PlayState::add( newProjectile );

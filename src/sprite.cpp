@@ -5,7 +5,7 @@
 
 Sprite::Sprite( ObjectData* objectData ) : 
     health_( objectData -> hp )
-  , movement_( objectData -> x, objectData -> y )
+  , movement_( objectData -> x, objectData -> y, objectData -> width, objectData -> height )
   , velocity_( 0, 0 )
   , animation_( objectData -> stateData )
   , elevationP_( 0, 0 )
