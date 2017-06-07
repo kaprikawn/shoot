@@ -8,16 +8,18 @@ Projectile::Projectile( ObjectData* objectData, ProjectileData &projectileData )
   
   velocity_ *= projectileData.speedFactor;
   
-  int y = -1000 * projectileData.speedFactor;
-  int g = sqrt( y * y ) * projectileData.speedFactor;
-  g *= 2;
+  if( projectileData.type == PBOMB ) {
   
-  //printf( "y is %d\n", y );
-  //printf( "g is %d\n", g );
+    int y = -1000 * projectileData.speedFactor;
+    int g = sqrt( y * y ) * projectileData.speedFactor;
+    g *= 2;
     
-  elevationV_.setY( y );
-  elevationG_.setY( g );
-  
+    //printf( "y is %d\n", y );
+    //printf( "g is %d\n", g );
+      
+    elevationV_.setY( y );
+    elevationG_.setY( g );
+  }
   
 }
 

@@ -11,6 +11,12 @@ Target::Target( ObjectData* objectData ) : Sprite( objectData ) {
 
 void Target::handleInput() {
   
+  if( TheInputHandler::Instance() -> isPressed( FIRE ) ) {
+    spriteState_ = FIRING;
+  } else {
+    spriteState_ = DEFAULT;
+  }
+  
   if( TheInputHandler::Instance() -> isPressed( RIGHT ) && movement_.getCoordinates().getX() < 1280 - objectData_ -> width ) {
     if( spriteState_ == FIRING ) {
       velocity_.setX( 150 );

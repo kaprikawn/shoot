@@ -26,7 +26,7 @@
                     "minFrame"        : 0
                   , "maxFrame"        : 1
                   , "currentRow"      : 1
-                  , "duration"      : 350
+                  , "duration"        : 350
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
                   , "oscillate"       : false
@@ -52,7 +52,24 @@
                 }
               ]
           }
-          , { "spriteState" : 2, "skip" : true }
+          , {
+              "id"          : "FIRING"
+            , "spriteState" : 2
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 0
+                  , "currentRow"      : 1
+                  , "duration"        : 350
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"       : false
+                  
+                }
+              ]
+          }
           , { "spriteState" : 3, "skip" : true }
           , {
               "id"          : "DODGING"

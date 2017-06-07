@@ -93,7 +93,7 @@ enum lastDirection {
 };
 
 enum ProjectileTypes {
-    UNDEF, BULLET, PBOMB, EBOMB
+    UNDEF, PBULLET, EBULLET, PBOMB, EBOMB
 };
 
 struct ProjectileData {

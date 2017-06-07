@@ -13,13 +13,20 @@ void Hero::handleInput() {
   if( spriteState_ == DYING ) { return; }
   
   if( spriteState_ == MOVING || spriteState_ == FIRING || spriteState_ == DEFAULT ) {
+    
     if( TheInputHandler::Instance() -> isPressed( DODGE ) ) {
       spriteState_ = DODGING;
-    }
-    
-    if( TheInputHandler::Instance() -> isPressed( BOMB ) && bombCooldown_ > 1000 ) {
-      spawnProjectile_ = 2;
+    } else if( TheInputHandler::Instance() -> isPressed( BOMB ) && bombCooldown_ > 1000 ) {
+      spawnProjectile_ = PBOMB;
       bombCooldown_ = 0;
+    } else if( TheInputHandler::Instance() -> isPressed( FIRE ) ) {
+      spriteState_ = FIRING;
+      if( bulletCooldown_ > 350 ) {
+        spawnProjectile_ = PBULLET;
+        bulletCooldown_ = 0;
+      }
+    } else {
+      spriteState_ = DEFAULT;
     }
   }
   
@@ -29,6 +36,8 @@ void Hero::handleInput() {
     } else {
       velocity_.setX( 150 );
     }
+  } else if( spriteState_ == FIRING ) {
+    velocity_.setX( 0 );
   } else {
     if( TheInputHandler::Instance() -> isPressed( RIGHT ) ) {
       spriteState_ = MOVING;
@@ -51,8 +60,14 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
   
   if( movement_.getCoordinates().getX() >= 1279 - objectData_ -> width && velocity_.getX() > 0 ) {
     velocity_.setX( 0 );
+    if( spriteState_ == MOVING ) {
+      spriteState_ = DEFAULT;
+    }
   } else if( movement_.getCoordinates().getX() <= 1 && velocity_.getX() < 0 ) {
     velocity_.setX( 0 );
+    if( spriteState_ == MOVING ) {
+      spriteState_ = DEFAULT;
+    }
   }
   
   Sprite::update( dt, msFrameDiff );
@@ -63,7 +78,8 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
     Sprite::update( dt, msFrameDiff );
   }
   
-  bombCooldown_ += msFrameDiff;
+  bombCooldown_   += msFrameDiff;
+  bulletCooldown_ += msFrameDiff;
 }
 
 void Hero::render() {
