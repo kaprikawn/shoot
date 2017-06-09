@@ -1,3 +1,6 @@
+# C:\MinGW\bin > $PATH
+# mingw32-make.exe
+
 #OBJS specifies which files to compile as part of the project
 OBJS = 01_hello_SDL.cpp
 
