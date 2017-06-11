@@ -5,7 +5,12 @@ declare -a arr=( animation CMakeLists.txt game gameState gameStateMachine health
 
 arr=( animation CMakeLists.txt game health hero inputHandler jsonLoader main movement playState projectile sprite structs target textures vector dataMain.json edit )
 
-syscall="xed "
+if [ $HOSTNAME == "archbox" ]
+then
+  syscall="gedit "
+else
+  syscall="xed "
+fi
 
 for i in "${arr[@]}"
 do
