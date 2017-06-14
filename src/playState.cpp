@@ -37,8 +37,8 @@ void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
   ObjectData* newObjectData = new ObjectData();
   
   //projectileData -> spriteID
-  newObjectData -> width      = 30;
-  newObjectData -> height     = 30;
+  newObjectData -> width      = 46;
+  newObjectData -> height     = 46;
   newObjectData -> x          = hero_ -> getMovement().getSpriteCenter().getX();
   newObjectData -> y          = hero_ -> getMovement().getSpriteCenter().getY();
   newObjectData -> objectType = "projectile";
