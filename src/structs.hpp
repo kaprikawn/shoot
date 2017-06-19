@@ -103,6 +103,7 @@ struct ProjectileData {
   int   dstX;
   int   dstY;
   float speedFactor;
+  bool  destroyAtDest = false;
 };
 
 #endif //STRUCTS_HPP

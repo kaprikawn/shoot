@@ -8,8 +8,15 @@
 class Projectile : public Sprite {
   
   private:
+  
     int projectileType_ = 0;
     
+    int   srcX;
+    int   srcY;
+    int   dstX;
+    int   dstY;
+    bool  destroyAtDest_;
+    bool  testOnY = true; // whether to test whether passed position on X or Y
     
   public:
     
@@ -20,6 +27,8 @@ class Projectile : public Sprite {
     virtual void update ( float dt, Uint32 msFrameDiff );
     virtual void render ();
     virtual void clean  ();
+    
+    bool hasPassedDestination();
     
     
 };

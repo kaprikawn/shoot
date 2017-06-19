@@ -65,6 +65,7 @@ void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
   
   if( projectileType == PBULLET ) {
     projectileData.speedFactor = 7.0f;
+    projectileData.destroyAtDest = true;
   } else if( projectileType == PBOMB ) {
     projectileData.speedFactor = 1.8f;
   }
@@ -82,6 +83,16 @@ void PlayState::update( float dt, Uint32 msFrameDiff ) {
       PlayState::spawnProjectile( projectileType_, sprites_[i]  );
     }
   }
+  
+  //delete dead stuff
+  for( unsigned i = spritesSize_; i-- > 0; ) {
+    if( sprites_[i] -> needsDeleting() ) {
+      //printf( "deleting %d\n", i );
+      delete sprites_[i];
+      sprites_.erase( sprites_.begin() + i );
+    }
+  }
+  spritesSize_ = sprites_.size();
 }
 
 void PlayState::render() {
