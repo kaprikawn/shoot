@@ -8,13 +8,15 @@
 #include "hero.hpp"
 #include "target.hpp"
 #include "sprite.hpp"
+#include "structs.hpp"
 
 class PlayState : public GameState {
   private:
     static const std::string  s_playID;
     
-    Hero*     hero_;
-    Target*   target_;
+    Hero*       hero_;
+    Target*     target_;
+    ObjectData  bombObjectData_;
     
     int projectileType_ = 0;
     

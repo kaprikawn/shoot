@@ -3,6 +3,8 @@
 
 Projectile::Projectile( ObjectData* objectData, ProjectileData &projectileData ) : Sprite( objectData ) {
   
+  projectileData_ = projectileData;
+  
   velocity_ = Vector( Vector( projectileData.dstX, projectileData.dstY ) - Vector( projectileData.srcX, projectileData.srcY ) );
   
   //float speedFactor = 1.8f;
@@ -20,18 +22,14 @@ Projectile::Projectile( ObjectData* objectData, ProjectileData &projectileData )
       
     elevationV_.setY( y );
     elevationG_.setY( g );
+    
+    projectileData_.canDamage = false;
   }
   
-  srcX = projectileData.srcX;
-  srcY = projectileData.srcY;
-  dstX = projectileData.dstX;
-  dstY = projectileData.dstY;
-  
-  destroyAtDest_ = projectileData.destroyAtDest;
-  if( destroyAtDest_ ) {
+  if( projectileData_.destroyAtDest ) {
     // if the projectile is going more horizontally than vertically
     // test whether it has passed the target based on X coordinates, otherwise default Y
-    if( abs( dstY - srcY ) < abs( dstX - srcX ) ) {
+    if( abs( projectileData_.dstY - projectileData_.srcY ) < abs( projectileData_.dstX - projectileData_.srcX ) ) {
       testOnY = false;
     }
   }
@@ -41,15 +39,15 @@ Projectile::Projectile( ObjectData* objectData, ProjectileData &projectileData )
 bool Projectile::hasPassedDestination() {
   
   if( testOnY ) {
-    if( dstY <= srcY && movement_.getCoordinates().getY() <= dstY ) {
+    if( projectileData_.dstY <= projectileData_.srcY && movement_.getCoordinates().getY() <= projectileData_.dstY ) {
       return true;
-    } else if( dstY >= srcY && movement_.getCoordinates().getY() >= dstY ) {
+    } else if( projectileData_.dstY >= projectileData_.srcY && movement_.getCoordinates().getY() >= projectileData_.dstY ) {
       return true;
     }
   } else {
-    if( dstX >= srcX && movement_.getCoordinates().getX() >= dstX ) {
+    if( projectileData_.dstX >= projectileData_.srcX && movement_.getCoordinates().getX() >= projectileData_.dstX ) {
       return true;
-    } else if( dstX <= srcX && movement_.getCoordinates().getX() <= dstX ) {
+    } else if( projectileData_.dstX <= projectileData_.srcX && movement_.getCoordinates().getX() <= projectileData_.dstX ) {
       return true;
     }
   }
@@ -65,7 +63,7 @@ void Projectile::update( float dt, Uint32 msFrameDiff ) {
 
   Sprite::update( dt, msFrameDiff );
   
-  if( destroyAtDest_ && hasPassedDestination() ) {
+  if( projectileData_.destroyAtDest && hasPassedDestination() ) {
     deleteSprite_ = true;
   }
   

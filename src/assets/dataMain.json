@@ -171,4 +171,68 @@
           }
         ]
   }
+  , {
+    "properties" : {
+        "objectType"        : "Bomb"
+      , "height"            : 48
+      , "width"             : 48
+      , "textureID"         : "bomb"
+      , "filename"          : "assets/bomb.png"
+      , "x"                 : 0
+      , "y"                 : 0
+      , "hb_left_adjust"    : 0
+      , "hb_right_adjust"   : 0
+      , "hb_top_adjust"     : 0
+      , "hb_bottom_adjust"  : 0
+      , "hp"                : 1
+      , "spawnTime"         : 0
+        }
+      , "stateData" : [
+          {
+              "id"          : "DEFAULT"
+            , "spriteState" : 0
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 0
+                  , "currentRow"      : 1
+                  , "duration"        : 10000
+                  , "swapFrameAfter"  : 10000
+                  , "swapAnimAfter"   : 10000
+                  , "oscillate"       : false
+                }
+              ]
+          }
+          , { "spriteState" : 1, "skip" : true }
+          , { "spriteState" : 2, "skip" : true }
+          , {
+              "id"          : "DYING"
+            , "spriteState" : 3
+            , "skip"        : false
+            , "fixedAnim"   : true
+            , "animation"   : [
+                {
+                    "minFrame"        : 1
+                  , "maxFrame"        : 1
+                  , "currentRow"      : 1
+                  , "duration"        : 300
+                  , "swapFrameAfter"  : 300
+                  , "swapAnimAfter"   : 300
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 2
+                  , "maxFrame"        : 2
+                  , "currentRow"      : 1
+                  , "duration"        : 250
+                  , "swapFrameAfter"  : 250
+                  , "swapAnimAfter"   : 250
+                  , "oscillate"       : false
+                }
+              ]
+          }
+        ]
+  }
 ]

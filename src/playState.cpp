@@ -24,6 +24,8 @@ bool PlayState::onEnter() {
     } else if( objectData[i] -> objectType == "Target" ) {
       target_ = new Target( objectData[i] );
       PlayState::add( target_ );
+    } else if( objectData[i] -> objectType == "Bomb" ) {
+      bombObjectData_ = ( *objectData[i] );
     }
   }
   
@@ -35,6 +37,8 @@ bool PlayState::onEnter() {
 
 void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
   ObjectData* newObjectData = new ObjectData();
+  
+  std::cout << "dying state is " << bombObjectData_.stateData[3].id << std::endl;
   
   //projectileData -> spriteID
   newObjectData -> width      = 46;

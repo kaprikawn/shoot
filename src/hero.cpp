@@ -21,7 +21,7 @@ void Hero::handleInput() {
       bombCooldown_ = 0;
     } else if( TheInputHandler::Instance() -> isPressed( FIRE ) ) {
       spriteState_ = FIRING;
-      if( bulletCooldown_ > 350 ) {
+      if( bulletCooldown_ > 100 ) {
         spawnProjectile_ = PBULLET;
         bulletCooldown_ = 0;
       }

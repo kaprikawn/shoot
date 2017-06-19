@@ -8,15 +8,12 @@
 class Projectile : public Sprite {
   
   private:
-  
+    ProjectileData projectileData_;
+    
     int projectileType_ = 0;
     
-    int   srcX;
-    int   srcY;
-    int   dstX;
-    int   dstY;
-    bool  destroyAtDest_;
     bool  testOnY = true; // whether to test whether passed position on X or Y
+    
     
   public:
     

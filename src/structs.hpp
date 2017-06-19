@@ -104,6 +104,7 @@ struct ProjectileData {
   int   dstY;
   float speedFactor;
   bool  destroyAtDest = false;
+  bool  canDamage     = true;
 };
 
 #endif //STRUCTS_HPP
