@@ -36,34 +36,15 @@ bool PlayState::onEnter() {
 }
 
 void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
-  ObjectData* newObjectData = new ObjectData();
   
-  std::cout << "dying state is " << bombObjectData_.stateData[3].id << std::endl;
-  
-  //projectileData -> spriteID
-  newObjectData -> width      = 46;
-  newObjectData -> height     = 46;
-  newObjectData -> x          = hero_ -> getMovement().getSpriteCenter().getX();
-  newObjectData -> y          = hero_ -> getMovement().getSpriteCenter().getY();
-  newObjectData -> objectType = "projectile";
-  newObjectData -> textureID  = "bomb";
-  newObjectData -> name       = "proj";
-  newObjectData -> filename   = "assets/bomb.png";
-  
-  StateData newStateData;
-  newStateData.id = "DEFAULT";
-  newStateData.spriteState = 0;
-  
-  AnimationData newAnimationData;
-  newStateData.animData.push_back( newAnimationData );
-  
-  newObjectData -> stateData.push_back( newStateData );
+  bombObjectData_.x = hero_ -> getMovement().getSpriteCenter().getX();
+  bombObjectData_.y = hero_ -> getMovement().getSpriteCenter().getY();
   
   ProjectileData projectileData;
   
   projectileData.type = projectileType;
-  projectileData.srcX = newObjectData -> x;
-  projectileData.srcY = newObjectData -> y;
+  projectileData.srcX = bombObjectData_.x;
+  projectileData.srcY = bombObjectData_.y;
   projectileData.dstX = target_ -> getMovement().getSpriteCenter().getX();
   projectileData.dstY = target_ -> getMovement().getSpriteCenter().getY();
   
@@ -74,7 +55,7 @@ void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
     projectileData.speedFactor = 1.8f;
   }
   
-  Projectile* newProjectile = new Projectile( newObjectData, projectileData );
+  Projectile* newProjectile = new Projectile( &bombObjectData_, projectileData );
   PlayState::add( newProjectile );
 }
 

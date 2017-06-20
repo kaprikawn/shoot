@@ -59,11 +59,16 @@ void Projectile::update( float dt, Uint32 msFrameDiff ) {
   if( elevationP_.getY() > 0 ) {
     velocity_.setX( 0 );
     velocity_.setY( 0 );
+    spriteState_ = DYING;
   }
 
   Sprite::update( dt, msFrameDiff );
   
   if( projectileData_.destroyAtDest && hasPassedDestination() ) {
+    deleteSprite_ = true;
+  }
+  
+  if( fixedAnimDone_ ) {
     deleteSprite_ = true;
   }
   
