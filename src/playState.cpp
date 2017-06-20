@@ -73,6 +73,7 @@ void PlayState::update( float dt, Uint32 msFrameDiff ) {
   for( unsigned i = spritesSize_; i-- > 0; ) {
     if( sprites_[i] -> needsDeleting() ) {
       //printf( "deleting %d\n", i );
+      sprites_[i] -> clean();
       delete sprites_[i];
       sprites_.erase( sprites_.begin() + i );
     }

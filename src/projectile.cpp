@@ -81,5 +81,5 @@ void Projectile::render() {
 }
 
 void Projectile::clean() {
-
+  printf( "calling clean\n" );
 }
