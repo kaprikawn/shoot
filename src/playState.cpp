@@ -5,6 +5,7 @@
 #include "structs.hpp"
 #include "textures.hpp"
 #include "projectile.hpp"
+#include "enemy.hpp"
 
 const std::string PlayState::s_playID = "PLAY";
 
@@ -32,6 +33,42 @@ bool PlayState::onEnter() {
   TheTextures::Instance() -> load( "assets/level1Background.png", "background" );
   TheTextures::Instance() -> load( "assets/bomb.png", "bomb" );
   
+  PlayState::loadLevelFromFile( 1 );
+  
+  levelStart_ = SDL_GetTicks();
+  
+  return true;
+}
+
+bool PlayState::loadLevelFromFile( int currentLevel ) {
+  std::vector<std::string> loadedTextures;
+  bool textureLoaded = false;
+  std::string currentLevelChar = std::to_string( currentLevel );
+  
+  JsonLoader newJsonLoader;
+  std::vector<ObjectData*> objectData = newJsonLoader.getObjectData( "assets/dataLevel1.json" );
+  for( unsigned int i = 0; i < objectData.size(); i++ ) {
+    if( objectData[i] -> objectType == "Enemy" ) {
+      enemies_.push_back( objectData[i] );
+      printf( "pushing back enemey\n" );
+    }
+    
+    textureLoaded = false;
+    if( !loadedTextures.empty() ) {
+      for( unsigned int t = 0; t < loadedTextures.size(); t++ ) {
+        if( loadedTextures[t] == objectData[i] -> textureID ) {
+          textureLoaded = true;
+        }
+      }
+    }
+    
+    if( !textureLoaded ) {
+      if( !TheTextures::Instance() -> load( objectData[i] -> filename, objectData[i] -> textureID ) ) {
+        return false;
+      }
+      loadedTextures.push_back( objectData[i] -> textureID );
+    }
+  }
   return true;
 }
 
@@ -79,6 +116,20 @@ void PlayState::update( float dt, Uint32 msFrameDiff ) {
     }
   }
   spritesSize_ = sprites_.size();
+  
+  currentTime_ = SDL_GetTicks();
+  
+  // spawn enemies
+  if( !enemies_.empty() ) {
+    for( unsigned i = enemies_.size(); i-- > 0; ) {
+      if( !enemies_[i] -> hasSpawned && currentTime_ > ( levelStart_ + ( enemies_[i] -> spawnTime * 1000 ) ) ) {
+        Enemy* newEnemy = new Enemy( enemies_[i] );
+        PlayState::add( newEnemy );
+        enemies_[i] -> hasSpawned = true;
+        printf( "added enemy\n" );
+      }
+    }
+  }
 }
 
 void PlayState::render() {

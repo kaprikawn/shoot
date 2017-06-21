@@ -1,0 +1,259 @@
+[
+  {
+    "properties" : {
+        "objectType"        : "Enemy"
+      , "height"            : 247
+      , "width"             : 195
+      , "textureID"         : "enemyChucker"
+      , "filename"          : "assets/enemyChucker.png"
+      , "x"                 : 800
+      , "y"                 : 300
+      , "hb_left_adjust"    : 0
+      , "hb_right_adjust"   : 0
+      , "hb_top_adjust"     : 0
+      , "hb_bottom_adjust"  : 0
+      , "hp"                : 1000
+      , "spawnTime"         : 1
+        }
+      , "stateData" : [
+          {
+              "id"          : "DEFAULT"
+            , "spriteState" : 0
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 2
+                  , "currentRow"      : 1
+                  , "duration"        : 350
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"       : true
+                  
+                }
+              ]
+          }
+          , {
+              "id"          : "MOVING"
+            , "spriteState" : 1
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 2
+                  , "currentRow"      : 1
+                  , "duration"        : 350
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"       : true
+                  
+                }
+              ]
+          }
+          , {
+              "id"          : "FIRING"
+            , "spriteState" : 2
+            , "skip"        : false
+            , "fixedAnim"   : true
+            , "animation"   : [
+                {
+                    "minFrame"        : 5
+                  , "maxFrame"        : 5
+                  , "currentRow"      : 1
+                  , "duration"        : 700
+                  , "swapFrameAfter"  : 700
+                  , "swapAnimAfter"   : 700
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 6
+                  , "maxFrame"        : 6
+                  , "currentRow"      : 1
+                  , "duration"        : 500
+                  , "swapFrameAfter"  : 500
+                  , "swapAnimAfter"   : 500
+                  , "oscillate"       : false
+                }
+              ]
+          }
+          , {
+              "id"          : "DYING"
+            , "spriteState" : 3
+            , "skip"        : false
+            , "fixedAnim"   : true
+            , "animation"   : [
+                {
+                    "minFrame"        : 3
+                  , "maxFrame"        : 3
+                  , "currentRow"      : 1
+                  , "duration"        : 700
+                  , "swapFrameAfter"  : 700
+                  , "swapAnimAfter"   : 700
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 4
+                  , "maxFrame"        : 5
+                  , "currentRow"      : 1
+                  , "duration"        : 500
+                  , "swapFrameAfter"  : 500
+                  , "swapAnimAfter"   : 500
+                  , "oscillate"       : false
+                }
+              ]
+          }
+      ]
+      , "pathData" : [
+          { "x" : 820,  "y" : 300 }
+        , { "x" : 900,  "y" : 300 }
+        , { "x" : 1000, "y" : 300 }
+        , { "x" : 1300, "y" : 300 }
+        ]
+  }
+  
+  , {
+    "properties" : {
+        "objectType"        : "Scenary"
+      , "height"            : 300
+      , "width"             : 456
+      , "textureID"         : "defense"
+      , "filename"          : "assets/wall.png"
+      , "x"                 : 100
+      , "y"                 : 350
+      , "hb_left_adjust"    : 0
+      , "hb_right_adjust"   : 0
+      , "hb_top_adjust"     : 0
+      , "hb_bottom_adjust"  : 0
+      , "hp"                : 1000
+      , "spawnTime"         : 0
+        }
+      , "stateData" : [
+          {
+              "id"          : "DEFAULT"
+            , "spriteState" : 0
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"    : 0
+                  , "maxFrame"    : 0
+                  , "currentRow"  : 1
+                  , "duration"    : 350
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"   : false
+                  
+                }
+              ]
+          }
+          , { "spriteState" : 1, "skip" : true }
+          , { "spriteState" : 2, "skip" : true }
+          , {
+              "id"          : "DYING"
+            , "spriteState" : 3
+            , "skip"        : false
+            , "fixedAnim"   : true
+            , "animation"   : [
+                {
+                    "minFrame"        : 4
+                  , "maxFrame"        : 5
+                  , "currentRow"      : 1
+                  , "duration"        : 1000
+                  , "swapFrameAfter"  : 200
+                  , "swapAnimAfter"   : 2000
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 6
+                  , "maxFrame"        : 7
+                  , "currentRow"      : 1
+                  , "duration"        : 1000
+                  , "swapFrameAfter"  : 200
+                  , "swapAnimAfter"   : 2000
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 8
+                  , "maxFrame"        : 9
+                  , "currentRow"      : 1
+                  , "duration"        : 1000
+                  , "swapFrameAfter"  : 200
+                  , "swapAnimAfter"   : 2000
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 10
+                  , "maxFrame"        : 10
+                  , "currentRow"      : 1
+                  , "duration"        : 1000
+                  , "swapFrameAfter"  : 200
+                  , "swapAnimAfter"   : 2000
+                  , "oscillate"       : false
+                }
+              ]
+          }
+          , { "spriteState" : 4, "skip" : true }
+          , { "spriteState" : 5, "skip" : true }
+          , { "spriteState" : 6, "skip" : true }
+          , { "spriteState" : 7, "skip" : true }
+          , { "spriteState" : 8, "skip" : true }
+          , {
+              "id"          : "DAMAGED1"
+            , "spriteState" : 9
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"    : 1
+                  , "maxFrame"    : 1
+                  , "currentRow"  : 1
+                  , "duration"    : 100000
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"   : false
+                  
+                }
+              ]
+          }
+          , {
+              "id"          : "DAMAGED2"
+            , "spriteState" : 10
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"    : 2
+                  , "maxFrame"    : 2
+                  , "currentRow"  : 1
+                  , "duration"    : 100000
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"   : false
+                  
+                }
+              ]
+          }
+          , {
+              "id"          : "DAMAGED3"
+            , "spriteState" : 11
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"    : 3
+                  , "maxFrame"    : 3
+                  , "currentRow"  : 1
+                  , "duration"    : 100000
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"   : false
+                  
+                }
+              ]
+          }
+        ]
+  }
+]
+  

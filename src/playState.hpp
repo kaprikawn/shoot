@@ -18,7 +18,11 @@ class PlayState : public GameState {
     Target*     target_;
     ObjectData  bombObjectData_;
     
-    int projectileType_ = 0;
+    std::vector<ObjectData*> enemies_;
+    
+    int     projectileType_ = 0;
+    Uint32  levelStart_;
+    Uint32  currentTime_;
     
   public:
     
@@ -31,6 +35,8 @@ class PlayState : public GameState {
     void  spawnProjectile( int projectileType, Sprite* originSprite );
     
     virtual std::string getStateID() const { return s_playID; }
+    
+    bool loadLevelFromFile( int currentLevel );
     
 };
 
