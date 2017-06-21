@@ -53,6 +53,13 @@ bool Animation::determineFrame( int spriteState, float dt, Uint32 mfFrameDiff
   }
   
   if( changeFrame_ ) {
+    if( animationData_[ currentIndex_ ].oscillate ) {
+      if( frameStep_ == 1 && frameNum_ == animationData_[ currentIndex_ ].maxFrame ) {
+        frameStep_ = -1;
+      } else if( frameStep_ == -1 && frameNum_ == animationData_[ currentIndex_ ].minFrame ) {
+        frameStep_ = 1;
+      }
+    }
     frameNum_ += frameStep_;
     
   }
