@@ -49,22 +49,13 @@ void Sprite::update( float dt, Uint32 mfFrameDiff ) {
   
   position_.updatePosition( velocity_, dt, renderParams_, ignoreScale_, elevation_ );
   
-  //std::cout << "height is " << objectData_ -> height << std::endl;
-  //std::cout << "new y is " << position_.getCoordinates().getY() << std::endl;
-  
   drawIndex_ = position_.getCoordinates().getY() + objectData_ -> height;
-  
-  //std::cout << "drawIndex_ is " << drawIndex_ << std::endl;
-  
-  
-  //renderParams_.elevation = elevation;
   
   if( velocity_.getX() < 0 ) {
     renderParams_.flip = true;
   } else {
     renderParams_.flip = false;
   }
-  
   
   // determine current animation frame
   // returns true if sprite was in a fixed animation that is now finished
@@ -73,15 +64,9 @@ void Sprite::update( float dt, Uint32 mfFrameDiff ) {
     , renderParams_.currentRow
   );
   
-  //renderParams_.scale = getScale(  position_.getCoordinates().getY(), objectData_ -> height, ignoreScale_ );
-  
 }
 
 void Sprite::render() {
-  
-  //renderParams_.x = position_.getCoordinates().getX();
-  //renderParams_.y = position_.getCoordinates().getY();
-
   TheTextures::Instance() -> drawFrame( renderParams_ );
 }
 

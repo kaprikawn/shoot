@@ -48,6 +48,10 @@ class Sprite {
       return spawnProjectile_;
     }
     
+    void setSpawnProjectile( bool spawnProjectile ) {
+      spawnProjectile_ = spawnProjectile;
+    }
+    
     bool  needsDeleting() { return deleteSprite_; }
     int   getDrawIndex()  { return drawIndex_; }
     bool  hasPassedDestination( int srcX, int srcY, int dstX, int dstY );

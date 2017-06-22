@@ -7,6 +7,9 @@ Projectile::Projectile( ObjectData* objectData, ProjectileData &projectileData )
   
   velocity_ = Vector( Vector( projectileData.dstX, projectileData.dstY ) - Vector( projectileData.srcX, projectileData.srcY ) );
   
+  std::cout << "vx is " << velocity_.getX() << std::endl;
+  std::cout << "vy is " << velocity_.getY() << std::endl;
+  
   //float speedFactor = 1.8f;
   
   velocity_ *= projectileData.speedFactor;
@@ -82,6 +85,9 @@ void Projectile::update( float dt, Uint32 msFrameDiff ) {
   if( fixedAnimDone_ ) {
     deleteSprite_ = true;
   }
+  
+  std::cout << "x is " << position_.getCoordinates().getX() << std::endl;
+  std::cout << "y is " << position_.getCoordinates().getY() << std::endl;
   
   
   //std::cout << "elevation is " << elevationP_.getY() << std::endl;
