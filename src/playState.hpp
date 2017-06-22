@@ -2,7 +2,7 @@
 #define PLAYSTATE_HPP
 
 //#include <vector>
-//#include <map>
+#include <map>
 #include "SDL.h"
 #include "gameState.hpp"
 #include "hero.hpp"
@@ -19,6 +19,8 @@ class PlayState : public GameState {
     ObjectData  bombObjectData_;
     
     std::vector<ObjectData*> enemies_;
+    std::map<int, int> src; // map of draw indexes so we know which order to draw
+    std::multimap<int, int> dst;
     
     int     projectileType_ = 0;
     Uint32  levelStart_;

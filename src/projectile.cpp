@@ -63,6 +63,7 @@ void Projectile::update( float dt, Uint32 msFrameDiff ) {
   }
 
   Sprite::update( dt, msFrameDiff );
+  drawIndex_ += 1000;
   
   if( projectileData_.destroyAtDest && hasPassedDestination() ) {
     deleteSprite_ = true;
@@ -81,5 +82,5 @@ void Projectile::render() {
 }
 
 void Projectile::clean() {
-  printf( "calling clean\n" );
+  
 }

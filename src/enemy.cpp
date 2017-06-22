@@ -12,7 +12,7 @@ void Enemy::update( float dt, Uint32 msFrameDiff ) {
   
   Sprite::update( dt, msFrameDiff );
   
-  
+  //std::cout << "enemy draw index is " << drawIndex_ << std::endl;
 }
 
 void Enemy::render() {

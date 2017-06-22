@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "playState.hpp"
 #include "jsonLoader.hpp"
 #include "structs.hpp"
@@ -50,7 +51,6 @@ bool PlayState::loadLevelFromFile( int currentLevel ) {
   for( unsigned int i = 0; i < objectData.size(); i++ ) {
     if( objectData[i] -> objectType == "Enemy" ) {
       enemies_.push_back( objectData[i] );
-      printf( "pushing back enemey\n" );
     }
     
     textureLoaded = false;
@@ -126,19 +126,45 @@ void PlayState::update( float dt, Uint32 msFrameDiff ) {
         Enemy* newEnemy = new Enemy( enemies_[i] );
         PlayState::add( newEnemy );
         enemies_[i] -> hasSpawned = true;
-        printf( "added enemy\n" );
       }
     }
   }
+}
+
+template<typename A, typename B> std::pair<B,A> flip_pair( const std::pair<A,B> &p) {
+  return std::pair<B,A>( p.second, p.first );
+}
+
+template<typename A, typename B> std::multimap<B,A> flip_map(const std::map<A,B> &src) {
+  std::multimap<B,A> dst;
+  std::transform(src.begin(), src.end(), std::inserter(dst, dst.begin()), 
+                 flip_pair<A,B>);
+  return dst;
 }
 
 void PlayState::render() {
   
   TheTextures::Instance() -> draw( "background", 0, 0, 1280, 720 );
   
-  for( int i = 0; i < spritesSize_; i++ ) {
-    sprites_[i] -> render();
+  //  cpp.sh/7pky
+  std::map<int, int> src; // map of draw indexes so we know which order to draw
+  
+  for( int i = 0; i < spritesSize_; i++ ) { // populate map
+    src[i] = sprites_[i] -> getDrawIndex();
   }
+  
+  src[0] = 10001;
+  src[1] = 10000;
+  
+  dst = flip_map( src ); // order by value
+  
+  for ( std::multimap<int, int>::iterator it=dst.begin(); it!=dst.end(); ++it ) {
+    sprites_[ (*it).second ] -> render();
+  }
+  
+  src.clear();
+  dst.clear();
+  
 }
 
 bool PlayState::onExit() {

@@ -29,8 +29,9 @@ class Sprite {
     bool        fixedAnimDone_; // used only for fixed animations
     
     int         spawnProjectile_  = 0; // number refers to type of projectile
-    
+    int         drawIndex_; // for use in deciding which order to draw sprites in
     bool        deleteSprite_     = false;
+    
     
   public:
     Sprite( ObjectData* objectData );
@@ -44,9 +45,9 @@ class Sprite {
       return spawnProjectile_;
     }
     
-    bool needsDeleting() { return deleteSprite_; }
+    bool  needsDeleting() { return deleteSprite_; }
+    int   getDrawIndex()  { return drawIndex_; }
     
-    //void setDelete() { deleteSprite_ = true; }
     
     Movement getMovement() { return movement_; }
     

@@ -22,7 +22,15 @@ Sprite::Sprite( ObjectData* objectData ) :
 }
 
 void Sprite::update( float dt, Uint32 mfFrameDiff ) {
+  
   movement_.updatePosition( velocity_, dt );
+  
+  //std::cout << "height is " << objectData_ -> height << std::endl;
+  //std::cout << "new y is " << movement_.getCoordinates().getY() << std::endl;
+  
+  drawIndex_ = movement_.getCoordinates().getY() + objectData_ -> height;
+  
+  //std::cout << "drawIndex_ is " << drawIndex_ << std::endl;
   
   elevationP_ = elevationP_ + elevationV_ * dt;
   elevationV_ = elevationV_ + elevationG_ * dt;

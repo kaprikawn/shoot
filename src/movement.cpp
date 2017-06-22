@@ -9,6 +9,8 @@ Movement::Movement( int x, int y, int w, int h ) :
 
 void Movement::updatePosition( Vector velocity, float dt ) {
   coordinates_ = coordinates_ + velocity * dt;
+  
+  
 }
 
 Vector Movement::getSpriteCenter() {
