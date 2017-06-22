@@ -67,6 +67,7 @@ class Vector {
         ( *this ) *= 1 / l;
       }
     }
+    
   
     float distance( const Vector& v2 ) {
       return sqrt( pow( ( x_ - v2.x_ ), 2 ) +  pow( ( y_ - v2.y_ ), 2 ) );

@@ -34,7 +34,6 @@ class Animation {
     bool determineFrame( int spriteState, float dt, Uint32 mfFrameDiff
       , int& currentFrame
       , int& currentRow
-      , float& scale
     );
     
     void changeState( int newSpriteState );

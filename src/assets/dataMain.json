@@ -7,13 +7,15 @@
       , "textureID"         : "hero"
       , "filename"          : "assets/hero.png"
       , "x"                 : 600
-      , "y"                 : 550
+      , "y"                 : 400
       , "hb_left_adjust"    : 32
       , "hb_right_adjust"   : 32
       , "hb_top_adjust"     : 160
       , "hb_bottom_adjust"  : 20
       , "hp"                : 1
       , "spawnTime"         : 0
+      , "speed"             : 0
+      , "centerOffset"      : false
         }
       , "stateData" : [
           {
@@ -132,6 +134,8 @@
       , "hb_bottom_adjust"  : 0
       , "hp"                : 1
       , "spawnTime"         : 0
+      , "speed"             : 0
+      , "centerOffset"      : false
         }
       , "stateData" : [
           {
@@ -186,6 +190,8 @@
       , "hb_bottom_adjust"  : 0
       , "hp"                : 1
       , "spawnTime"         : 0
+      , "speed"             : 0
+      , "centerOffset"      : false
         }
       , "stateData" : [
           {

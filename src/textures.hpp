@@ -22,6 +22,8 @@ class Textures {
     std::map<std::string, SDL_Texture*> textureMaps_;
     std::vector<std::string> loadedIDs_;
     
+    float x, xdiff, y, ydiff;
+    
     Textures(){}
   public:
     

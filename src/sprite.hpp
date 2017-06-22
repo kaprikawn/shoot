@@ -32,6 +32,8 @@ class Sprite {
     int         drawIndex_; // for use in deciding which order to draw sprites in
     bool        deleteSprite_     = false;
     
+    bool        testOnY_ = true; // whether to test whether passed position on X or Y
+    
     
   public:
     Sprite( ObjectData* objectData );
@@ -47,6 +49,7 @@ class Sprite {
     
     bool  needsDeleting() { return deleteSprite_; }
     int   getDrawIndex()  { return drawIndex_; }
+    bool  hasPassedDestination( int srcX, int srcY, int dstX, int dstY );
     
     
     Movement getMovement() { return movement_; }

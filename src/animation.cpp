@@ -26,7 +26,6 @@ void Animation::changeState( int newSpriteState ) {
 bool Animation::determineFrame( int spriteState, float dt, Uint32 mfFrameDiff
     , int& currentFrame
     , int& currentRow
-    , float& scale
   ) {
   
   msSinceLastChange_ += mfFrameDiff;
@@ -74,7 +73,6 @@ bool Animation::determineFrame( int spriteState, float dt, Uint32 mfFrameDiff
   
   currentFrame = frameNum_;
   currentRow = 1;
-  scale = 1.0f;
   
   return returnVar_;
 }

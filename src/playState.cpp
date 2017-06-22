@@ -82,8 +82,8 @@ void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
   projectileData.type = projectileType;
   projectileData.srcX = bombObjectData_.x;
   projectileData.srcY = bombObjectData_.y;
-  projectileData.dstX = target_ -> getMovement().getSpriteCenter().getX();
-  projectileData.dstY = target_ -> getMovement().getSpriteCenter().getY();
+  projectileData.dstX = target_ -> getMovement().getCoordinates().getX();
+  projectileData.dstY = target_ -> getMovement().getCoordinates().getY();
   
   if( projectileType == PBULLET ) {
     projectileData.speedFactor = 7.0f;

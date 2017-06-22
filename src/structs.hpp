@@ -43,6 +43,7 @@ struct  ObjectData {
   int   hp                = 1;
   int   animDataIndex     = 0;
   bool  hasSpawned        = false;
+  bool  centerOffset;
   
   std::string   objectType;
   std::string   textureID;
@@ -55,12 +56,14 @@ struct  ObjectData {
 
 struct DrawFrameParams {
   std::string id;
-  int x;
-  int y;
-  int w;
-  int h;
-  float elevation = 0.0f;
-  float scale;
+  int srcX;
+  int srcY;
+  int srcW;
+  int srcH;
+  int dstX;
+  int dstY;
+  int dstW;
+  int dstH;
   int currentRow;
   int currentFrame;
   bool flip = false;

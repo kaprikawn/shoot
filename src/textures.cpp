@@ -37,16 +37,16 @@ void Textures::draw( std::string id, int x, int y, int w, int h ) {
 }
 
 void Textures::drawFrame( DrawFrameParams& params ) {
+
+  srcRect.x = params.srcW * params.currentFrame;
+  srcRect.y = params.srcH * ( params.currentRow - 1 );
+  srcRect.w = params.srcW;
+  srcRect.h = params.srcH;
   
-  srcRect.x = params.w * params.currentFrame;
-  srcRect.y = params.h * ( params.currentRow - 1 );
-  srcRect.w = params.w;
-  srcRect.h = params.h;
-  
-  dstRect.x = params.x;
-  dstRect.y = params.y + params.elevation;
-  dstRect.w = params.w * params.scale;
-  dstRect.h = params.h * params.scale;
+  dstRect.x = params.dstX;
+  dstRect.y = params.dstY;// + params.elevation;
+  dstRect.w = params.dstW;
+  dstRect.h = params.dstH;// * params.scale;
   
   if( params.flip ) {
     flip_ = SDL_FLIP_HORIZONTAL;

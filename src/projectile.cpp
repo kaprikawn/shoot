@@ -24,21 +24,21 @@ Projectile::Projectile( ObjectData* objectData, ProjectileData &projectileData )
     elevationG_.setY( g );
     
     projectileData_.canDamage = false;
+    
   }
   
-  if( projectileData_.destroyAtDest ) {
-    // if the projectile is going more horizontally than vertically
-    // test whether it has passed the target based on X coordinates, otherwise default Y
-    if( abs( projectileData_.dstY - projectileData_.srcY ) < abs( projectileData_.dstX - projectileData_.srcX ) ) {
-      testOnY = false;
-    }
+  
+  // if the projectile is going more horizontally than vertically
+  // test whether it has passed the target based on X coordinates, otherwise default Y
+  if( abs( projectileData_.dstY - projectileData_.srcY ) < abs( projectileData_.dstX - projectileData_.srcX ) ) {
+    testOnY_ = false;
   }
   
 }
 
 bool Projectile::hasPassedDestination() {
   
-  if( testOnY ) {
+  if( testOnY_ ) {
     if( projectileData_.dstY <= projectileData_.srcY && movement_.getCoordinates().getY() <= projectileData_.dstY ) {
       return true;
     } else if( projectileData_.dstY >= projectileData_.srcY && movement_.getCoordinates().getY() >= projectileData_.dstY ) {
@@ -56,17 +56,27 @@ bool Projectile::hasPassedDestination() {
 
 void Projectile::update( float dt, Uint32 msFrameDiff ) {
   
-  if( elevationP_.getY() > 0 ) {
+  /*if( elevationP_.getY() > 0 ) {
     velocity_.setX( 0 );
     velocity_.setY( 0 );
     spriteState_ = DYING;
-  }
+  }*/
 
   Sprite::update( dt, msFrameDiff );
   drawIndex_ += 1000;
   
-  if( projectileData_.destroyAtDest && hasPassedDestination() ) {
+  /*if( projectileData_.destroyAtDest && hasPassedDestination() ) {
     deleteSprite_ = true;
+  }*/
+  
+  if( Projectile::hasPassedDestination() ) {
+    if( projectileData_.type == PBOMB ) {
+      velocity_.setX( 0 );
+      velocity_.setY( 0 );
+      spriteState_ = DYING;
+    } else if( projectileData_.destroyAtDest ) {
+      deleteSprite_ = true;
+    }
   }
   
   if( fixedAnimDone_ ) {

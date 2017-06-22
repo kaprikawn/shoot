@@ -12,9 +12,6 @@ class Projectile : public Sprite {
     
     int projectileType_ = 0;
     
-    bool  testOnY = true; // whether to test whether passed position on X or Y
-    
-    
   public:
     
     //Projectile( int x, int y, int destinationX, int destinationY, int speed, bool deleteAtDestination, bool isHostile, bool isPlayerGenerated );

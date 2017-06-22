@@ -7,13 +7,15 @@
       , "textureID"         : "enemyChucker"
       , "filename"          : "assets/enemyChucker.png"
       , "x"                 : 800
-      , "y"                 : 300
+      , "y"                 : 100
       , "hb_left_adjust"    : 0
       , "hb_right_adjust"   : 0
       , "hb_top_adjust"     : 0
       , "hb_bottom_adjust"  : 0
       , "hp"                : 1000
       , "spawnTime"         : 1
+      , "speed"             : 100
+      , "centerOffset"      : false
         }
       , "stateData" : [
           {
@@ -128,6 +130,8 @@
       , "hb_bottom_adjust"  : 0
       , "hp"                : 1000
       , "spawnTime"         : 0
+      , "speed"             : 0
+      , "centerOffset"      : false
         }
       , "stateData" : [
           {

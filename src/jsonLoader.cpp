@@ -28,6 +28,8 @@ std::vector<ObjectData*> JsonLoader::getObjectData( std::string filename ) {
     newObjectData -> filename          = o[ "properties" ][ "filename" ];
     newObjectData -> hp                = o[ "properties" ][ "hp" ];
     newObjectData -> spawnTime         = o[ "properties" ][ "spawnTime" ];
+    newObjectData -> speed             = o[ "properties" ][ "speed" ];
+    newObjectData -> centerOffset      = o[ "properties" ][ "centerOffset" ];
     
     TheTextures::Instance() -> load( o[ "properties" ][ "filename" ], o[ "properties" ][ "textureID" ] );
     
@@ -64,6 +66,15 @@ std::vector<ObjectData*> JsonLoader::getObjectData( std::string filename ) {
       }
       newObjectData -> stateData.push_back( newStateData );
       
+    }
+    
+    if( newObjectData -> objectType == "Enemy" ) {
+      nlohmann::json pathRoot = o[ "pathData" ];
+      for( nlohmann::json::iterator pd1 = pathRoot.begin(); pd1 != pathRoot.end(); ++pd1 ) {
+        nlohmann::json pd = *pd1;
+        Path newPathData( pd[ "x" ], pd[ "y" ] );
+        newObjectData -> pathData.push_back( newPathData );
+      }
     }
     
     returnData_.push_back( newObjectData );
