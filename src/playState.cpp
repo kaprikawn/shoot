@@ -74,16 +74,16 @@ bool PlayState::loadLevelFromFile( int currentLevel ) {
 
 void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
   
-  bombObjectData_.x = hero_ -> getMovement().getSpriteCenter().getX();
-  bombObjectData_.y = hero_ -> getMovement().getSpriteCenter().getY();
+  bombObjectData_.x = hero_ -> getPosition().getSpriteCenter().getX();
+  bombObjectData_.y = hero_ -> getPosition().getSpriteCenter().getY();
   
   ProjectileData projectileData;
   
   projectileData.type = projectileType;
   projectileData.srcX = bombObjectData_.x;
   projectileData.srcY = bombObjectData_.y;
-  projectileData.dstX = target_ -> getMovement().getCoordinates().getX();
-  projectileData.dstY = target_ -> getMovement().getCoordinates().getY();
+  projectileData.dstX = target_ -> getPosition().getCoordinates().getX();
+  projectileData.dstY = target_ -> getPosition().getCoordinates().getY();
   
   if( projectileType == PBULLET ) {
     projectileData.speedFactor = 7.0f;

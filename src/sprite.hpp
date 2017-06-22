@@ -1,7 +1,7 @@
 #ifndef SPRITE_HPP
 #define SPRITE_HPP
 
-#include "movement.hpp"
+#include "position.hpp"
 #include "animation.hpp"
 #include "health.hpp"
 #include "vector.hpp"
@@ -14,10 +14,11 @@ class Sprite {
     DrawFrameParams renderParams_;
     
     Health      health_;
-    Movement    movement_; // position / velocity etc
+    Position    position_; // position / velocity etc
     Vector      velocity_;
     Animation   animation_; // animation handler
     
+    float       elevation_;
     Vector      elevationP_; // elevation postition
     Vector      elevationV_; // elevation vector
     Vector      elevationG_; // elevation gravity
@@ -52,7 +53,7 @@ class Sprite {
     bool  hasPassedDestination( int srcX, int srcY, int dstX, int dstY );
     
     
-    Movement getMovement() { return movement_; }
+    Position getPosition() { return position_; }
     
 };
 

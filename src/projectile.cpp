@@ -39,15 +39,15 @@ Projectile::Projectile( ObjectData* objectData, ProjectileData &projectileData )
 bool Projectile::hasPassedDestination() {
   
   if( testOnY_ ) {
-    if( projectileData_.dstY <= projectileData_.srcY && movement_.getCoordinates().getY() <= projectileData_.dstY ) {
+    if( projectileData_.dstY <= projectileData_.srcY && position_.getCoordinates().getY() <= projectileData_.dstY ) {
       return true;
-    } else if( projectileData_.dstY >= projectileData_.srcY && movement_.getCoordinates().getY() >= projectileData_.dstY ) {
+    } else if( projectileData_.dstY >= projectileData_.srcY && position_.getCoordinates().getY() >= projectileData_.dstY ) {
       return true;
     }
   } else {
-    if( projectileData_.dstX >= projectileData_.srcX && movement_.getCoordinates().getX() >= projectileData_.dstX ) {
+    if( projectileData_.dstX >= projectileData_.srcX && position_.getCoordinates().getX() >= projectileData_.dstX ) {
       return true;
-    } else if( projectileData_.dstX <= projectileData_.srcX && movement_.getCoordinates().getX() <= projectileData_.dstX ) {
+    } else if( projectileData_.dstX <= projectileData_.srcX && position_.getCoordinates().getX() <= projectileData_.dstX ) {
       return true;
     }
   }

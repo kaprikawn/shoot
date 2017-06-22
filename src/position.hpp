@@ -4,7 +4,7 @@
 #include "vector.hpp"
 #include "structs.hpp"
 
-class Movement {
+class Position {
   
   private:
   
@@ -20,10 +20,10 @@ class Movement {
     
   
   public:
-    Movement( int x, int y, int w, int h, bool centerOffset );
-    ~Movement(){}
+    Position( int x, int y, int w, int h, bool centerOffset );
+    ~Position(){}
     
-    void updatePosition( Vector velocity, float dt, DrawFrameParams &renderParams, bool ignoreScale );
+    void updatePosition( Vector velocity, float dt, DrawFrameParams &renderParams, bool ignoreScale, int elevation );
     
     Vector getCoordinates() { return coordinates_; }
     Vector getSpriteCenter();

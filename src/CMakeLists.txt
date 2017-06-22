@@ -6,7 +6,7 @@ add_executable( game
   inputHandler.cpp textures.cpp
   jsonLoader.cpp
   gameStateMachine.cpp playState.cpp
-  animation.cpp movement.cpp
+  animation.cpp position.cpp
   sprite.cpp hero.cpp target.cpp projectile.cpp enemy.cpp
   game.cpp main.cpp
 )

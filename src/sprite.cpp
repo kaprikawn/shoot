@@ -5,7 +5,7 @@
 
 Sprite::Sprite( ObjectData* objectData ) : 
     health_( objectData -> hp )
-  , movement_( objectData -> x, objectData -> y, objectData -> width, objectData -> height, objectData -> centerOffset )
+  , position_( objectData -> x, objectData -> y, objectData -> width, objectData -> height, objectData -> centerOffset )
   , velocity_( 0, 0 )
   , animation_( objectData -> stateData )
   , elevationP_( 0, 0 )
@@ -24,43 +24,39 @@ Sprite::Sprite( ObjectData* objectData ) :
 bool Sprite::hasPassedDestination( int srcX, int srcY, int dstX, int dstY ) {
   
   if( testOnY_ ) {
-    if( dstY <= srcY && movement_.getCoordinates().getY() <= dstY ) {
+    if( dstY <= srcY && position_.getCoordinates().getY() <= dstY ) {
       return true;
-    } else if( dstY >= srcY && movement_.getCoordinates().getY() >= dstY ) {
+    } else if( dstY >= srcY && position_.getCoordinates().getY() >= dstY ) {
       return true;
     }
   } else {
-    if( dstX >= srcX && movement_.getCoordinates().getX() >= dstX ) {
+    if( dstX >= srcX && position_.getCoordinates().getX() >= dstX ) {
       return true;
-    } else if( dstX <= srcX && movement_.getCoordinates().getX() <= dstX ) {
+    } else if( dstX <= srcX && position_.getCoordinates().getX() <= dstX ) {
       return true;
     }
   }
   return false;
 }
 
-float getScale( int y, int height, bool ignoreScale ) {
-  if( ignoreScale ) { return 1.0f; }
-  
-  return 0.5f + ( ( 1.0f - 0.5f ) * ( y / 720.0f ) );
-}
-
 void Sprite::update( float dt, Uint32 mfFrameDiff ) {
-  
-  movement_.updatePosition( velocity_, dt, renderParams_, ignoreScale_ );
-  
-  //std::cout << "height is " << objectData_ -> height << std::endl;
-  //std::cout << "new y is " << movement_.getCoordinates().getY() << std::endl;
-  
-  drawIndex_ = movement_.getCoordinates().getY() + objectData_ -> height;
-  
-  //std::cout << "drawIndex_ is " << drawIndex_ << std::endl;
-  
+
   elevationP_ = elevationP_ + elevationV_ * dt;
   elevationV_ = elevationV_ + elevationG_ * dt;
   
-  float elevation = elevationP_.getY();
-  if( elevation > 0.0f ) { elevation = 0.0f; }
+  elevation_ = elevationP_.getY();
+  if( elevation_ > 0.0f ) { elevation_ = 0.0f; }
+  
+  position_.updatePosition( velocity_, dt, renderParams_, ignoreScale_, elevation_ );
+  
+  //std::cout << "height is " << objectData_ -> height << std::endl;
+  //std::cout << "new y is " << position_.getCoordinates().getY() << std::endl;
+  
+  drawIndex_ = position_.getCoordinates().getY() + objectData_ -> height;
+  
+  //std::cout << "drawIndex_ is " << drawIndex_ << std::endl;
+  
+  
   //renderParams_.elevation = elevation;
   
   if( velocity_.getX() < 0 ) {
@@ -77,14 +73,14 @@ void Sprite::update( float dt, Uint32 mfFrameDiff ) {
     , renderParams_.currentRow
   );
   
-  //renderParams_.scale = getScale(  movement_.getCoordinates().getY(), objectData_ -> height, ignoreScale_ );
+  //renderParams_.scale = getScale(  position_.getCoordinates().getY(), objectData_ -> height, ignoreScale_ );
   
 }
 
 void Sprite::render() {
   
-  //renderParams_.x = movement_.getCoordinates().getX();
-  //renderParams_.y = movement_.getCoordinates().getY();
+  //renderParams_.x = position_.getCoordinates().getX();
+  //renderParams_.y = position_.getCoordinates().getY();
 
   TheTextures::Instance() -> drawFrame( renderParams_ );
 }

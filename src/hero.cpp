@@ -58,12 +58,12 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
   
   Hero::handleInput();
   
-  if( movement_.getCoordinates().getX() >= 1279 - objectData_ -> width && velocity_.getX() > 0 ) {
+  if( position_.getCoordinates().getX() >= 1279 - objectData_ -> width && velocity_.getX() > 0 ) {
     velocity_.setX( 0 );
     if( spriteState_ == MOVING ) {
       spriteState_ = DEFAULT;
     }
-  } else if( movement_.getCoordinates().getX() <= 1 && velocity_.getX() < 0 ) {
+  } else if( position_.getCoordinates().getX() <= 1 && velocity_.getX() < 0 ) {
     velocity_.setX( 0 );
     if( spriteState_ == MOVING ) {
       spriteState_ = DEFAULT;

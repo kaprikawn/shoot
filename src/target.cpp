@@ -17,13 +17,13 @@ void Target::handleInput() {
     spriteState_ = DEFAULT;
   }
   
-  if( TheInputHandler::Instance() -> isPressed( RIGHT ) && movement_.getCoordinates().getX() < 1280 - objectData_ -> width ) {
+  if( TheInputHandler::Instance() -> isPressed( RIGHT ) && position_.getCoordinates().getX() < 1280 - objectData_ -> width ) {
     if( spriteState_ == FIRING ) {
       velocity_.setX( 150 );
     } else {
       velocity_.setX( 400 );
     }
-  } else if( TheInputHandler::Instance() -> isPressed( LEFT ) && movement_.getCoordinates().getX() > 0 ) {
+  } else if( TheInputHandler::Instance() -> isPressed( LEFT ) && position_.getCoordinates().getX() > 0 ) {
     if( spriteState_ == FIRING ) {
       velocity_.setX( -150 );
     } else {
@@ -33,14 +33,14 @@ void Target::handleInput() {
     velocity_.setX( 0 );
   }
   
-  if( TheInputHandler::Instance() -> isPressed( DOWN ) && movement_.getCoordinates().getY() < 720 - objectData_ -> height ) {
+  if( TheInputHandler::Instance() -> isPressed( DOWN ) && position_.getCoordinates().getY() < 720 - objectData_ -> height ) {
     if( spriteState_ == FIRING ) {
       velocity_.setY( 150 );
     } else {
       velocity_.setY( 400 );
     }
     
-  } else if( TheInputHandler::Instance() -> isPressed( UP ) && movement_.getCoordinates().getY() > 0 ) {
+  } else if( TheInputHandler::Instance() -> isPressed( UP ) && position_.getCoordinates().getY() > 0 ) {
     if( spriteState_ == FIRING ) {
       velocity_.setY( -150 );
     } else {

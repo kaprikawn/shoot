@@ -1,7 +1,7 @@
 #include <iostream>
-#include "movement.hpp"
+#include "position.hpp"
 
-Movement::Movement( int x, int y, int w, int h, bool centerOffset ) : 
+Position::Position( int x, int y, int w, int h, bool centerOffset ) : 
   //coordinates_( x - ( w / 2), y - ( h / 2 ) ) {
   coordinates_( x, y ), drawPosition_( 0, 0 ) {
   w_ = w;
@@ -9,7 +9,7 @@ Movement::Movement( int x, int y, int w, int h, bool centerOffset ) :
   
 }
 
-void Movement::updatePosition( Vector velocity, float dt, DrawFrameParams &renderParams, bool ignoreScale ) {
+void Position::updatePosition( Vector velocity, float dt, DrawFrameParams &renderParams, bool ignoreScale, int elevation ) {
 
   coordinates_ = coordinates_ + velocity * dt;
   
@@ -22,13 +22,13 @@ void Movement::updatePosition( Vector velocity, float dt, DrawFrameParams &rende
   if( scale_ < 0.5f ) { scale_ = 0.5f; }
   
   renderParams.dstX = coordinates_.getX() + ( scale_ * ( w_ - ( w_ * scale_ ) ) );
-  renderParams.dstY = coordinates_.getY() + ( scale_ * ( h_ - ( h_ * scale_ ) ) );
+  renderParams.dstY = coordinates_.getY() + ( scale_ * ( h_ - ( h_ * scale_ ) ) ) + elevation;
   renderParams.dstW = w_ * scale_;
   renderParams.dstH = h_ * scale_;
   
 }
 
-Vector Movement::getSpriteCenter() {
+Vector Position::getSpriteCenter() {
   
   return Vector( coordinates_.getX() + ( w_ / 2 ), coordinates_.getY() + ( h_ / 2 ) );
   

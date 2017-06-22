@@ -11,7 +11,7 @@ void Enemy::calculateVelocity( int pathDataIndex ) {
   destination_.setX( objectData_ -> pathData[ pathDataIndex_ ].x );
   destination_.setY( objectData_ -> pathData[ pathDataIndex_ ].y );
   
-  velocity_ = destination_ - movement_.getCoordinates();
+  velocity_ = destination_ - position_.getCoordinates();
   
   velocity_.normalize();
   velocity_ *= objectData_ -> speed;
@@ -24,7 +24,7 @@ void Enemy::calculateVelocity( int pathDataIndex ) {
   pathDataIndex_++;
   recalculateVelocity_ = false;
   
-  std::cout << "current x is " << movement_.getCoordinates().getX() << std::endl;
+  std::cout << "current x is " << position_.getCoordinates().getX() << std::endl;
 }
 
 void Enemy::update( float dt, Uint32 msFrameDiff ) {
