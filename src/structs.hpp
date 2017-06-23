@@ -2,6 +2,7 @@
 #define STRUCTS_HPP
 
 #include <vector>
+#include <string>
 #include "SDL.h"
 
 struct Path {
@@ -108,6 +109,13 @@ struct ProjectileData {
   float speedFactor;
   bool  destroyAtDest = false;
   bool  canDamage     = true;
+};
+
+struct Hitbox {
+  int left;
+  int right;
+  int top;
+  int bottom;
 };
 
 #endif //STRUCTS_HPP

@@ -8,10 +8,10 @@
       , "filename"          : "assets/enemyChucker.png"
       , "x"                 : 800
       , "y"                 : 100
-      , "hb_left_adjust"    : 0
-      , "hb_right_adjust"   : 0
-      , "hb_top_adjust"     : 0
-      , "hb_bottom_adjust"  : 0
+      , "hb_left_adjust"    : 20
+      , "hb_right_adjust"   : 70
+      , "hb_top_adjust"     : 10
+      , "hb_bottom_adjust"  : 10
       , "hp"                : 1000
       , "spawnTime"         : 1
       , "speed"             : 100

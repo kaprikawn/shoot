@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ## declare an array variable
-declare -a arr=( animation CMakeLists.txt enemy game gameState gameStateMachine health hero inputHandler jsonLoader main playState position projectile sprite structs target textures vector dataLevel1.json dataMain.json )
+declare -a arr=( animation CMakeLists.txt collision enemy game gameState gameStateMachine health hero inputHandler jsonLoader main playState position projectile sprite structs target textures vector dataLevel1.json dataMain.json )
 
-arr=( animation CMakeLists.txt enemy game health hero inputHandler jsonLoader main playState position projectile sprite structs target textures vector dataLevel1.json dataMain.json edit )
+arr=( animation CMakeLists.txt collision enemy game health hero inputHandler jsonLoader main playState position projectile sprite structs target textures vector dataLevel1.json dataMain.json edit )
 
 if [ $HOSTNAME == "archbox" ]
 then

@@ -2,10 +2,11 @@
 #include "sprite.hpp"
 #include "textures.hpp"
 #include "game.hpp"
+#include "SDL.h"
 
 Sprite::Sprite( ObjectData* objectData ) : 
     health_( objectData -> hp )
-  , position_( objectData -> x, objectData -> y, objectData -> width, objectData -> height, objectData -> centerOffset )
+  , position_( objectData )
   , velocity_( 0, 0 )
   , animation_( objectData -> stateData )
   , elevationP_( 0, 0 )
@@ -68,6 +69,22 @@ void Sprite::update( float dt, Uint32 mfFrameDiff ) {
 
 void Sprite::render() {
   TheTextures::Instance() -> drawFrame( renderParams_ );
+  
+    
+  if( showHitbox_ ) {
+    SDL_SetRenderDrawColor(TheGame::Instance() -> getRenderer(), 255, 0, 0, 255);
+    SDL_Rect rectangle;
+    
+    Hitbox myHitbox = position_.getHitbox();
+
+    rectangle.x = myHitbox.left;
+    rectangle.y = myHitbox.top;
+    rectangle.w = myHitbox.right - myHitbox.left;
+    rectangle.h = myHitbox.bottom - myHitbox.top;
+    SDL_RenderDrawRect(TheGame::Instance() -> getRenderer(), &rectangle);
+  }
+  
+  
 }
 
 

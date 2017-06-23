@@ -34,6 +34,7 @@ class Sprite {
     bool        deleteSprite_     = false;
     
     bool        testOnY_ = true; // whether to test whether passed position on X or Y
+    bool        showHitbox_ = true;
     
     
   public:
