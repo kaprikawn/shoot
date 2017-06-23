@@ -4,17 +4,17 @@
 #include "structs.hpp"
 
 Target::Target( ObjectData* objectData ) : Sprite( objectData ) {
-  
-  ignoreScale_   = true;
-  
+  ignoreScale_    = true;
 }
 
 void Target::handleInput() {
   
   if( TheInputHandler::Instance() -> isPressed( FIRE ) ) {
     spriteState_ = FIRING;
+    hostileToEnemy_ = true;
   } else {
     spriteState_ = DEFAULT;
+    hostileToEnemy_ = false;
   }
   
   if( TheInputHandler::Instance() -> isPressed( RIGHT ) && position_.getCoordinates().getX() < 1280 - objectData_ -> width ) {

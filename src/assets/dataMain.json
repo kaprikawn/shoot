@@ -72,7 +72,32 @@
                 }
               ]
           }
-          , { "spriteState" : 3, "skip" : true }
+          , {
+              "id"          : "DYING"
+            , "spriteState" : 3
+            , "skip"        : false
+            , "fixedAnim"   : true
+            , "animation"   : [
+                {
+                    "minFrame"        : 10
+                  , "maxFrame"        : 10
+                  , "currentRow"      : 1
+                  , "duration"        : 1000
+                  , "swapFrameAfter"  : 1000
+                  , "swapAnimAfter"   : 1000
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 11
+                  , "maxFrame"        : 11
+                  , "currentRow"      : 1
+                  , "duration"        : 1000
+                  , "swapFrameAfter"  : 1000
+                  , "swapAnimAfter"   : 1000
+                  , "oscillate"       : false
+                }
+              ]
+          }
           , {
               "id"          : "DODGING"
             , "spriteState" : 4

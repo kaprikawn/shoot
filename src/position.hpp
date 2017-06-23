@@ -11,9 +11,9 @@ class Position {
     Vector  coordinates_; // sdl position
     Vector  drawPosition_; // for render params
     Hitbox  hitbox_; // defined in structs
-    int w_; // width
-    int h_; // height
-    float scale_;
+    int     w_; // width
+    int     h_; // height
+    float   scale_;
     
     int x_; // x of draw location for use in hitbox calculation
     int y_; // y of draw location for use in hitbox calculation
@@ -24,19 +24,18 @@ class Position {
     int hb_r_offset_ = 0; // hitbox right offset
     int hb_t_offset_ = 0; // hitbox top offset
     int hb_b_offset_ = 0; // hitbox bottom offset
-    
   
   public:
     Position( ObjectData* objectData );
     ~Position(){}
     
-    void updatePosition( Vector &velocity, float dt, DrawFrameParams &renderParams, bool ignoreScale, int elevation );
+    void updatePosition( Vector &velocity, float &dt, DrawFrameParams &renderParams, bool &ignoreScale, int elevation );
     
     Vector  getCoordinates() { return coordinates_; }
-    Vector  getSpriteCenter();
     Hitbox  getHitbox()      { return hitbox_; }
-    void    updateHitbox( Vector &velocity );
     
+    void    updateHitbox( Vector &velocity );
+    Vector  getSpriteCenter();
     void setX( float x ) {
       coordinates_.setX( x );
     }

@@ -23,14 +23,12 @@ void Position::updateHitbox( Vector &velocity ) {
   } else {
     hitbox_.left  = x_ + ( hb_l_offset_ * scale_ );
   }
-  
   hitbox_.right = hitbox_.left + ( ( w_ - hb_l_offset_ - hb_r_offset_ ) * scale_ );
   hitbox_.top   = y_ + ( hb_t_offset_ * scale_ );
   hitbox_.bottom  = hitbox_.top  + ( ( h_ - hb_t_offset_ - hb_b_offset_ ) * scale_ );
-    
 }
 
-void Position::updatePosition( Vector &velocity, float dt, DrawFrameParams &renderParams, bool ignoreScale, int elevation ) {
+void Position::updatePosition( Vector &velocity, float &dt, DrawFrameParams &renderParams, bool &ignoreScale, int elevation ) {
 
   coordinates_ = coordinates_ + velocity * dt;
   

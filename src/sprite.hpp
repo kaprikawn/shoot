@@ -31,11 +31,14 @@ class Sprite {
     
     int         spawnProjectile_  = 0; // number refers to type of projectile
     int         drawIndex_; // for use in deciding which order to draw sprites in
+    int         bottomY_ = 0; // y coordinate of the bottom of the sprite
     bool        deleteSprite_     = false;
     
-    bool        testOnY_ = true; // whether to test whether passed position on X or Y
+    bool        testOnY_    = true; // whether to test whether passed position on X or Y
     bool        showHitbox_ = true;
     
+    bool        hostileToHero_ = false; // whether this is something that hurts player
+    bool        hostileToEnemy_ = false; // whether this is something that hurts enemy
     
   public:
     Sprite( ObjectData* objectData );
@@ -53,9 +56,25 @@ class Sprite {
       spawnProjectile_ = spawnProjectile;
     }
     
-    bool  needsDeleting() { return deleteSprite_; }
-    int   getDrawIndex()  { return drawIndex_; }
+    bool  needsDeleting()   { return deleteSprite_; }
+    int   getDrawIndex()    { return drawIndex_; }
+    int   getSpriteID()     { return objectData_ -> spriteID; }
+    int   getSpriteState()  { return spriteState_; }
+    int   getBottomY()      { return bottomY_; }
+    
+    bool  isHostileToHero()   { return hostileToHero_; }
+    bool  isHostileToEnemy()  { return hostileToEnemy_; }
+    
+    std::string getObjectType() { return objectData_ -> objectType; }
+    
     bool  hasPassedDestination( int srcX, int srcY, int dstX, int dstY );
+    
+    void  setSpriteID( int spriteID ) { objectData_ -> spriteID = spriteID; }
+    
+    void  reduceHp( int attackAmount ) {
+      health_.reduceHp( attackAmount );
+    }
+    
     
     
     Position getPosition() { return position_; }

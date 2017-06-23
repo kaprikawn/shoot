@@ -11,6 +11,7 @@ class Hero : public Sprite {
     int     lastDirection_  = 0;
     Uint32  bulletCooldown_ = 0;
     Uint32  bombCooldown_   = 0;
+    Uint32  invCounter_     = 0;
     
   public:
     
@@ -22,6 +23,14 @@ class Hero : public Sprite {
     virtual void clean  ();
     
     void handleInput();
+    
+    bool isInv() { // is invulnerable
+      if( invCounter_ > 0 ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
     
 };
 

@@ -51,11 +51,18 @@ void Sprite::update( float dt, Uint32 mfFrameDiff ) {
   position_.updatePosition( velocity_, dt, renderParams_, ignoreScale_, elevation_ );
   
   drawIndex_ = position_.getCoordinates().getY() + objectData_ -> height;
+  bottomY_ = drawIndex_;
   
   if( velocity_.getX() < 0 ) {
     renderParams_.flip = true;
   } else {
     renderParams_.flip = false;
+  }
+  
+  if( health_.getCurrentHp() < 1 ) {
+    spriteState_ = DYING;
+    velocity_.setX( 0 );
+    velocity_.setY( 0 );
   }
   
   // determine current animation frame

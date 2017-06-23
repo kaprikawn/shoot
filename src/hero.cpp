@@ -57,6 +57,8 @@ void Hero::handleInput() {
 void Hero::update( float dt, Uint32 msFrameDiff ) {
   
   Hero::handleInput();
+  health_.cycleInvCounter( msFrameDiff );
+  invCounter_ = health_.getInvCounter();
   
   if( position_.getCoordinates().getX() >= 1279 - objectData_ -> width && velocity_.getX() > 0 ) {
     velocity_.setX( 0 );
@@ -73,13 +75,24 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
   Sprite::update( dt, msFrameDiff );
   
   if( fixedAnimDone_ ) {
+    
+    if( spriteState_ == DYING ) {
+      //lives--
+      // if gameover
+      health_.setHp( 1 );
+      health_.setInvCounter( 5000 );
+      printf( "finished dying\n" );
+    }
     spriteState_ = DEFAULT;
     Hero::handleInput();
+    
     Sprite::update( dt, msFrameDiff );
+    printf( "sprite state is now %d\n", spriteState_ );
   }
   
   bombCooldown_   += msFrameDiff;
   bulletCooldown_ += msFrameDiff;
+  
 }
 
 void Hero::render() {

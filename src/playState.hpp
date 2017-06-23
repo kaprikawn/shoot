@@ -9,6 +9,7 @@
 #include "target.hpp"
 #include "sprite.hpp"
 #include "structs.hpp"
+#include "collision.hpp"
 
 class PlayState : public GameState {
   private:
@@ -19,11 +20,16 @@ class PlayState : public GameState {
     ObjectData  pBombObjectData_;
     ObjectData  eBombObjectData_;
     
+    Sprite*     spriteHit_ = nullptr; // which sprite got hit by player shot
+    Collision   myCollision_;
+    std::vector<std::pair<Sprite*, Sprite*>> collisions_;
+    
     std::vector<ObjectData*> enemies_;
     std::map<int, int> src; // map of draw indexes so we know which order to draw
     std::multimap<int, int> dst;
     
     int     projectileType_ = 0;
+    int     nextSpriteID_ = 0;
     Uint32  levelStart_;
     Uint32  currentTime_;
     
@@ -39,7 +45,8 @@ class PlayState : public GameState {
     
     virtual std::string getStateID() const { return s_playID; }
     
-    bool loadLevelFromFile( int currentLevel );
+    bool  loadLevelFromFile( int currentLevel );
+    int   getSpriteVectorPosition( int spriteID );
     
 };
 

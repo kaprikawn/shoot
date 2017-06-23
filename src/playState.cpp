@@ -11,6 +11,9 @@
 const std::string PlayState::s_playID = "PLAY";
 
 void PlayState::add( Sprite* sprite ) {
+  sprite -> setSpriteID( nextSpriteID_ );
+  nextSpriteID_++;
+  
   sprites_.push_back( sprite );
   spritesSize_ = sprites_.size();
 }
@@ -114,6 +117,15 @@ void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
   PlayState::add( newProjectile );
 }
 
+int PlayState::getSpriteVectorPosition( int spriteID ) {
+  for( int i = 0; i < spritesSize_; i++ ) {
+    if( sprites_[i] -> getSpriteID() == spriteID ) {
+      return i;
+    }
+  }
+  return -1;
+}
+
 void PlayState::update( float dt, Uint32 msFrameDiff ) {
   for( int i = 0; i < spritesSize_; i++ ) {
     sprites_[i] -> update( dt, msFrameDiff );
@@ -135,6 +147,38 @@ void PlayState::update( float dt, Uint32 msFrameDiff ) {
     }
   }
   spritesSize_ = sprites_.size();
+  
+  // caculate collisions / damage
+  collisions_ = myCollision_.getCollisions( sprites_, spritesSize_ );
+  
+  spriteHit_ = nullptr; // for player firing so we only hit one enemy
+  
+  if( !collisions_.empty() ) {
+    for( unsigned int c = 0; c < collisions_.size(); c++ ) {
+      
+      int id1 = collisions_[c].first  -> getSpriteID();
+      int id2 = collisions_[c].second -> getSpriteID();
+      
+      if( id1 == 1 && id2 > 1 ) { // target hitting enemy / scenary
+        if( target_ -> getSpriteState() == FIRING ) {
+          if( spriteHit_ ) {
+            if( spriteHit_ -> getBottomY() < sprites_[id2] -> getBottomY() ) {
+              spriteHit_ = sprites_[id2];
+            }
+          } else {
+            spriteHit_ = sprites_[id2];
+          }
+        }
+      }
+      if( id1 == 0 && id2 > 1 ) { // enemy hitting player
+        int spritePosition_ = PlayState::getSpriteVectorPosition( id2 );
+        if( sprites_[0] -> getSpriteState() != DYING && sprites_[ spritePosition_ ] -> isHostileToHero() && !hero_ -> isInv() ) {
+          hero_ -> reduceHp( 1 );
+	      }
+      }
+    }
+  }
+  
   
   currentTime_ = SDL_GetTicks();
   

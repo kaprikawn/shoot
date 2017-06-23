@@ -46,7 +46,7 @@ struct  ObjectData {
   bool  hasSpawned        = false;
   bool  centerOffset;
   
-  std::string   objectType;
+  std::string   objectType = "unknown";
   std::string   textureID;
   std::string   filename;
   std::string   name = "noname";

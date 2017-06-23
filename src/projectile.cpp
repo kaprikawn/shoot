@@ -22,6 +22,10 @@ Projectile::Projectile( ObjectData* objectData, ProjectileData &projectileData )
     
   }
   
+  if( projectileData.type == PBULLET ) {
+    objectData -> objectType = "PBullet";
+  }
+  
   // if the projectile is going more horizontally than vertically
   // test whether it has passed the target based on X coordinates, otherwise default Y
   if( abs( projectileData_.dstY - projectileData_.srcY ) < abs( projectileData_.dstX - projectileData_.srcX ) ) {
@@ -58,6 +62,12 @@ void Projectile::update( float dt, Uint32 msFrameDiff ) {
       velocity_.setY( 0 );
       spriteState_ = DYING;
       drawIndex_ += 10000; // make sure it appears in front
+      if( projectileData_.type == PBOMB ) {
+        hostileToEnemy_ = true;
+      } else if( projectileData_.type == EBOMB ) {
+        hostileToHero_ = true;
+      }
+      
     } else if( projectileData_.destroyAtDest ) {
       deleteSprite_ = true;
     }
