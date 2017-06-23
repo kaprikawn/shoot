@@ -13,7 +13,7 @@ class Enemy : public Sprite {
     Vector    destination_;
     
     std::vector<Path> paths_;
-    int srcX_, srcY_, dstX_, dstY_;
+    int   srcX_, srcY_, dstX_, dstY_;
   
   public:
     

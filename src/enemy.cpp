@@ -41,15 +41,23 @@ void Enemy::calculateVelocity( int pathDataIndex ) {
 
 void Enemy::update( float dt, Uint32 msFrameDiff ) {
   
-  if( Sprite::hasPassedDestination( srcX_, srcY_, dstX_, dstY_ ) ) {
-    recalculateVelocity_ = true;
-  }
-  
-  if( recalculateVelocity_ ) {
+  if( pathDataIndex_ == 0 ) {
     Enemy::calculateVelocity( pathDataIndex_ );
   }
   
+  if( spriteState_ == MOVING && Sprite::hasPassedDestination( srcX_, srcY_, dstX_, dstY_ ) ) {
+    //recalculateVelocity_ = true;
+    velocity_.setX( 0 );
+    velocity_.setY( 0 );
+    spriteState_ = FIRING;
+  }
+  
   Sprite::update( dt, msFrameDiff );
+  
+  if( spriteState_ == FIRING && fixedAnimDone_ ) {
+    Enemy::calculateVelocity( pathDataIndex_ );
+    Sprite::update( dt, msFrameDiff );
+  }
   
 }
 

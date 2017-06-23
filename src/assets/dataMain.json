@@ -177,11 +177,11 @@
   }
   , {
     "properties" : {
-        "objectType"        : "Bomb"
+        "objectType"        : "PBomb"
       , "height"            : 48
       , "width"             : 48
       , "textureID"         : "bomb"
-      , "filename"          : "assets/bomb.png"
+      , "filename"          : "assets/pbomb.png"
       , "x"                 : 0
       , "y"                 : 0
       , "hb_left_adjust"    : 0

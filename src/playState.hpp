@@ -16,7 +16,8 @@ class PlayState : public GameState {
     
     Hero*       hero_;
     Target*     target_;
-    ObjectData  bombObjectData_;
+    ObjectData  pBombObjectData_;
+    ObjectData  eBombObjectData_;
     
     std::vector<ObjectData*> enemies_;
     std::map<int, int> src; // map of draw indexes so we know which order to draw

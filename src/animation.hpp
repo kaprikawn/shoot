@@ -38,6 +38,8 @@ class Animation {
     
     void changeState( int newSpriteState );
     
+    int getCurrentFrame() { return currentFrame_; }
+    
     
     
 };
