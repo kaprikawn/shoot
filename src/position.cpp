@@ -2,17 +2,17 @@
 #include "position.hpp"
 
 
-Position::Position( ObjectData* objectData ) : 
+Position::Position( std::unique_ptr<ObjectData>& objectData ) : 
       coordinates_( objectData -> x, objectData -> y )
     , drawPosition_( 0, 0 ) {
     
   w_ = objectData -> width;
   h_ = objectData -> height;
     
-  hb_l_offset_ = objectData -> hb_left_adjust;
-  hb_r_offset_ = objectData -> hb_right_adjust;
-  hb_t_offset_ = objectData -> hb_top_adjust;
-  hb_b_offset_ = objectData -> hb_bottom_adjust;
+  hb_l_offset_ = objectData -> hb_l_offset;
+  hb_r_offset_ = objectData -> hb_r_offset;
+  hb_t_offset_ = objectData -> hb_t_offset;
+  hb_b_offset_ = objectData -> hb_b_offset;
   
 }
 

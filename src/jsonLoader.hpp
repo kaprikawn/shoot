@@ -3,16 +3,18 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 #include "structs.hpp"
 
 class JsonLoader {
   
   private:
-    std::vector<ObjectData*> returnData_;
   
   public:
-    void loadJson( std::string filename );
-    std::vector<ObjectData*> getObjectData( std::string filename );
+    
+    void loadDataMain( std::vector<std::unique_ptr<ObjectData>>& commonObjectsData );
+    
+    void loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectData>>& levelObjectsData, std::string& backgroundFilename );
     
 };
 

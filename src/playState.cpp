@@ -11,34 +11,27 @@
 const std::string PlayState::s_playID = "PLAY";
 
 void PlayState::add( Sprite* sprite ) {
-  sprite -> setSpriteID( nextSpriteID_ );
-  nextSpriteID_++;
-  
   sprites_.push_back( sprite );
   spritesSize_ = sprites_.size();
 }
 
 bool PlayState::onEnter() {
+
+  // get vector of ObjectData
   JsonLoader jsonLoader;
-  std::vector<ObjectData*> objectData = jsonLoader.getObjectData( "assets/dataMain.json" );
+  jsonLoader.loadDataMain( commonObjectsData_ );
   
-  for( unsigned int i = 0; i < objectData.size(); i++ ) {
-    if( objectData[i] -> objectType == "Hero" ) {
-      hero_ = new Hero( objectData[i] );
+  for( unsigned int i = 0; i < commonObjectsData_.size(); i++ ) {
+    if( commonObjectsData_[i] -> objectType == "Hero" ) {
+      hero_ = new Hero( std::move( commonObjectsData_[i] ) );
       PlayState::add( hero_ );
-    } else if( objectData[i] -> objectType == "Target" ) {
-      target_ = new Target( objectData[i] );
+    } else if( commonObjectsData_[i] -> objectType == "Target" ) {
+      target_ = new Target( std::move( commonObjectsData_[i] ) );
       PlayState::add( target_ );
-    } else if( objectData[i] -> objectType == "PBomb" ) {
-      pBombObjectData_ = ( *objectData[i] );
-    } else if( objectData[i] -> objectType == "EBomb" ) {
-      eBombObjectData_ = ( *objectData[i] );
+    } else if( commonObjectsData_[i] -> objectType == "PBomb" ) {
+      pBombObjectData_ = ( *commonObjectsData_[i] );
     }
   }
-  
-  TheTextures::Instance() -> load( "assets/level1Background.png", "background" );
-  TheTextures::Instance() -> load( "assets/pbomb.png", "pbomb" );
-  TheTextures::Instance() -> load( "assets/ebomb.png", "ebomb" );
   
   PlayState::loadLevelFromFile( 1 );
   
@@ -48,33 +41,12 @@ bool PlayState::onEnter() {
 }
 
 bool PlayState::loadLevelFromFile( int currentLevel ) {
-  std::vector<std::string> loadedTextures;
-  bool textureLoaded = false;
-  std::string currentLevelChar = std::to_string( currentLevel );
+
+  JsonLoader jsonLoader;
+  jsonLoader.loadLevel( currentLevel, levelObjectsData_, backgroundFilename_ );
   
-  JsonLoader newJsonLoader;
-  std::vector<ObjectData*> objectData = newJsonLoader.getObjectData( "assets/dataLevel1.json" );
-  for( unsigned int i = 0; i < objectData.size(); i++ ) {
-    if( objectData[i] -> objectType == "Enemy" ) {
-      enemies_.push_back( objectData[i] );
-    }
-    
-    textureLoaded = false;
-    if( !loadedTextures.empty() ) {
-      for( unsigned int t = 0; t < loadedTextures.size(); t++ ) {
-        if( loadedTextures[t] == objectData[i] -> textureID ) {
-          textureLoaded = true;
-        }
-      }
-    }
-    
-    if( !textureLoaded ) {
-      if( !TheTextures::Instance() -> load( objectData[i] -> filename, objectData[i] -> textureID ) ) {
-        return false;
-      }
-      loadedTextures.push_back( objectData[i] -> textureID );
-    }
-  }
+  TheTextures::Instance() -> load( backgroundFilename_, "background" );
+  
   return true;
 }
 
@@ -106,27 +78,28 @@ void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
     
   }
   
+  std::unique_ptr<ObjectData> projectileObjectData ( new ObjectData( pBombObjectData_ ) );
+  
   if( projectileType == PBULLET ) {
     projectileData.speedFactor = 7.0f;
     projectileData.destroyAtDest = true;
+    projectileObjectData -> objectType = "PBullet";
   } else if( projectileType == PBOMB ) {
     projectileData.speedFactor = 1.8f;
+    
   }
   
-  Projectile* newProjectile = new Projectile( &pBombObjectData_, projectileData );
+  Projectile* newProjectile = new Projectile( std::move( projectileObjectData ), projectileData );
   PlayState::add( newProjectile );
 }
 
 int PlayState::getSpriteVectorPosition( int spriteID ) {
-  for( int i = 0; i < spritesSize_; i++ ) {
-    if( sprites_[i] -> getSpriteID() == spriteID ) {
-      return i;
-    }
-  }
+  
   return -1;
 }
 
 void PlayState::update( float dt, Uint32 msFrameDiff ) {
+  
   for( int i = 0; i < spritesSize_; i++ ) {
     sprites_[i] -> update( dt, msFrameDiff );
     
@@ -148,58 +121,6 @@ void PlayState::update( float dt, Uint32 msFrameDiff ) {
   }
   spritesSize_ = sprites_.size();
   
-  // caculate collisions / damage
-  collisions_ = myCollision_.getCollisions( sprites_, spritesSize_ );
-  
-  spriteHit_ = nullptr; // for player firing so we only hit one enemy
-  
-  if( !collisions_.empty() ) {
-    for( unsigned int c = 0; c < collisions_.size(); c++ ) {
-      
-      //int id1 = collisions_[c].first  -> getSpriteID();
-      //int id2 = collisions_[c].second -> getSpriteID();
-      
-      spriteOnePos_ = PlayState::getSpriteVectorPosition( collisions_[c].first  -> getSpriteID() );
-      spriteTwoPos_ = PlayState::getSpriteVectorPosition( collisions_[c].second  -> getSpriteID() );
-      
-      //printf( "%d collided with %d\n", spriteOnePos_, spriteTwoPos_ );
-      
-      if( spriteOnePos_ == 1 && spriteTwoPos_ > 1 ) { // target hitting enemy / scenary
-        if( target_ -> getSpriteState() == FIRING ) {
-          if( spriteHit_ ) {
-            if( spriteHit_ -> getBottomY() < sprites_[spriteTwoPos_] -> getBottomY() ) {
-              spriteHit_ = sprites_[spriteTwoPos_];
-            }
-          } else {
-            spriteHit_ = sprites_[spriteTwoPos_];
-          }
-        }
-      }
-      if( spriteOnePos_ == 0 && spriteTwoPos_ > 1 ) { // enemy hitting player
-        if( sprites_[0] -> getSpriteState() != DYING && sprites_[ spriteTwoPos_ ] -> isHostileToHero() && !hero_ -> isInv() ) {
-          hero_ -> reduceHp( 1 );
-	      }
-      }
-    }
-  }
-  
-  if( spriteHit_ ) {
-    spriteHit_ -> reduceHp( 10 );
-  }
-  
-  
-  currentTime_ = SDL_GetTicks();
-  
-  // spawn enemies
-  if( !enemies_.empty() ) {
-    for( unsigned i = enemies_.size(); i-- > 0; ) {
-      if( !enemies_[i] -> hasSpawned && currentTime_ > ( levelStart_ + ( enemies_[i] -> spawnTime * 1000 ) ) ) {
-        Enemy* newEnemy = new Enemy( enemies_[i] );
-        PlayState::add( newEnemy );
-        enemies_[i] -> hasSpawned = true;
-      }
-    }
-  }
 }
 
 template<typename A, typename B> std::pair<B,A> flip_pair( const std::pair<A,B> &p) {
@@ -208,8 +129,7 @@ template<typename A, typename B> std::pair<B,A> flip_pair( const std::pair<A,B> 
 
 template<typename A, typename B> std::multimap<B,A> flip_map(const std::map<A,B> &src) {
   std::multimap<B,A> dst;
-  std::transform(src.begin(), src.end(), std::inserter(dst, dst.begin()), 
-                 flip_pair<A,B>);
+  std::transform(src.begin(), src.end(), std::inserter(dst, dst.begin()), flip_pair<A,B>);
   return dst;
 }
 
@@ -235,12 +155,9 @@ void PlayState::render() {
   
   src.clear();
   dst.clear();
-  
 }
 
 bool PlayState::onExit() {
   
-  
-  std::cout << "exiting PlayState" << std::endl;
   return true;
 }

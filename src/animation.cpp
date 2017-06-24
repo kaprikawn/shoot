@@ -51,6 +51,7 @@ bool Animation::determineFrame( int spriteState, float dt, Uint32 mfFrameDiff
     msSinceLastChange_ = 0;
   } else if( spriteState != lastSpriteState_ ) {
     changeFrame_ = true;
+    //currentIndex_ = 0;
   }
   
   if( changeFrame_ ) {

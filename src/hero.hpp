@@ -15,7 +15,7 @@ class Hero : public Sprite {
     
   public:
     
-    Hero( ObjectData* objectData );
+    Hero( std::unique_ptr<ObjectData> objectData );
     virtual ~Hero(){}
     
     virtual void update ( float dt, Uint32 msFrameDiff );

@@ -4,7 +4,7 @@
 #include "game.hpp"
 #include "SDL.h"
 
-Sprite::Sprite( ObjectData* objectData ) : 
+Sprite::Sprite( std::unique_ptr<ObjectData> objectData ) : 
     health_( objectData -> hp )
   , position_( objectData )
   , velocity_( 0, 0 )
@@ -13,14 +13,12 @@ Sprite::Sprite( ObjectData* objectData ) :
   , elevationV_( 0, 0 )
   , elevationG_( 0, 0 )
    {
+   
+  objectData_ = std::move( objectData );
   
-  objectData_ = objectData;
-  
-  renderParams_.id        = objectData -> textureID;
-  renderParams_.srcW      = objectData -> width;
-  renderParams_.srcH      = objectData -> height;
-  
-  
+  renderParams_.id        = objectData_ -> textureID;
+  renderParams_.srcW      = objectData_ -> width;
+  renderParams_.srcH      = objectData_ -> height;
   
 }
 

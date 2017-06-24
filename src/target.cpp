@@ -3,7 +3,7 @@
 #include "inputHandler.hpp"
 #include "structs.hpp"
 
-Target::Target( ObjectData* objectData ) : Sprite( objectData ) {
+Target::Target( std::unique_ptr<ObjectData> objectData ) : Sprite( std::move( objectData ) ) {
   ignoreScale_    = true;
 }
 

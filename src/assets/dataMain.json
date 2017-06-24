@@ -8,10 +8,10 @@
       , "filename"          : "assets/hero.png"
       , "x"                 : 600
       , "y"                 : 400
-      , "hb_left_adjust"    : 32
-      , "hb_right_adjust"   : 32
-      , "hb_top_adjust"     : 160
-      , "hb_bottom_adjust"  : 20
+      , "hb_l_offset"    : 32
+      , "hb_r_offset"   : 32
+      , "hb_t_offset"     : 160
+      , "hb_b_offset"  : 20
       , "hp"                : 1
       , "spawnTime"         : 0
       , "speed"             : 0
@@ -129,8 +129,8 @@
                   , "oscillate"       : false
                 }
                 , {
-                    "minFrame"        : 13
-                  , "maxFrame"        : 13
+                    "minFrame"        : 3
+                  , "maxFrame"        : 3
                   , "duration"        : 150
                   , "swapFrameAfter"  : 150
                   , "swapAnimAfter"   : 150
@@ -149,10 +149,10 @@
       , "filename"          : "assets/target.png"
       , "x"                 : 500
       , "y"                 : 100
-      , "hb_left_adjust"    : 0
-      , "hb_right_adjust"   : 0
-      , "hb_top_adjust"     : 0
-      , "hb_bottom_adjust"  : 0
+      , "hb_l_offset"       : 0
+      , "hb_r_offset"       : 0
+      , "hb_t_offset"       : 0
+      , "hb_b_offset"       : 0
       , "hp"                : 1
       , "spawnTime"         : 0
       , "speed"             : 0
@@ -205,10 +205,10 @@
       , "filename"          : "assets/pbomb.png"
       , "x"                 : 0
       , "y"                 : 0
-      , "hb_left_adjust"    : 0
-      , "hb_right_adjust"   : 0
-      , "hb_top_adjust"     : 0
-      , "hb_bottom_adjust"  : 0
+      , "hb_l_offset"       : 0
+      , "hb_r_offset"       : 0
+      , "hb_t_offset"       : 0
+      , "hb_b_offset"       : 0
       , "hp"                : 1
       , "spawnTime"         : 0
       , "speed"             : 0

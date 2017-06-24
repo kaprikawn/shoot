@@ -12,7 +12,7 @@ class Target : public Sprite {
     
   public:
     
-    Target( ObjectData* objectData );
+    Target( std::unique_ptr<ObjectData> objectData );
     virtual ~Target(){}
     
     virtual void update ( float dt, Uint32 msFrameDiff );

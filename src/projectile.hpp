@@ -14,8 +14,7 @@ class Projectile : public Sprite {
     
   public:
     
-    //Projectile( int x, int y, int destinationX, int destinationY, int speed, bool deleteAtDestination, bool isHostile, bool isPlayerGenerated );
-    Projectile( ObjectData* objectData, ProjectileData &projectileData );
+    Projectile( std::unique_ptr<ObjectData> objectData, ProjectileData &projectileData );
     virtual ~Projectile(){}
     
     virtual void update ( float dt, Uint32 msFrameDiff );

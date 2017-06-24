@@ -2,7 +2,7 @@
 #include "hero.hpp"
 #include "inputHandler.hpp"
 
-Hero::Hero( ObjectData* objectData ) : Sprite( objectData ) {
+Hero::Hero( std::unique_ptr<ObjectData> objectData ) : Sprite( std::move( objectData ) ) {
   ignoreScale_ = true;
 }
 
@@ -87,7 +87,7 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
     spriteState_ = DEFAULT;
     Hero::handleInput();
     
-    Sprite::update( dt, msFrameDiff );
+    Sprite::update( 0, 0 );
     //printf( "sprite state is now %d\n", spriteState_ );
   }
   

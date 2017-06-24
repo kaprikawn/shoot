@@ -35,10 +35,10 @@ struct  ObjectData {
   int   height;
   int   x;
   int   y;
-  int   hb_left_adjust    = 0;
-  int   hb_right_adjust   = 0;
-  int   hb_top_adjust     = 0;
-  int   hb_bottom_adjust  = 0;
+  int   hb_l_offset       = 0;
+  int   hb_r_offset       = 0;
+  int   hb_t_offset       = 0;
+  int   hb_b_offset       = 0;
   int   spawnTime         = 0;
   int   speed             = 1;
   int   hp                = 1;

@@ -1,6 +1,7 @@
 #ifndef MOVEMENT_HPP
 #define MOVEMENT_HPP
 
+#include <memory>
 #include "vector.hpp"
 #include "structs.hpp"
 
@@ -26,7 +27,7 @@ class Position {
     int hb_b_offset_ = 0; // hitbox bottom offset
   
   public:
-    Position( ObjectData* objectData );
+    Position( std::unique_ptr<ObjectData>& objectData );
     ~Position(){}
     
     void updatePosition( Vector &velocity, float &dt, DrawFrameParams &renderParams, bool &ignoreScale, int elevation );

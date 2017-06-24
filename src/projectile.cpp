@@ -1,7 +1,7 @@
 #include <iostream>
 #include "projectile.hpp"
 
-Projectile::Projectile( ObjectData* objectData, ProjectileData &projectileData ) : Sprite( objectData ) {
+Projectile::Projectile( std::unique_ptr<ObjectData> objectData, ProjectileData &projectileData ) : Sprite( std::move( objectData ) ) {
   
   projectileData_ = projectileData;
   
@@ -22,16 +22,11 @@ Projectile::Projectile( ObjectData* objectData, ProjectileData &projectileData )
     
   }
   
-  if( projectileData.type == PBULLET ) {
-    objectData -> objectType = "PBullet";
-  }
-  
   // if the projectile is going more horizontally than vertically
   // test whether it has passed the target based on X coordinates, otherwise default Y
   if( abs( projectileData_.dstY - projectileData_.srcY ) < abs( projectileData_.dstX - projectileData_.srcX ) ) {
     testOnY_ = false;
   }
-  
 }
 
 bool Projectile::hasPassedDestination() {

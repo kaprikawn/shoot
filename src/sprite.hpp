@@ -1,6 +1,7 @@
 #ifndef SPRITE_HPP
 #define SPRITE_HPP
 
+#include <memory>
 #include "position.hpp"
 #include "animation.hpp"
 #include "health.hpp"
@@ -9,7 +10,7 @@
 class Sprite {
   protected:
   
-    ObjectData* objectData_;
+    std::unique_ptr<ObjectData> objectData_;
     
     DrawFrameParams renderParams_;
     
@@ -41,7 +42,7 @@ class Sprite {
     bool        hostileToEnemy_ = false; // whether this is something that hurts enemy
     
   public:
-    Sprite( ObjectData* objectData );
+    Sprite( std::unique_ptr<ObjectData> objectData );
     virtual ~Sprite(){}
     
     virtual void update ( float dt, Uint32 msFrameDiff );

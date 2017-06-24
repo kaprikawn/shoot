@@ -2,6 +2,7 @@
 #define GAMESTATE_HPP
 
 #include <string>
+#include <memory>
 #include "SDL.h"
 #include "sprite.hpp"
 
@@ -11,7 +12,7 @@ class GameState {
     
     std::vector <Sprite*> sprites_;
     
-    //std::vector<std::unique_ptr<Sprite>> sprites;
+    //std::vector<std::unique_ptr<Sprite>> sprites_;
     
     int spritesSize_   = 0;
     //int nextSpriteID  = 0;

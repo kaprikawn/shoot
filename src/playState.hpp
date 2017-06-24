@@ -15,10 +15,15 @@ class PlayState : public GameState {
   private:
     static const std::string  s_playID;
     
+    std::vector<std::unique_ptr<ObjectData>> commonObjectsData_; // hero, target etc.
+    std::vector<std::unique_ptr<ObjectData>> levelObjectsData_; // enemies, scenary etc.
+    
     Hero*       hero_;
     Target*     target_;
+    
     ObjectData  pBombObjectData_;
-    ObjectData  eBombObjectData_;
+    
+    std::string backgroundFilename_;
     
     Sprite*     spriteHit_ = nullptr; // which sprite got hit by player shot
     Collision   myCollision_;
@@ -27,7 +32,7 @@ class PlayState : public GameState {
     int spriteOnePos_;
     int spriteTwoPos_;
     
-    std::vector<ObjectData*> enemies_;
+    //std::vector<ObjectData*> enemies_;
     std::map<int, int> src; // map of draw indexes so we know which order to draw
     std::multimap<int, int> dst;
     
