@@ -9,7 +9,7 @@ Animation::Animation( std::vector<StateData>& stateData ) {
 void Animation::changeState( int newSpriteState ) {
   animationData_.clear();
   
-  printf( "changing to state %d\n", newSpriteState );
+  //printf( "changing to state %d\n", newSpriteState );
   
   for( unsigned int i = 0; i < stateData_.size(); i++ ) {
     if( stateData_[i].spriteState == newSpriteState ) {

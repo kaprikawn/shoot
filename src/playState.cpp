@@ -156,27 +156,35 @@ void PlayState::update( float dt, Uint32 msFrameDiff ) {
   if( !collisions_.empty() ) {
     for( unsigned int c = 0; c < collisions_.size(); c++ ) {
       
-      int id1 = collisions_[c].first  -> getSpriteID();
-      int id2 = collisions_[c].second -> getSpriteID();
+      //int id1 = collisions_[c].first  -> getSpriteID();
+      //int id2 = collisions_[c].second -> getSpriteID();
       
-      if( id1 == 1 && id2 > 1 ) { // target hitting enemy / scenary
+      spriteOnePos_ = PlayState::getSpriteVectorPosition( collisions_[c].first  -> getSpriteID() );
+      spriteTwoPos_ = PlayState::getSpriteVectorPosition( collisions_[c].second  -> getSpriteID() );
+      
+      //printf( "%d collided with %d\n", spriteOnePos_, spriteTwoPos_ );
+      
+      if( spriteOnePos_ == 1 && spriteTwoPos_ > 1 ) { // target hitting enemy / scenary
         if( target_ -> getSpriteState() == FIRING ) {
           if( spriteHit_ ) {
-            if( spriteHit_ -> getBottomY() < sprites_[id2] -> getBottomY() ) {
-              spriteHit_ = sprites_[id2];
+            if( spriteHit_ -> getBottomY() < sprites_[spriteTwoPos_] -> getBottomY() ) {
+              spriteHit_ = sprites_[spriteTwoPos_];
             }
           } else {
-            spriteHit_ = sprites_[id2];
+            spriteHit_ = sprites_[spriteTwoPos_];
           }
         }
       }
-      if( id1 == 0 && id2 > 1 ) { // enemy hitting player
-        int spritePosition_ = PlayState::getSpriteVectorPosition( id2 );
-        if( sprites_[0] -> getSpriteState() != DYING && sprites_[ spritePosition_ ] -> isHostileToHero() && !hero_ -> isInv() ) {
+      if( spriteOnePos_ == 0 && spriteTwoPos_ > 1 ) { // enemy hitting player
+        if( sprites_[0] -> getSpriteState() != DYING && sprites_[ spriteTwoPos_ ] -> isHostileToHero() && !hero_ -> isInv() ) {
           hero_ -> reduceHp( 1 );
 	      }
       }
     }
+  }
+  
+  if( spriteHit_ ) {
+    spriteHit_ -> reduceHp( 10 );
   }
   
   

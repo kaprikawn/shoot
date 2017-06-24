@@ -59,6 +59,10 @@ void Enemy::update( float dt, Uint32 msFrameDiff ) {
     Sprite::update( dt, msFrameDiff );
   }
   
+  if( spriteState_ == DYING && fixedAnimDone_ ) {
+    deleteSprite_ = true;
+  }
+  
 }
 
 void Enemy::render() {
@@ -66,5 +70,5 @@ void Enemy::render() {
 }
 
 void Enemy::clean() {
-
+  Sprite::clean();
 }

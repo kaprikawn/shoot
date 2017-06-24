@@ -98,8 +98,6 @@ void Sprite::render() {
   
 }
 
-
-
 void Sprite::clean() {
-  
+
 }

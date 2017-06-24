@@ -24,6 +24,9 @@ class PlayState : public GameState {
     Collision   myCollision_;
     std::vector<std::pair<Sprite*, Sprite*>> collisions_;
     
+    int spriteOnePos_;
+    int spriteTwoPos_;
+    
     std::vector<ObjectData*> enemies_;
     std::map<int, int> src; // map of draw indexes so we know which order to draw
     std::multimap<int, int> dst;

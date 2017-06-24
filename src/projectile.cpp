@@ -83,5 +83,5 @@ void Projectile::render() {
 }
 
 void Projectile::clean() {
-  
+  Sprite::clean();
 }

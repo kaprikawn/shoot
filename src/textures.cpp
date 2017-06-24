@@ -52,13 +52,13 @@ void Textures::drawFrame( DrawFrameParams& params ) {
   dstRect.w = params.dstW;
   dstRect.h = params.dstH;// * params.scale;
   
-  if( params.spriteID == 2 ) {
+  /*if( params.spriteID == 2 ) {
     std::cout << "params.currentRow is " << params.currentRow << std::endl;
     std::cout << "srcRect.x is " << srcRect.x << std::endl;
     std::cout << "srcRect.y is " << srcRect.y << std::endl;
     std::cout << "srcRect.w is " << srcRect.w << std::endl;
     std::cout << "srcRect.h is " << srcRect.h << std::endl;
-  }
+  }*/
   
   if( params.flip ) {
     flip_ = SDL_FLIP_HORIZONTAL;
