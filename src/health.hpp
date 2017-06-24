@@ -49,7 +49,7 @@ class Health {
         } else {
           invCounter_ -= msFrameDiff;
         }
-        std::cout << "invCounter is now " << invCounter_ << std::endl;
+        //std::cout << "invCounter is now " << invCounter_ << std::endl;
       }
     }
     

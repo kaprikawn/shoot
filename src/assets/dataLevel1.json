@@ -21,13 +21,13 @@
           {
               "id"          : "DEFAULT"
             , "spriteState" : 0
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : false
             , "animation"   : [
                 {
                     "minFrame"        : 0
                   , "maxFrame"        : 2
-                  , "currentRow"      : 1
                   , "duration"        : 350
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
@@ -39,13 +39,13 @@
           , {
               "id"          : "MOVING"
             , "spriteState" : 1
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : false
             , "animation"   : [
                 {
                     "minFrame"        : 0
                   , "maxFrame"        : 2
-                  , "currentRow"      : 1
                   , "duration"        : 350
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
@@ -57,13 +57,13 @@
           , {
               "id"          : "FIRING"
             , "spriteState" : 2
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : true
             , "animation"   : [
                 {
                     "minFrame"        : 5
                   , "maxFrame"        : 5
-                  , "currentRow"      : 1
                   , "duration"        : 700
                   , "swapFrameAfter"  : 700
                   , "swapAnimAfter"   : 700
@@ -72,7 +72,6 @@
                 , {
                     "minFrame"        : 6
                   , "maxFrame"        : 6
-                  , "currentRow"      : 1
                   , "duration"        : 500
                   , "swapFrameAfter"  : 500
                   , "swapAnimAfter"   : 500
@@ -83,13 +82,13 @@
           , {
               "id"          : "DYING"
             , "spriteState" : 3
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : true
             , "animation"   : [
                 {
                     "minFrame"        : 3
                   , "maxFrame"        : 3
-                  , "currentRow"      : 1
                   , "duration"        : 700
                   , "swapFrameAfter"  : 700
                   , "swapAnimAfter"   : 700
@@ -98,7 +97,6 @@
                 , {
                     "minFrame"        : 4
                   , "maxFrame"        : 5
-                  , "currentRow"      : 1
                   , "duration"        : 500
                   , "swapFrameAfter"  : 500
                   , "swapAnimAfter"   : 500
@@ -137,13 +135,13 @@
           {
               "id"          : "DEFAULT"
             , "spriteState" : 0
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : false
             , "animation"   : [
                 {
                     "minFrame"    : 0
                   , "maxFrame"    : 0
-                  , "currentRow"  : 1
                   , "duration"    : 350
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
@@ -157,13 +155,13 @@
           , {
               "id"          : "DYING"
             , "spriteState" : 3
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : true
             , "animation"   : [
                 {
                     "minFrame"        : 4
                   , "maxFrame"        : 5
-                  , "currentRow"      : 1
                   , "duration"        : 1000
                   , "swapFrameAfter"  : 200
                   , "swapAnimAfter"   : 2000
@@ -172,7 +170,6 @@
                 , {
                     "minFrame"        : 6
                   , "maxFrame"        : 7
-                  , "currentRow"      : 1
                   , "duration"        : 1000
                   , "swapFrameAfter"  : 200
                   , "swapAnimAfter"   : 2000
@@ -181,7 +178,6 @@
                 , {
                     "minFrame"        : 8
                   , "maxFrame"        : 9
-                  , "currentRow"      : 1
                   , "duration"        : 1000
                   , "swapFrameAfter"  : 200
                   , "swapAnimAfter"   : 2000
@@ -190,7 +186,6 @@
                 , {
                     "minFrame"        : 10
                   , "maxFrame"        : 10
-                  , "currentRow"      : 1
                   , "duration"        : 1000
                   , "swapFrameAfter"  : 200
                   , "swapAnimAfter"   : 2000
@@ -206,13 +201,13 @@
           , {
               "id"          : "DAMAGED1"
             , "spriteState" : 9
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : false
             , "animation"   : [
                 {
                     "minFrame"    : 1
                   , "maxFrame"    : 1
-                  , "currentRow"  : 1
                   , "duration"    : 100000
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
@@ -224,13 +219,13 @@
           , {
               "id"          : "DAMAGED2"
             , "spriteState" : 10
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : false
             , "animation"   : [
                 {
                     "minFrame"    : 2
                   , "maxFrame"    : 2
-                  , "currentRow"  : 1
                   , "duration"    : 100000
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
@@ -242,13 +237,13 @@
           , {
               "id"          : "DAMAGED3"
             , "spriteState" : 11
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : false
             , "animation"   : [
                 {
                     "minFrame"    : 3
                   , "maxFrame"    : 3
-                  , "currentRow"  : 1
                   , "duration"    : 100000
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350

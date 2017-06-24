@@ -75,19 +75,20 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
   Sprite::update( dt, msFrameDiff );
   
   if( fixedAnimDone_ ) {
+    //std::cout << "hero currentRow is " << renderParams_.currentRow << std::endl;
     
     if( spriteState_ == DYING ) {
       //lives--
       // if gameover
       health_.setHp( 1 );
       health_.setInvCounter( 5000 );
-      printf( "finished dying\n" );
+      //printf( "finished dying\n" );
     }
     spriteState_ = DEFAULT;
     Hero::handleInput();
     
     Sprite::update( dt, msFrameDiff );
-    printf( "sprite state is now %d\n", spriteState_ );
+    //printf( "sprite state is now %d\n", spriteState_ );
   }
   
   bombCooldown_   += msFrameDiff;

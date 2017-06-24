@@ -37,7 +37,11 @@ void Textures::draw( std::string id, int x, int y, int w, int h ) {
 }
 
 void Textures::drawFrame( DrawFrameParams& params ) {
-
+  
+  //std::cout << "textures current row is " << params.currentRow << std::endl;
+  
+  
+  
   srcRect.x = params.srcW * params.currentFrame;
   srcRect.y = params.srcH * ( params.currentRow - 1 );
   srcRect.w = params.srcW;
@@ -47,6 +51,14 @@ void Textures::drawFrame( DrawFrameParams& params ) {
   dstRect.y = params.dstY;// + params.elevation;
   dstRect.w = params.dstW;
   dstRect.h = params.dstH;// * params.scale;
+  
+  if( params.spriteID == 2 ) {
+    std::cout << "params.currentRow is " << params.currentRow << std::endl;
+    std::cout << "srcRect.x is " << srcRect.x << std::endl;
+    std::cout << "srcRect.y is " << srcRect.y << std::endl;
+    std::cout << "srcRect.w is " << srcRect.w << std::endl;
+    std::cout << "srcRect.h is " << srcRect.h << std::endl;
+  }
   
   if( params.flip ) {
     flip_ = SDL_FLIP_HORIZONTAL;

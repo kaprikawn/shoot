@@ -2,8 +2,8 @@
   {
     "properties" : {
         "objectType"        : "Hero"
-      , "height"            : 310
-      , "width"             : 227
+      , "height"            : 313
+      , "width"             : 206
       , "textureID"         : "hero"
       , "filename"          : "assets/hero.png"
       , "x"                 : 600
@@ -21,13 +21,13 @@
           {
               "id"          : "DEFAULT"
             , "spriteState" : 0
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : false
             , "animation"   : [
                 {
                     "minFrame"        : 0
                   , "maxFrame"        : 1
-                  , "currentRow"      : 1
                   , "duration"        : 350
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
@@ -39,13 +39,13 @@
           , {
               "id"          : "MOVING"
             , "spriteState" : 1
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : false
             , "animation"   : [
                 {
                     "minFrame"        : 2
                   , "maxFrame"        : 9
-                  , "currentRow"      : 1
                   , "duration"        : 100
                   , "swapFrameAfter"  : 100
                   , "swapAnimAfter"   : 100
@@ -57,13 +57,13 @@
           , {
               "id"          : "FIRING"
             , "spriteState" : 2
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : false
             , "animation"   : [
                 {
                     "minFrame"        : 0
                   , "maxFrame"        : 0
-                  , "currentRow"      : 1
                   , "duration"        : 350
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
@@ -75,22 +75,21 @@
           , {
               "id"          : "DYING"
             , "spriteState" : 3
+            , "currentRow"  : 2
             , "skip"        : false
             , "fixedAnim"   : true
             , "animation"   : [
                 {
-                    "minFrame"        : 10
-                  , "maxFrame"        : 10
-                  , "currentRow"      : 1
+                    "minFrame"        : 4
+                  , "maxFrame"        : 4
                   , "duration"        : 1000
                   , "swapFrameAfter"  : 1000
                   , "swapAnimAfter"   : 1000
                   , "oscillate"       : false
                 }
                 , {
-                    "minFrame"        : 11
-                  , "maxFrame"        : 11
-                  , "currentRow"      : 1
+                    "minFrame"        : 5
+                  , "maxFrame"        : 5
                   , "duration"        : 1000
                   , "swapFrameAfter"  : 1000
                   , "swapAnimAfter"   : 1000
@@ -101,31 +100,29 @@
           , {
               "id"          : "DODGING"
             , "spriteState" : 4
+            , "currentRow"  : 2
             , "skip"        : false
             , "fixedAnim"   : true
             , "animation"   : [
                 {
-                    "minFrame"        : 10
-                  , "maxFrame"        : 10
-                  , "currentRow"      : 1
+                    "minFrame"        : 0
+                  , "maxFrame"        : 0
                   , "duration"        : 300
                   , "swapFrameAfter"  : 300
                   , "swapAnimAfter"   : 300
                   , "oscillate"       : false
                 }
                 , {
-                    "minFrame"        : 11
-                  , "maxFrame"        : 11
-                  , "currentRow"      : 1
+                    "minFrame"        : 1
+                  , "maxFrame"        : 1
                   , "duration"        : 250
                   , "swapFrameAfter"  : 250
                   , "swapAnimAfter"   : 250
                   , "oscillate"       : false
                 }
                 , {
-                    "minFrame"        : 12
-                  , "maxFrame"        : 12
-                  , "currentRow"      : 1
+                    "minFrame"        : 2
+                  , "maxFrame"        : 2
                   , "duration"        : 200
                   , "swapFrameAfter"  : 200
                   , "swapAnimAfter"   : 200
@@ -134,7 +131,6 @@
                 , {
                     "minFrame"        : 13
                   , "maxFrame"        : 13
-                  , "currentRow"      : 1
                   , "duration"        : 150
                   , "swapFrameAfter"  : 150
                   , "swapAnimAfter"   : 150
@@ -166,13 +162,13 @@
           {
               "id"          : "DEFAULT"
             , "spriteState" : 0
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : false
             , "animation"   : [
                 {
                     "minFrame"        : 0
                   , "maxFrame"        : 0
-                  , "currentRow"      : 1
                   , "duration"        : 10000
                   , "swapFrameAfter"  : 10000
                   , "swapAnimAfter"   : 10000
@@ -184,13 +180,13 @@
           , {
               "id"          : "FIRING"
             , "spriteState" : 2
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : false
             , "animation"   : [
                 {
                     "minFrame"        : 0
                   , "maxFrame"        : 1
-                  , "currentRow"      : 1
                   , "duration"        : 100
                   , "swapFrameAfter"  : 100
                   , "swapAnimAfter"   : 100
@@ -222,13 +218,13 @@
           {
               "id"          : "DEFAULT"
             , "spriteState" : 0
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : false
             , "animation"   : [
                 {
                     "minFrame"        : 0
                   , "maxFrame"        : 0
-                  , "currentRow"      : 1
                   , "duration"        : 10000
                   , "swapFrameAfter"  : 10000
                   , "swapAnimAfter"   : 10000
@@ -241,13 +237,13 @@
           , {
               "id"          : "DYING"
             , "spriteState" : 3
+            , "currentRow"  : 1
             , "skip"        : false
             , "fixedAnim"   : true
             , "animation"   : [
                 {
                     "minFrame"        : 1
                   , "maxFrame"        : 1
-                  , "currentRow"      : 1
                   , "duration"        : 1000
                   , "swapFrameAfter"  : 1000
                   , "swapAnimAfter"   : 1000
@@ -256,7 +252,6 @@
                 , {
                     "minFrame"        : 2
                   , "maxFrame"        : 2
-                  , "currentRow"      : 1
                   , "duration"        : 1000
                   , "swapFrameAfter"  : 1000
                   , "swapAnimAfter"   : 1000

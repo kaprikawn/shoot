@@ -9,11 +9,12 @@ Animation::Animation( std::vector<StateData>& stateData ) {
 void Animation::changeState( int newSpriteState ) {
   animationData_.clear();
   
-  //printf( "changing to state %d\n", newSpriteState );
+  printf( "changing to state %d\n", newSpriteState );
   
   for( unsigned int i = 0; i < stateData_.size(); i++ ) {
     if( stateData_[i].spriteState == newSpriteState ) {
       fixedAnim_ = stateData_[i].fixedAnim;
+      currentRow_ = stateData_[i].currentRow;
       for( unsigned int a = 0; a < stateData_[i].animData.size(); a++ ) {
         animationData_.push_back( stateData_[i].animData[a] );
       }
@@ -34,6 +35,7 @@ bool Animation::determineFrame( int spriteState, float dt, Uint32 mfFrameDiff
   changeFrame_ = returnVar_ = false;
   if( animationData_.empty() || spriteState != lastSpriteState_ ) {
     Animation::changeState( spriteState );
+    currentRow = currentRow_;
     currentIndex_ = 0;
   }
   
@@ -71,8 +73,7 @@ bool Animation::determineFrame( int spriteState, float dt, Uint32 mfFrameDiff
     frameNum_ = animationData_[ currentIndex_ ].minFrame;
   }
   
-  currentFrame = frameNum_;
-  currentRow = 1;
+  currentFrame  = frameNum_;
   
   return returnVar_;
 }

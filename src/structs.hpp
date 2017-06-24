@@ -12,7 +12,6 @@ struct Path {
 };
 
 struct AnimationData {
-  int     currentRow      = 1;
   int     minFrame        = 0;
   int     maxFrame        = 0;
   Uint32  duration        = 1000;
@@ -23,6 +22,7 @@ struct AnimationData {
 
 struct StateData {
   int   spriteState;
+  int   currentRow  = 1;
   std::string id    = "NULLID";
   bool  fixedAnim   = false;
   std::vector<AnimationData> animData;
@@ -57,17 +57,18 @@ struct  ObjectData {
 
 struct DrawFrameParams {
   std::string id;
-  int srcX;
-  int srcY;
-  int srcW;
-  int srcH;
-  int dstX;
-  int dstY;
-  int dstW;
-  int dstH;
-  int currentRow;
-  int currentFrame;
-  bool flip = false;
+  int   srcX;
+  int   srcY;
+  int   srcW;
+  int   srcH;
+  int   dstX;
+  int   dstY;
+  int   dstW;
+  int   dstH;
+  int   currentRow;
+  int   currentFrame;
+  bool  flip = false;
+  int   spriteID = -1;
 };
 
 enum SpriteState {

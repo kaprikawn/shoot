@@ -44,6 +44,7 @@ std::vector<ObjectData*> JsonLoader::getObjectData( std::string filename ) {
       
       if( !sd[ "skip" ] ) {
         newStateData.id         = sd[ "id" ];
+        newStateData.currentRow = sd[ "currentRow" ];
         newStateData.fixedAnim  = sd[ "fixedAnim" ];
         nlohmann::json aRoot    = sd[ "animation" ];
         
@@ -53,12 +54,10 @@ std::vector<ObjectData*> JsonLoader::getObjectData( std::string filename ) {
           
           newAnimationData.minFrame       = a[ "minFrame" ];
           newAnimationData.maxFrame       = a[ "maxFrame" ];
-          newAnimationData.currentRow     = a[ "currentRow" ];
           newAnimationData.duration       = a[ "duration" ];
           newAnimationData.swapFrameAfter = a[ "swapFrameAfter" ];
           newAnimationData.swapAnimAfter  = a[ "swapAnimAfter" ];
           newAnimationData.oscillate      = a[ "oscillate" ];
-          
           
           newStateData.animData.push_back( newAnimationData );
           //printf( "pushing back anim data\n" );

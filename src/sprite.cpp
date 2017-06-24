@@ -16,9 +16,11 @@ Sprite::Sprite( ObjectData* objectData ) :
   
   objectData_ = objectData;
   
-  renderParams_.id = objectData -> textureID;
-  renderParams_.srcW = objectData -> width;
-  renderParams_.srcH = objectData -> height;
+  renderParams_.id        = objectData -> textureID;
+  renderParams_.srcW      = objectData -> width;
+  renderParams_.srcH      = objectData -> height;
+  
+  
   
 }
 
@@ -75,6 +77,9 @@ void Sprite::update( float dt, Uint32 mfFrameDiff ) {
 }
 
 void Sprite::render() {
+  
+  renderParams_.spriteID  = objectData_ -> spriteID;
+  
   TheTextures::Instance() -> drawFrame( renderParams_ );
   
     
@@ -90,7 +95,6 @@ void Sprite::render() {
     rectangle.h = myHitbox.bottom - myHitbox.top;
     SDL_RenderDrawRect(TheGame::Instance() -> getRenderer(), &rectangle);
   }
-  
   
 }
 
