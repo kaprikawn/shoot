@@ -8,6 +8,11 @@ Target::Target( std::unique_ptr<ObjectData> objectData ) : Sprite( std::move( ob
 }
 
 void Target::handleInput() {
+
+  if( startupDelay_ > 0 ) {
+    startupDelay_--;
+    return;
+  }
   
   if( TheInputHandler::Instance() -> isPressed( FIRE ) ) {
     spriteState_ = FIRING;

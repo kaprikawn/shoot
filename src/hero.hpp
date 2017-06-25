@@ -13,6 +13,8 @@ class Hero : public Sprite {
     Uint32  bombCooldown_   = 0;
     Uint32  invCounter_     = 0;
     
+    int     startupDelay_   = 10;
+    
   public:
     
     Hero( std::unique_ptr<ObjectData> objectData );

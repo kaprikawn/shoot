@@ -8,6 +8,7 @@ class Target : public Sprite {
   private:
     
     void  handleInput();
+    int   startupDelay_ = 10;
     
     
   public:

@@ -8,6 +8,11 @@ Hero::Hero( std::unique_ptr<ObjectData> objectData ) : Sprite( std::move( object
 }
 
 void Hero::handleInput() {
+
+  if( startupDelay_ > 0 ) {
+    startupDelay_--;
+    return;
+  }
   
   spawnProjectile_ = 0;
   
