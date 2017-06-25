@@ -71,7 +71,6 @@ void Sprite::update( float dt, Uint32 mfFrameDiff ) {
     , renderParams_.currentFrame
     , renderParams_.currentRow
   );
-  
 }
 
 void Sprite::reduceHp( int attackAmount ) {

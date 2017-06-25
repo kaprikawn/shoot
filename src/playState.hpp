@@ -10,6 +10,7 @@
 #include "sprite.hpp"
 #include "structs.hpp"
 #include "collision.hpp"
+#include "hud.hpp"
 
 class PlayState : public GameState {
   private:
@@ -20,10 +21,12 @@ class PlayState : public GameState {
     
     Hero*       hero_;
     Target*     target_;
+    Hud*        hud_;
     
     ObjectData  pBombObjectData_;
     
     std::string backgroundFilename_;
+    int         pointsNeeded_;
     
     Sprite*     spriteHit_ = nullptr; // which sprite got hit by player shot
     Collision   myCollision_;

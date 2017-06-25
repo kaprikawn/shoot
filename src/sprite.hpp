@@ -26,6 +26,7 @@ class Sprite {
     
     int         spriteID_;
     int         spriteState_      = 0;
+    int         prevSpriteState_  = 0;
     
     bool        ignoreScale_      = false;
     bool        fixedAnimDone_; // used only for fixed animations

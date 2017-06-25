@@ -16,6 +16,7 @@ class Enemy : public Sprite {
     int   srcX_, srcY_, dstX_, dstY_;
     
     int yellowWidth_, redWidth_; // for lifebar
+    bool  pointsAwarded_ = false;
   
   public:
     

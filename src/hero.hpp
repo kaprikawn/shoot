@@ -1,5 +1,5 @@
-#ifndef PLAYER_HPP
-#define PLAYER_HPP
+#ifndef HERO_HPP
+#define HERO_HPP
 
 #include <memory>
 #include "sprite.hpp"
@@ -34,4 +34,4 @@ class Hero : public Sprite {
     
 };
 
-#endif //PLAYER_HPP
+#endif //HERO_HPP

@@ -118,4 +118,10 @@ struct Hitbox {
   int bottom;
 };
 
+struct HudData {
+  int   points;
+  int   pointsNeeded;
+  int   bombCount;
+};
+
 #endif //STRUCTS_HPP

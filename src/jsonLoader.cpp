@@ -73,7 +73,7 @@ void JsonLoader::loadDataMain( std::vector<std::unique_ptr<ObjectData>>& commonO
   }
 }
 
-void JsonLoader::loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectData>>& levelObjectsData, std::string& backgroundFilename ) {
+void JsonLoader::loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectData>>& levelObjectsData, std::string& backgroundFilename, int& pointsNeeded ) {
 
   std::stringstream ss;
   ss << "assets/dataLevel" << levelNumber << ".json";
@@ -83,7 +83,8 @@ void JsonLoader::loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectD
   nlohmann::json j;
   fin >> j;
   
-  backgroundFilename = j[ "background" ][ "filename" ];
+  backgroundFilename  = j[ "background" ][ "filename" ];
+  pointsNeeded        = j[ "pointsNeeded" ];
   
   nlohmann::json e = j[ "enemies" ];
   for( nlohmann::json::iterator it1 = e.begin(); it1 != e.end(); ++it1 ) {

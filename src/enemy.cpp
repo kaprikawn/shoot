@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include "enemy.hpp"
 #include "game.hpp"
+#include "values.hpp"
 
 Enemy::Enemy( std::unique_ptr<ObjectData> objectData ) : Sprite( std::move( objectData ) ), destination_( 0, 0 ) {
   
@@ -62,6 +63,11 @@ void Enemy::update( float dt, Uint32 msFrameDiff ) {
   
   if( spriteState_ == DYING && fixedAnimDone_ ) {
     deleteSprite_ = true;
+  }
+  
+  if( spriteState_ == DYING && !pointsAwarded_ ) {
+    TheValues::Instance() -> updatePoints( health_.getMaxHp() );
+    pointsAwarded_ = true;
   }
   
 }

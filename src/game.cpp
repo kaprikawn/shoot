@@ -2,6 +2,7 @@
 #include "game.hpp"
 #include "inputHandler.hpp"
 #include "playState.hpp"
+#include "values.hpp"
 
 Game* Game::instance_ = 0;
 
@@ -27,6 +28,7 @@ bool Game::init( const char* title, int xpos, int ypos, int width, int height, i
   
   SDL_SetRenderDrawColor( renderer_, 102, 204, 255, 255 );
   TheInputHandler::Instance() -> initialiseJoysticks();
+  TheValues::Instance() -> init();
   
   gameStateMachine_ = new GameStateMachine();
   gameStateMachine_ -> changeState( new PlayState() );

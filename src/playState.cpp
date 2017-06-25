@@ -1,12 +1,14 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <memory>
 #include "playState.hpp"
 #include "jsonLoader.hpp"
 #include "structs.hpp"
 #include "textures.hpp"
 #include "projectile.hpp"
 #include "enemy.hpp"
+#include "values.hpp"
 
 const std::string PlayState::s_playID = "PLAY";
 
@@ -26,7 +28,7 @@ int getSpriteID( int& newSpriteID, int& nextSpriteID ) {
 }
 
 bool PlayState::onEnter() {
-
+  
   // get vector of ObjectData
   JsonLoader jsonLoader;
   jsonLoader.loadDataMain( commonObjectsData_ );
@@ -53,11 +55,13 @@ bool PlayState::onEnter() {
 bool PlayState::loadLevelFromFile( int currentLevel ) {
 
   JsonLoader jsonLoader;
-  jsonLoader.loadLevel( currentLevel, levelObjectsData_, backgroundFilename_ );
+  jsonLoader.loadLevel( currentLevel, levelObjectsData_, backgroundFilename_, pointsNeeded_ );
   
   TheTextures::Instance() -> load( backgroundFilename_, "background" );
   
-  std::cout << "size is " << levelObjectsData_.size() << std::endl;
+  
+  TheValues::Instance() -> updatePointsNeeded( pointsNeeded_ );
+  hud_ = new Hud( pointsNeeded_ );
   
   return true;
 }
@@ -189,6 +193,7 @@ void PlayState::update( float dt, Uint32 msFrameDiff ) {
     }
   }
   
+  hud_ -> update( dt, msFrameDiff );
 }
 
 template<typename A, typename B> std::pair<B,A> flip_pair( const std::pair<A,B> &p) {
@@ -223,9 +228,15 @@ void PlayState::render() {
   
   src.clear();
   dst.clear();
+  
+  hud_ -> render();
 }
 
 bool PlayState::onExit() {
+
+  delete hud_;
+  delete hero_;
+  delete target_;
   
   return true;
 }

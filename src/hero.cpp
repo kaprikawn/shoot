@@ -1,6 +1,7 @@
 #include <iostream>
 #include "hero.hpp"
 #include "inputHandler.hpp"
+#include "values.hpp"
 
 Hero::Hero( std::unique_ptr<ObjectData> objectData ) : Sprite( std::move( objectData ) ) {
   ignoreScale_ = true;
@@ -16,8 +17,9 @@ void Hero::handleInput() {
     
     if( TheInputHandler::Instance() -> isPressed( DODGE ) ) {
       spriteState_ = DODGING;
-    } else if( TheInputHandler::Instance() -> isPressed( BOMB ) && bombCooldown_ > 1000 ) {
+    } else if( TheInputHandler::Instance() -> isPressed( BOMB ) && bombCooldown_ > 1000 && TheValues::Instance() -> getBombs() > 0 ) {
       spawnProjectile_ = PBOMB;
+      TheValues::Instance() -> updateBombs( -1 );
       bombCooldown_ = 0;
     } else if( TheInputHandler::Instance() -> isPressed( FIRE ) ) {
       spriteState_ = FIRING;
@@ -78,7 +80,7 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
     //std::cout << "hero currentRow is " << renderParams_.currentRow << std::endl;
     
     if( spriteState_ == DYING ) {
-      //lives--
+      TheValues::Instance() -> updateLives( -1 );
       // if gameover
       health_.setHp( 1 );
       health_.setInvCounter( 5000 );

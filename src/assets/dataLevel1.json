@@ -2,6 +2,7 @@
   "background" : {
     "filename" : "assets/level1Background.png"
   }
+  , "pointsNeeded" : 20000
   
   , "enemies" : [
     {
