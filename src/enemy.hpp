@@ -17,7 +17,7 @@ class Enemy : public Sprite {
   
   public:
     
-    Enemy( ObjectData* objectData );
+    Enemy( std::unique_ptr<ObjectData> objectData );
     virtual ~Enemy(){}
     
     virtual void update ( float dt, Uint32 msFrameDiff );

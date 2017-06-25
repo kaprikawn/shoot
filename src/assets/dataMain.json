@@ -8,10 +8,10 @@
       , "filename"          : "assets/hero.png"
       , "x"                 : 600
       , "y"                 : 400
-      , "hb_l_offset"    : 32
-      , "hb_r_offset"   : 32
-      , "hb_t_offset"     : 160
-      , "hb_b_offset"  : 20
+      , "hb_l_offset"       : 32
+      , "hb_r_offset"       : 32
+      , "hb_t_offset"       : 160
+      , "hb_b_offset"       : 20
       , "hp"                : 1
       , "spawnTime"         : 0
       , "speed"             : 0

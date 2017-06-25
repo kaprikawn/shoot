@@ -2,7 +2,7 @@
 #include "enemy.hpp"
 
 
-Enemy::Enemy( ObjectData* objectData ) : Sprite( objectData ), destination_( 0, 0 ) {
+Enemy::Enemy( std::unique_ptr<ObjectData> objectData ) : Sprite( std::move( objectData ) ), destination_( 0, 0 ) {
   
 }
 

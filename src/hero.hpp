@@ -1,8 +1,8 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
+#include <memory>
 #include "sprite.hpp"
-
 
 class Hero : public Sprite {
   

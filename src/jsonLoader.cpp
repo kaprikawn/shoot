@@ -24,9 +24,9 @@ void JsonLoader::loadDataMain( std::vector<std::unique_ptr<ObjectData>>& commonO
     newObjectData -> x            = o[ "properties" ][ "x" ];
     newObjectData -> y            = o[ "properties" ][ "y" ];
     newObjectData -> hb_l_offset  = o[ "properties" ][ "hb_l_offset" ];
-    newObjectData -> hb_l_offset  = o[ "properties" ][ "hb_r_offset" ];
-    newObjectData -> hb_l_offset  = o[ "properties" ][ "hb_t_offset" ];
-    newObjectData -> hb_l_offset  = o[ "properties" ][ "hb_b_offset" ];
+    newObjectData -> hb_r_offset  = o[ "properties" ][ "hb_r_offset" ];
+    newObjectData -> hb_t_offset  = o[ "properties" ][ "hb_t_offset" ];
+    newObjectData -> hb_b_offset  = o[ "properties" ][ "hb_b_offset" ];
     newObjectData -> textureID    = o[ "properties" ][ "textureID" ];
     newObjectData -> filename     = o[ "properties" ][ "filename" ];
     newObjectData -> hp           = o[ "properties" ][ "hp" ];
@@ -109,26 +109,51 @@ void JsonLoader::loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectD
       newObjectData -> spawnTime    = eSpawn[ "spawnTime" ];
       newObjectData -> x            = eSpawn[ "x" ];
       newObjectData -> y            = eSpawn[ "y" ];
+      
+      TheTextures::Instance() -> load( enemy[ "filename" ], enemy[ "textureID" ] );
+      
+      nlohmann::json sdRoot         = enemy[ "stateData" ];
+      
+      for( nlohmann::json::iterator sd1 = sdRoot.begin(); sd1 != sdRoot.end(); ++sd1 ) {
+        nlohmann::json sd = *sd1;
+        
+        StateData newStateData;
+        
+        newStateData.spriteState   = sd[ "spriteState" ];
+        
+        if( !sd[ "skip" ] ) {
+          newStateData.id         = sd[ "id" ];
+          newStateData.currentRow = sd[ "currentRow" ];
+          newStateData.fixedAnim  = sd[ "fixedAnim" ];
+          nlohmann::json aRoot    = sd[ "animation" ];
+          
+          for( nlohmann::json::iterator a1 = aRoot.begin(); a1 != aRoot.end(); ++a1 ) {
+            nlohmann::json a = *a1;
+            AnimationData newAnimationData;
+            
+            newAnimationData.minFrame       = a[ "minFrame" ];
+            newAnimationData.maxFrame       = a[ "maxFrame" ];
+            newAnimationData.duration       = a[ "duration" ];
+            newAnimationData.swapFrameAfter = a[ "swapFrameAfter" ];
+            newAnimationData.swapAnimAfter  = a[ "swapAnimAfter" ];
+            newAnimationData.oscillate      = a[ "oscillate" ];
+            
+            newStateData.animData.push_back( newAnimationData );
+          }
+        }
+        newObjectData -> stateData.push_back( newStateData );
+        
+      }
+      
+      nlohmann::json pathRoot = eSpawn [ "pathData" ];
+      for( nlohmann::json::iterator pd1 = pathRoot.begin(); pd1 != pathRoot.end(); ++pd1 ) {
+        nlohmann::json pd = *pd1;
+        Path newPathData( pd[ "x" ], pd[ "y" ] );
+        newObjectData -> pathData.push_back( newPathData );
+      }
+      
+      levelObjectsData.push_back( std::move( newObjectData ) );
     }
   }
-  
-  
 }
 
-/*
-std::vector<ObjectData*> JsonLoader::getObjectData( std::string filename ) {
-  std::ifstream fin( filename, std::ifstream::binary );
-  nlohmann::json j;
-  fin >> j;
-  
-  for( nlohmann::json::iterator it = j.begin(); it != j.end(); ++it ) {
-    nlohmann::json o = *it;
-    
-    //ObjectData* newObjectData = new ObjectData();
-    
-    
-  
-  }
-  
-  return returnData_;
-}*/

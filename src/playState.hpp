@@ -37,7 +37,8 @@ class PlayState : public GameState {
     std::multimap<int, int> dst;
     
     int     projectileType_ = 0;
-    int     nextSpriteID_ = 0;
+    int     nextSpriteID_   = 0;
+    int     newSpriteID_    = 0;
     Uint32  levelStart_;
     Uint32  currentTime_;
     

@@ -11,8 +11,18 @@
 const std::string PlayState::s_playID = "PLAY";
 
 void PlayState::add( Sprite* sprite ) {
+  sprite -> setSpriteID( nextSpriteID_ );
+  nextSpriteID_++;
+  
   sprites_.push_back( sprite );
   spritesSize_ = sprites_.size();
+  
+}
+
+int getSpriteID( int& newSpriteID, int& nextSpriteID ) {
+  newSpriteID = nextSpriteID;
+  nextSpriteID++;
+  return newSpriteID;
 }
 
 bool PlayState::onEnter() {
@@ -46,6 +56,8 @@ bool PlayState::loadLevelFromFile( int currentLevel ) {
   jsonLoader.loadLevel( currentLevel, levelObjectsData_, backgroundFilename_ );
   
   TheTextures::Instance() -> load( backgroundFilename_, "background" );
+  
+  std::cout << "size is " << levelObjectsData_.size() << std::endl;
   
   return true;
 }
@@ -94,7 +106,11 @@ void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
 }
 
 int PlayState::getSpriteVectorPosition( int spriteID ) {
-  
+  for( int i = 0; i < spritesSize_; i++ ) {
+    if( sprites_[i] -> getSpriteID() == spriteID ) {
+      return i;
+    }
+  }
   return -1;
 }
 
@@ -120,6 +136,58 @@ void PlayState::update( float dt, Uint32 msFrameDiff ) {
     }
   }
   spritesSize_ = sprites_.size();
+  
+  // caculate collisions / damage
+  collisions_ = myCollision_.getCollisions( sprites_, spritesSize_ );
+  
+  spriteHit_ = nullptr; // for player firing so we only hit one enemy
+  
+  if( !collisions_.empty() ) {
+    for( unsigned int c = 0; c < collisions_.size(); c++ ) {
+      
+      //int id1 = collisions_[c].first  -> getSpriteID();
+      //int id2 = collisions_[c].second -> getSpriteID();
+      
+      spriteOnePos_ = PlayState::getSpriteVectorPosition( collisions_[c].first  -> getSpriteID() );
+      spriteTwoPos_ = PlayState::getSpriteVectorPosition( collisions_[c].second  -> getSpriteID() );
+      
+      //printf( "%d collided with %d\n", spriteOnePos_, spriteTwoPos_ );
+      
+      if( spriteOnePos_ == 1 && spriteTwoPos_ > 1 && sprites_[0] -> getSpriteState() != DYING ) { // target hitting enemy / scenary
+        if( target_ -> getSpriteState() == FIRING ) {
+          if( spriteHit_ ) {
+            if( spriteHit_ -> getBottomY() < sprites_[spriteTwoPos_] -> getBottomY() ) {
+              spriteHit_ = sprites_[spriteTwoPos_];
+            }
+          } else {
+            spriteHit_ = sprites_[spriteTwoPos_];
+          }
+        }
+      }
+      if( spriteOnePos_ == 0 && spriteTwoPos_ > 1 ) { // enemy hitting player
+        if( sprites_[0] -> getSpriteState() != DYING && sprites_[ spriteTwoPos_ ] -> isHostileToHero() && !hero_ -> isInv() ) {
+          hero_ -> reduceHp( 1 );
+	      }
+      }
+    }
+  }
+  
+  if( spriteHit_ ) {
+    spriteHit_ -> reduceHp( 10 );
+  }
+  
+  currentTime_ = SDL_GetTicks();
+  
+  // spawn enemies
+  if( !levelObjectsData_.empty() ) {
+    for( unsigned i = levelObjectsData_.size(); i-- > 0; ) {
+      if( currentTime_ > ( levelStart_ + ( levelObjectsData_[i] -> spawnTime * 1000 ) ) ) {
+        Enemy* newEnemy = new Enemy( std::move( levelObjectsData_[i] ) );
+        PlayState::add( newEnemy );
+        levelObjectsData_.erase( levelObjectsData_.begin() + i );
+      }
+    }
+  }
   
 }
 
