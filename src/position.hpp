@@ -25,6 +25,7 @@ class Position {
     int hb_r_offset_ = 0; // hitbox right offset
     int hb_t_offset_ = 0; // hitbox top offset
     int hb_b_offset_ = 0; // hitbox bottom offset
+    int hb_width_;
   
   public:
     Position( std::unique_ptr<ObjectData>& objectData );
@@ -34,6 +35,7 @@ class Position {
     
     Vector  getCoordinates() { return coordinates_; }
     Hitbox  getHitbox()      { return hitbox_; }
+    int     getHitboxWidth() { return hb_width_; }
     
     void    updateHitbox( Vector &velocity );
     Vector  getSpriteCenter();

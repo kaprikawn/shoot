@@ -14,6 +14,8 @@ Position::Position( std::unique_ptr<ObjectData>& objectData ) :
   hb_t_offset_ = objectData -> hb_t_offset;
   hb_b_offset_ = objectData -> hb_b_offset;
   
+  hb_width_ = w_ - hb_l_offset_ - hb_r_offset_;
+  
 }
 
 void Position::updateHitbox( Vector &velocity ) {

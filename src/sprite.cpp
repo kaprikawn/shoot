@@ -74,6 +74,13 @@ void Sprite::update( float dt, Uint32 mfFrameDiff ) {
   
 }
 
+void Sprite::reduceHp( int attackAmount ) {
+  if( spriteState_ == DYING || spriteState_ == DODGING ) { return; }
+  
+  health_.reduceHp( attackAmount );
+  
+}
+
 void Sprite::render() {
   
   renderParams_.spriteID  = objectData_ -> spriteID;

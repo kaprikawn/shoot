@@ -28,7 +28,6 @@ struct StateData {
   std::vector<AnimationData> animData;
 };
 
-
 struct  ObjectData {
   int   spriteID;
   int   width;

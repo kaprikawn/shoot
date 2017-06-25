@@ -14,6 +14,8 @@ class Enemy : public Sprite {
     
     std::vector<Path> paths_;
     int   srcX_, srcY_, dstX_, dstY_;
+    
+    int yellowWidth_, redWidth_; // for lifebar
   
   public:
     
@@ -25,6 +27,7 @@ class Enemy : public Sprite {
     virtual void clean  ();
     
     void calculateVelocity( int pathDataIndex );
+    void renderLifebar();
 };
 
 #endif //ENEMY_HPP

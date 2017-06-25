@@ -83,6 +83,8 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
       health_.setHp( 1 );
       health_.setInvCounter( 5000 );
       //printf( "finished dying\n" );
+    } else if( spriteState_ == DODGING ) {
+      health_.setInvCounter( 200 );
     }
     spriteState_ = DEFAULT;
     Hero::handleInput();

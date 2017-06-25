@@ -1,6 +1,7 @@
 #include <iostream>
+#include "SDL.h"
 #include "enemy.hpp"
-
+#include "game.hpp"
 
 Enemy::Enemy( std::unique_ptr<ObjectData> objectData ) : Sprite( std::move( objectData ) ), destination_( 0, 0 ) {
   
@@ -65,7 +66,34 @@ void Enemy::update( float dt, Uint32 msFrameDiff ) {
   
 }
 
+void Enemy::renderLifebar() {
+  
+  yellowWidth_ = objectData_ -> width * ( health_.getCurrentHp() / (float)health_.getMaxHp() );
+  redWidth_ = objectData_ -> width - yellowWidth_;
+  
+  SDL_SetRenderDrawColor( TheGame::Instance() -> getRenderer(), 255, 255, 0, 255 );
+  SDL_Rect yellow;
+  yellow.x = position_.getCoordinates().getX();
+  yellow.y = position_.getCoordinates().getY() - 10;
+  yellow.w = yellowWidth_;
+  yellow.h = 3;
+  SDL_RenderFillRect( TheGame::Instance() -> getRenderer(), &yellow );
+  
+  SDL_SetRenderDrawColor( TheGame::Instance() -> getRenderer(), 255, 0, 0, 255 );
+  SDL_Rect red;
+  red.x = yellow.x + yellow.w + 1;
+  red.y = yellow.y;
+  red.w = redWidth_;
+  red.h = yellow.h;
+  SDL_RenderFillRect( TheGame::Instance() -> getRenderer(), &red );
+}
+
 void Enemy::render() {
+  
+  if( health_.getCurrentHp() < health_.getMaxHp() && health_.getCurrentHp() > 0 ) {
+    renderLifebar();
+  }
+  
   Sprite::render();
 }
 

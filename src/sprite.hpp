@@ -72,9 +72,7 @@ class Sprite {
     
     void  setSpriteID( int spriteID ) { objectData_ -> spriteID = spriteID; }
     
-    void  reduceHp( int attackAmount ) {
-      health_.reduceHp( attackAmount );
-    }
+    void  reduceHp( int attackAmount );
     
     
     
