@@ -1,6 +1,4 @@
 #include <iostream>
-#include <sstream>
-#include <string>
 #include "hud.hpp"
 #include "values.hpp"
 #include "game.hpp"
@@ -26,17 +24,11 @@ void Hud::render() {
 
   renderer_ = TheGame::Instance() -> getRenderer();
   
-  std::stringstream ss;
+  ss.str( "" );
   ss << "L:" << TheValues::Instance() -> getLives() << " B:" << TheValues::Instance() -> getBombs();
-  std::string str = ss.str();
+  str = ss.str();
   
-  const char* msg = str.c_str();
-  
-  //std::string one = "L:";
-  //std::string two = TheValues::Instance() -> getLives();
-  //std::string three = one + two;
-  
-  //std::cout << "msg is " << msg << std::endl;
+  msg = str.c_str();
   
   // black
   SDL_SetRenderDrawColor( renderer_, 0, 0, 0, 255 );

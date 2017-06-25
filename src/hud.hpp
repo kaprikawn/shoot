@@ -2,6 +2,8 @@
 #define HUD_HPP
 
 #include <memory>
+#include <sstream>
+#include <string>
 #include "structs.hpp"
 #include "SDL.h"
 #include "SDL_ttf.h"
@@ -19,6 +21,10 @@ class Hud {
     SDL_Rect rect_;
     
     TTF_Font* font_;
+    
+    std::string str;
+    std::stringstream ss;
+    const char* msg;
     
   public:
     
