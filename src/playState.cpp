@@ -28,6 +28,8 @@ int getSpriteID( int& newSpriteID, int& nextSpriteID ) {
 }
 
 bool PlayState::onEnter() {
+
+  
   
   // get vector of ObjectData
   JsonLoader jsonLoader;
@@ -45,7 +47,7 @@ bool PlayState::onEnter() {
     }
   }
   
-  PlayState::loadLevelFromFile( 1 );
+  PlayState::loadLevelFromFile( 11 );
   
   levelStart_ = SDL_GetTicks();
   

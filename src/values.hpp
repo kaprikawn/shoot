@@ -1,6 +1,13 @@
 #ifndef VALUES_HPP
 #define VALUES_HPP
 
+namespace constants {
+  const int   WIDTH         = 1280;
+  const int   HEIGHT        = 720;
+  const int   FPS           = 60;
+  const float DELAY_TIME    = 1000.0f / FPS;
+}
+
 class Values {
   private:
     
@@ -9,6 +16,12 @@ class Values {
     
     int     pointsNeeded_;
     int     points_ = 0;
+    
+    int         currentLevel_     = 11;
+    std::string currentLevelStr_  = "1-1";
+    int         nextLevel_        = 12;
+    std::string nextLevelStr_     = "1-2";
+    
     
     static Values* s_pInstance;
     
@@ -44,6 +57,8 @@ class Values {
       printf( "adding %d points\n", points );
       points_ += points;
     }
+    
+    std::string getCurrentLevelStr() { return currentLevelStr_; }
     
     static Values* Instance() {
       if( s_pInstance == 0 ) {

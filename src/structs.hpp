@@ -124,4 +124,12 @@ struct HudData {
   int   bombCount;
 };
 
+enum GameStates {
+  TRANSITION, PLAY
+};
+
+enum TransitionType {
+  LOADLEVEL
+};
+
 #endif //STRUCTS_HPP

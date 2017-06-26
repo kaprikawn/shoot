@@ -28,6 +28,8 @@ class Game {
     void clean();
     void quit();
     
+    void changeGameState( int newState );
+    
     bool gameRunning() { return running_; }
     
     SDL_Renderer* getRenderer() const { return renderer_; }

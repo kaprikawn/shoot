@@ -1,8 +1,11 @@
 #include <iostream>
 #include "game.hpp"
+#include "SDL_ttf.h"
 #include "inputHandler.hpp"
 #include "playState.hpp"
+#include "transitionState.hpp"
 #include "values.hpp"
+#include "textures.hpp"
 
 Game* Game::instance_ = 0;
 
@@ -26,17 +29,26 @@ bool Game::init( const char* title, int xpos, int ypos, int width, int height, i
     return false;
   }
   
-  SDL_SetRenderDrawColor( renderer_, 102, 204, 255, 255 );
+  if( TTF_Init() != 0 ) {
+    std::cout << "Error: could not initialise SDL TTF - " << TTF_GetError() << std::endl;
+    return false;
+  }
+  
+  TheTextures::Instance() -> loadColours();
+  
+  SDL_SetRenderDrawColor( renderer_, 0, 0, 0, 255 );
   TheInputHandler::Instance() -> initialiseJoysticks();
   TheValues::Instance() -> init();
   
   gameStateMachine_ = new GameStateMachine();
-  gameStateMachine_ -> changeState( new PlayState() );
+  //gameStateMachine_ -> changeState( new PlayState() );
+  gameStateMachine_ -> changeState( new TransitionState() );
   
   running_ = true;
   
   return true;
 }
+
 void Game::handleInputs() {
   TheInputHandler::Instance() -> update();
 }
@@ -47,10 +59,15 @@ void Game::update( float dt, Uint32 msFrameDiff ) {
 
 void Game::render() {
   SDL_RenderClear( renderer_ );
-  
   gameStateMachine_ -> render();
-  
+  SDL_SetRenderDrawColor( renderer_, 0, 0, 0, 255 );
   SDL_RenderPresent( renderer_ );
+}
+
+void Game::changeGameState( int newState ) {
+  if( newState == PLAY ) {
+    gameStateMachine_ -> changeState( new PlayState() );
+  }
 }
 
 void Game::clean() {

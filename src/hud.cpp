@@ -6,9 +6,9 @@
 Hud::Hud( int pointsNeeded ) {
   pointsNeeded_ = pointsNeeded;
   
-  if( TTF_Init() == -1 ) {
-    std::cout << "Error: could not initialise SDL TTF - " << TTF_GetError() << std::endl;
-  }
+  //if( TTF_Init() == -1 ) {
+  //  std::cout << "Error: could not initialise SDL TTF - " << TTF_GetError() << std::endl;
+  //}
   
   font_ = TTF_OpenFont( "assets/UbuntuMono-R.ttf", 70 );
   

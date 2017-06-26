@@ -1,9 +1,7 @@
 #include <iostream>
 #include "SDL.h"
 #include "game.hpp"
-
-const int FPS = 60;
-const float DELAY_TIME = 1000.0f / FPS;
+#include "values.hpp"
 
 int main( int argc, char* args[] ) {
 
@@ -13,7 +11,7 @@ int main( int argc, char* args[] ) {
   float   dt_ = 0.0f;
     
   
-  if( !TheGame::Instance() -> init( "Crosshair Shooter Game", 20, 20, 1280, 720, SDL_WINDOW_SHOWN ) ) {
+  if( !TheGame::Instance() -> init( "Crosshair Shooter Game", 20, 20, constants::WIDTH, constants::HEIGHT, SDL_WINDOW_SHOWN ) ) {
   //if( !TheGame::Instance() -> init( "Crosshair Shooter Game", 20, 20, 100, 100, SDL_WINDOW_SHOWN ) ) {
     std::cout << "Game initialisation failed" << std::endl;
   }
@@ -28,8 +26,8 @@ int main( int argc, char* args[] ) {
     TheGame::Instance() -> update( dt_, msFrameDiff_ );
     TheGame::Instance() -> render();
     
-    if( msFrameDiff_ < DELAY_TIME ) {
-      SDL_Delay( ( DELAY_TIME - msFrameDiff_ ) );
+    if( msFrameDiff_ < constants::DELAY_TIME ) {
+      SDL_Delay( ( constants::DELAY_TIME - msFrameDiff_ ) );
     }
   }
   
