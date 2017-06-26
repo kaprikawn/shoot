@@ -14,6 +14,11 @@ void Hero::handleInput() {
     return;
   }
   
+  if( spriteState_ == WINNING ) {
+    velocity_.setX( 0 );
+    return;
+  }
+  
   spawnProjectile_ = 0;
   
   if( spriteState_ == DYING ) { return; }

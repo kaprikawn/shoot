@@ -42,7 +42,9 @@ bool Game::init( const char* title, int xpos, int ypos, int width, int height, i
   
   gameStateMachine_ = new GameStateMachine();
   //gameStateMachine_ -> changeState( new PlayState() );
-  gameStateMachine_ -> changeState( new TransitionState() );
+  std::unique_ptr<GameState> transitionState ( new TransitionState );
+  
+  gameStateMachine_ -> changeState( std::move( transitionState ) );
   
   running_ = true;
   
@@ -66,7 +68,9 @@ void Game::render() {
 
 void Game::changeGameState( int newState ) {
   if( newState == PLAY ) {
-    gameStateMachine_ -> changeState( new PlayState() );
+    //gameStateMachine_ -> changeState( new PlayState() );
+    std::unique_ptr<GameState> playState ( new PlayState );
+    gameStateMachine_ -> changeState( std::move( playState ) );
   }
 }
 

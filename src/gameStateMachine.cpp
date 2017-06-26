@@ -1,15 +1,14 @@
 #include <iostream>
 #include "gameStateMachine.hpp"
 
-void GameStateMachine::pushState( GameState *state ) {
-  gameStates_.push_back( state );
+void GameStateMachine::pushState( std::unique_ptr<GameState> state ) {
+  gameStates_.push_back( std::move( state ) );
   gameStates_.back() -> onEnter();
 }
 
 void GameStateMachine::popState() {
   if( !gameStates_.empty() ) {
     if( gameStates_.back() -> onExit() ) {
-      delete gameStates_.back();
       gameStates_.pop_back();
     }
   }
@@ -22,7 +21,7 @@ std::string GameStateMachine::getCurrentGameStateID() {
   return NULL;
 }
 
-void GameStateMachine::changeState( GameState *state ) {
+void GameStateMachine::changeState( std::unique_ptr<GameState> state ) {
   std::cout << "Changing game state to " << state -> getStateID() << std::endl;
   if( !gameStates_.empty() ) {
     if( gameStates_.back() -> getStateID() == state -> getStateID() ) {
@@ -36,7 +35,7 @@ void GameStateMachine::changeState( GameState *state ) {
   
   //std::cout << "pushing gamestate into array" << std::endl;
   // push back out new state
-  gameStates_.push_back( state );
+  gameStates_.push_back( std::move( state ) );
   
   // initialise it
   gameStates_.back() -> onEnter();
