@@ -67,17 +67,12 @@ void MenuState::update( float dt, Uint32 msFrameDiff ) {
   
   MenuState::handleInput();
   
-  
-  
-  
 }
 
 
 void MenuState::render() {
   
   TheTextures::Instance() -> draw( "menuMain", 0, 0, 1280, 720 );
-  
-  
   
   TheTextures::Instance() -> drawFrame( playRenderParams_ );
   TheTextures::Instance() -> drawFrame( quitRenderParams_ );
