@@ -2,6 +2,7 @@
 #include "hero.hpp"
 #include "inputHandler.hpp"
 #include "values.hpp"
+#include "game.hpp"
 
 Hero::Hero( std::unique_ptr<ObjectData> objectData ) : Sprite( std::move( objectData ) ) {
   ignoreScale_ = true;
@@ -95,7 +96,6 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
     
     if( spriteState_ == DYING ) {
       TheValues::Instance() -> updateLives( -1 );
-      // if gameover
       health_.setHp( 1 );
       health_.setInvCounter( 5000 );
       //printf( "finished dying\n" );

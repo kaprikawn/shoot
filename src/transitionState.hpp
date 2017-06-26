@@ -12,7 +12,7 @@ class TransitionState : public GameState {
     int transitionType_ = LOADLEVEL;
     int frameNum_ = 20;
     
-    std::string levelText_;
+    std::string displayText_;
     
   public:
     
@@ -20,6 +20,8 @@ class TransitionState : public GameState {
     virtual void update( float dt, Uint32 msFrameDiff );
     virtual void render();
     virtual bool onExit();
+    
+    void handleInput();
     
     virtual std::string getStateID() const { return s_transitionID; }
     

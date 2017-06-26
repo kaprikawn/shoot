@@ -40,11 +40,17 @@ bool Game::init( const char* title, int xpos, int ypos, int width, int height, i
   TheInputHandler::Instance() -> initialiseJoysticks();
   TheValues::Instance() -> init();
   
-  gameStateMachine_ = new GameStateMachine();
-  //gameStateMachine_ -> changeState( new PlayState() );
-  std::unique_ptr<GameState> transitionState ( new TransitionState );
+  //gameStateMachine_ = new GameStateMachine();
+  std::unique_ptr<GameStateMachine> gameStateMachine ( new GameStateMachine );
+  gameStateMachine_ = std::move( gameStateMachine );
+  //gameStateMachine_ = make_unique<GameState>( new GameStateMachine );
   
-  gameStateMachine_ -> changeState( std::move( transitionState ) );
+  
+  //gameStateMachine_ -> changeState( new PlayState() );
+  //std::unique_ptr<GameState> transitionState ( new TransitionState );
+  
+  //gameStateMachine_ -> changeState( std::move( transitionState ) );
+  Game::changeGameState( TRANSITION );
   
   running_ = true;
   
@@ -56,6 +62,10 @@ void Game::handleInputs() {
 }
 
 void Game::update( float dt, Uint32 msFrameDiff ) {
+  if( TheValues::Instance() -> getLives() <= 0 && gameStateMachine_ -> getCurrentGameStateID() == "PLAY" ) {
+    Game::changeGameState( TRANSITION );
+  }
+
   gameStateMachine_ -> update( dt, msFrameDiff );
 }
 
@@ -71,6 +81,9 @@ void Game::changeGameState( int newState ) {
     //gameStateMachine_ -> changeState( new PlayState() );
     std::unique_ptr<GameState> playState ( new PlayState );
     gameStateMachine_ -> changeState( std::move( playState ) );
+  } else if( newState == TRANSITION ) {
+    std::unique_ptr<GameState> transitionState ( new TransitionState );
+    gameStateMachine_ -> changeState( std::move( transitionState ) );
   }
 }
 

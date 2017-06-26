@@ -1,6 +1,7 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include <memory>
 #include "SDL.h"
 #include "gameStateMachine.hpp"
 
@@ -14,7 +15,8 @@ class Game {
     bool          running_;
     static Game*  instance_;
     
-    GameStateMachine* gameStateMachine_;
+    //GameStateMachine* gameStateMachine_;
+    std::unique_ptr<GameStateMachine> gameStateMachine_;
     
     Game(){}
   

@@ -130,7 +130,7 @@ enum GameStates {
 };
 
 enum TransitionType {
-  LOADLEVEL
+  LOADLEVEL, GAMEOVER
 };
 
 #endif //STRUCTS_HPP
