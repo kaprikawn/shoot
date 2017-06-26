@@ -28,8 +28,6 @@ int getSpriteID( int& newSpriteID, int& nextSpriteID ) {
 }
 
 bool PlayState::onEnter() {
-
-  
   
   // get vector of ObjectData
   JsonLoader jsonLoader;
@@ -47,7 +45,7 @@ bool PlayState::onEnter() {
     }
   }
   
-  PlayState::loadLevelFromFile( 11 );
+  PlayState::loadLevelFromFile( TheValues::Instance() -> getNextLevel() );
   
   levelStart_ = SDL_GetTicks();
   
@@ -61,8 +59,9 @@ bool PlayState::loadLevelFromFile( int currentLevel ) {
   
   TheTextures::Instance() -> load( backgroundFilename_, "background" );
   
+  pointsNeeded_ = TheValues::Instance() -> getPointsNeeded();
   
-  TheValues::Instance() -> updatePointsNeeded( pointsNeeded_ );
+  //TheValues::Instance() -> updatePointsNeeded( pointsNeeded_ );
   hud_ = new Hud( pointsNeeded_ );
   
   return true;
@@ -120,8 +119,32 @@ int PlayState::getSpriteVectorPosition( int spriteID ) {
   return -1;
 }
 
-void PlayState::update( float dt, Uint32 msFrameDiff ) {
+void PlayState::levelBeaten( float dt, Uint32 msFrameDiff ) {
+
+  // delete all the enemies and projectiles
+  for( unsigned i = spritesSize_; i-- > 0; ) {
+    std::string objectType = sprites_[i] -> getObjectType();
+    if( objectType == "Enemy" || objectType == "Projectile" ) {
+      //printf( "deleting %d\n", i );
+      sprites_[i] -> clean();
+      delete sprites_[i];
+      sprites_.erase( sprites_.begin() + i );
+    }
+  }
+  spritesSize_ = sprites_.size();
   
+  for( int i = 0; i < spritesSize_; i++ ) {
+    sprites_[i] -> update( dt, msFrameDiff );
+    
+    projectileType_ = sprites_[i] -> spawnProjectile();
+    if( projectileType_ > 0 ) {
+      PlayState::spawnProjectile( projectileType_, sprites_[i]  );
+      sprites_[i] -> setSpawnProjectile( false );
+    }
+  }
+}
+
+void PlayState::gameLogic( float dt, Uint32 msFrameDiff ) {
   for( int i = 0; i < spritesSize_; i++ ) {
     sprites_[i] -> update( dt, msFrameDiff );
     
@@ -193,6 +216,16 @@ void PlayState::update( float dt, Uint32 msFrameDiff ) {
         levelObjectsData_.erase( levelObjectsData_.begin() + i );
       }
     }
+  }
+}
+
+void PlayState::update( float dt, Uint32 msFrameDiff ) {
+
+  // check whether level has been beaten
+  if( TheValues::Instance() -> getPoints() >= pointsNeeded_ ) {
+    PlayState::levelBeaten( dt, msFrameDiff );
+  } else {
+    PlayState::gameLogic( dt, msFrameDiff );
   }
   
   hud_ -> update( dt, msFrameDiff );

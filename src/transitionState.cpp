@@ -10,7 +10,7 @@ const std::string TransitionState::s_transitionID = "TRANSITION";
 bool TransitionState::onEnter() {
   
   std::stringstream ss;
-  ss << "Level " << TheValues::Instance() -> getCurrentLevelStr();
+  ss << "Stage " << TheValues::Instance() -> getNextStage();
   levelText_ = ss.str();
   
   //std::cout << "current level is " << currentLevel_ << std::endl;

@@ -60,6 +60,11 @@ class PlayState : public GameState {
     bool  loadLevelFromFile( int currentLevel );
     int   getSpriteVectorPosition( int spriteID );
     
+    
+    void levelBeaten( float dt, Uint32 msFrameDiff );
+
+    void gameLogic( float dt, Uint32 msFrameDiff );
+        
 };
 
 

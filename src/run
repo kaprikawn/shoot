@@ -9,7 +9,10 @@ then
   exit 1
 fi
 
-if [ $HOSTNAME == "archbox" || $HOSTNAME == "raspberrypi" ]
+if [ $HOSTNAME == "archbox" ]
+then
+  make -j4
+elif [ $HOSTNAME == "raspberrypi" ]
 then
   make -j4
 else

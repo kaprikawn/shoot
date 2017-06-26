@@ -76,6 +76,7 @@ enum SpriteState {
   , FIRING    = 2
   , DYING     = 3
   , DODGING   = 4
+  , WINNING   = 5
 };
 
 enum buttons {

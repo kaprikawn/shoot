@@ -79,6 +79,10 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
     }
   }
   
+  if( TheValues::Instance() -> getPoints() >= TheValues::Instance() -> getPointsNeeded() ) {
+    spriteState_ = WINNING;
+  }
+  
   Sprite::update( dt, msFrameDiff );
   
   if( fixedAnimDone_ ) {
@@ -92,6 +96,8 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
       //printf( "finished dying\n" );
     } else if( spriteState_ == DODGING ) {
       health_.setInvCounter( 200 );
+    } else if( spriteState_ == WINNING ) {
+      //TheValues::Instance() -> cycleLevel();
     }
     spriteState_ = DEFAULT;
     Hero::handleInput();

@@ -6,6 +6,7 @@
 #include "json.hpp"
 #include "textures.hpp"
 #include "game.hpp"
+#include "values.hpp"
 
 void JsonLoader::loadDataMain( std::vector<std::unique_ptr<ObjectData>>& commonObjectsData ) {
 
@@ -71,6 +72,8 @@ void JsonLoader::loadDataMain( std::vector<std::unique_ptr<ObjectData>>& commonO
     
     commonObjectsData.push_back( std::move( newObjectData ) );
   }
+  
+  
 }
 
 void JsonLoader::loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectData>>& levelObjectsData, std::string& backgroundFilename, int& pointsNeeded ) {
@@ -82,9 +85,6 @@ void JsonLoader::loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectD
   std::ifstream fin( filename, std::ifstream::binary );
   nlohmann::json j;
   fin >> j;
-  
-  backgroundFilename  = j[ "background" ][ "filename" ];
-  pointsNeeded        = j[ "pointsNeeded" ];
   
   nlohmann::json e = j[ "enemies" ];
   for( nlohmann::json::iterator it1 = e.begin(); it1 != e.end(); ++it1 ) {
@@ -156,5 +156,14 @@ void JsonLoader::loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectD
       levelObjectsData.push_back( std::move( newObjectData ) );
     }
   }
+  
+  backgroundFilename = j[ "background" ][ "filename" ];
+  
+  TheValues::Instance() -> updatePointsNeeded( j[ "pointsNeeded" ] );
+  TheValues::Instance() -> updateCurrentLevel( j[ "currentLevel" ] );
+  TheValues::Instance() -> updateCurrentStage( j[ "currentStage" ] );
+  TheValues::Instance() -> updateNextLevel   ( j[ "nextLevel" ] );
+  TheValues::Instance() -> updateNextStage   ( j[ "nextStage" ] );
+  
 }
 

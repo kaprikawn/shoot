@@ -17,11 +17,10 @@ class Values {
     int     pointsNeeded_;
     int     points_ = 0;
     
-    int         currentLevel_     = 11;
-    std::string currentLevelStr_  = "1-1";
-    int         nextLevel_        = 12;
-    std::string nextLevelStr_     = "1-2";
-    
+    int         currentLevel_;
+    std::string currentStage_;
+    int         nextLevel_    = 11;
+    std::string nextStage_    = "1-1";
     
     static Values* s_pInstance;
     
@@ -34,9 +33,11 @@ class Values {
     void reset();
     
     
-    int getLives() { return lives_; }
-    int getBombs() { return bombs_; }
-    int getPoints() { return points_; }
+    int getLives()        { return lives_; }
+    int getBombs()        { return bombs_; }
+    int getPoints()       { return points_; }
+    int getPointsNeeded() { return pointsNeeded_; }
+    int getNextLevel()    { return nextLevel_; }
     
     void updateBombs( int amount ) {
       bombs_ += amount;
@@ -49,16 +50,20 @@ class Values {
       lives_ += amount;
     }
     
-    void updatePointsNeeded( int pointsNeeded ) {
-      pointsNeeded_ = pointsNeeded;
-    }
+    // all done in json loader
+    void updatePointsNeeded( int pointsNeeded ) { pointsNeeded_ = pointsNeeded; }
+    void updateCurrentLevel( int currentLevel ) { currentLevel_ = currentLevel; }
+    void updateCurrentStage( std::string currentStage ) { currentStage_ = currentStage; }
+    void updateNextLevel( int nextLevel ) { nextLevel_ = nextLevel; }
+    void updateNextStage( std::string  nextStage ) { nextStage_ = nextStage; }
     
     void updatePoints( int points ) {
       printf( "adding %d points\n", points );
       points_ += points;
     }
     
-    std::string getCurrentLevelStr() { return currentLevelStr_; }
+    std::string getCurrentStage() { return currentStage_; }
+    std::string getNextStage()    { return nextStage_; }
     
     static Values* Instance() {
       if( s_pInstance == 0 ) {
