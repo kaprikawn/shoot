@@ -126,11 +126,11 @@ struct HudData {
 };
 
 enum GameStates {
-  TRANSITION, PLAY
+  TRANSITION, PLAY, MENU
 };
 
 enum TransitionType {
-  LOADLEVEL, GAMEOVER
+  LOADLEVEL, GAMEOVER, SPLASH
 };
 
 #endif //STRUCTS_HPP

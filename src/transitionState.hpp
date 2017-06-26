@@ -15,6 +15,10 @@ class TransitionState : public GameState {
     std::string displayText_;
     
   public:
+    TransitionState( int transitionType ) {
+      transitionType_ = transitionType;
+    }
+    ~TransitionState(){}
     
     virtual bool onEnter();
     virtual void update( float dt, Uint32 msFrameDiff );

@@ -5,7 +5,7 @@ project( shoot )
 add_executable( game
   inputHandler.cpp textures.cpp
   jsonLoader.cpp
-  gameStateMachine.cpp playState.cpp transitionState
+  gameStateMachine.cpp playState.cpp transitionState.cpp menuState.cpp
   values.cpp hud.cpp
   animation.cpp position.cpp collision.cpp
   sprite.cpp hero.cpp target.cpp projectile.cpp enemy.cpp

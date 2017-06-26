@@ -11,7 +11,10 @@ bool TransitionState::onEnter() {
   
   std::stringstream ss;
   
-  if( TheValues::Instance() -> getLives() <= 0 ) {
+  if( transitionType_ == SPLASH ) {
+    ss << "kaprikawn games presents..." << TheValues::Instance() -> getCurrentStage();
+    frameNum_ = 60;
+  } else if( TheValues::Instance() -> getLives() <= 0 ) {
     // game over state
     ss << "Ya done goofed - you reached level " << TheValues::Instance() -> getCurrentStage();
     transitionType_ = GAMEOVER;
@@ -36,13 +39,20 @@ void TransitionState::handleInput() {
 
 void TransitionState::update( float dt, Uint32 msFrameDiff ) {
   
-  if( transitionType_ == LOADLEVEL ) {
+  if( transitionType_ == LOADLEVEL  ) {
     frameNum_ --;
     
     if( frameNum_ <= 0 ) {
-      TheGame::Instance() -> changeGameState( PLAY );
+      TheGame::Instance() -> changeGameState( PLAY, 0 );
+    }
+  } else if( transitionType_ == SPLASH ) {
+    frameNum_ --;
+    //printf( "here\n" )
+    if( frameNum_ <= 0 ) {
+      TheGame::Instance() -> changeGameState( MENU, 0 );
     }
   }
+  
     
 }
 
@@ -54,6 +64,8 @@ void TransitionState::render() {
     TheTextures::Instance() -> drawFont( displayText_, 40, "white", 10, 10, 100, 100, true );
   } else if( transitionType_ == GAMEOVER ) {
     TheTextures::Instance() -> drawFont( displayText_, 40, "white", 10, 10, 100, 100, true );
+  } else if( transitionType_ == SPLASH ) {
+    TheTextures::Instance() -> drawFont( displayText_, 40, "white", 350, 350, 100, 100, true );
   }
   
 }

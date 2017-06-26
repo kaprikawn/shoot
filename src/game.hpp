@@ -30,7 +30,7 @@ class Game {
     void clean();
     void quit();
     
-    void changeGameState( int newState );
+    void changeGameState( int newState, int transitionType );
     
     bool gameRunning() { return running_; }
     
