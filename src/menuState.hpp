@@ -11,6 +11,11 @@ class MenuState : public GameState {
     
     std::string displayText_;
     
+    DrawFrameParams playRenderParams_;
+    DrawFrameParams quitRenderParams_;
+    
+    bool playSelected_ = true;
+    
   public:
     
     virtual bool onEnter();
