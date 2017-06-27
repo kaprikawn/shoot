@@ -102,7 +102,7 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
     } else if( spriteState_ == DODGING ) {
       health_.setInvCounter( 200 );
     } else if( spriteState_ == WINNING ) {
-      //TheValues::Instance() -> cycleLevel();
+      TheGame::Instance() -> setNewState( TRANSITION, LOADLEVEL );
     }
     spriteState_ = DEFAULT;
     Hero::handleInput();

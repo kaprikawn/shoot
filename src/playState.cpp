@@ -124,8 +124,8 @@ void PlayState::levelBeaten( float dt, Uint32 msFrameDiff ) {
   // delete all the enemies and projectiles
   for( unsigned i = spritesSize_; i-- > 0; ) {
     std::string objectType = sprites_[i] -> getObjectType();
-    if( objectType == "Enemy" || objectType == "Projectile" ) {
-      //printf( "deleting %d\n", i );
+    if( objectType != "Hero" && objectType != "Target" && objectType != "Scenary" ) {
+      printf( "deleting %d\n", i );
       sprites_[i] -> clean();
       delete sprites_[i];
       sprites_.erase( sprites_.begin() + i );
@@ -135,12 +135,6 @@ void PlayState::levelBeaten( float dt, Uint32 msFrameDiff ) {
   
   for( int i = 0; i < spritesSize_; i++ ) {
     sprites_[i] -> update( dt, msFrameDiff );
-    
-    projectileType_ = sprites_[i] -> spawnProjectile();
-    if( projectileType_ > 0 ) {
-      PlayState::spawnProjectile( projectileType_, sprites_[i]  );
-      sprites_[i] -> setSpawnProjectile( false );
-    }
   }
 }
 

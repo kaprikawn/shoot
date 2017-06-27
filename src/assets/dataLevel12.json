@@ -1,10 +1,12 @@
 {
   "background" : {
-    "filename" : "assets/bg11.png"
+    "filename" : "assets/bg12.png"
   }
-  , "pointsNeeded" : 20000
-  , "stage"        : "1-1"
-  
+  , "pointsNeeded" : 1000
+  , "currentLevel" : 12
+  , "currentStage" : "1-2"
+  , "nextLevel"    : 13
+  , "nextStage"    : "1-3"
   , "enemies" : [
     {
         "objectType" : "Enemy"

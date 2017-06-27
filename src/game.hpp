@@ -12,6 +12,8 @@ class Game {
     float         dt_ = 0.0f;
     Uint32        msFrameDiff_ = 0;
     
+    int           newState_ = -1;
+    int           transitionType_;
     bool          running_;
     static Game*  instance_;
     
@@ -30,6 +32,7 @@ class Game {
     void clean();
     void quit();
     
+    void setNewState( int newState, int transitionType );
     void changeGameState( int newState, int transitionType );
     
     bool gameRunning() { return running_; }

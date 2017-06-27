@@ -65,6 +65,9 @@ void Game::handleInputs() {
 void Game::update( float dt, Uint32 msFrameDiff ) {
   if( TheValues::Instance() -> getLives() <= 0 && gameStateMachine_ -> getCurrentGameStateID() == "PLAY" ) {
     Game::changeGameState( TRANSITION, GAMEOVER );
+  } else if( newState_ >= 0 ) {
+    printf( "calling change state\n" );
+    Game::changeGameState( newState_, transitionType_ );
   }
 
   gameStateMachine_ -> update( dt, msFrameDiff );
@@ -77,17 +80,25 @@ void Game::render() {
   SDL_RenderPresent( renderer_ );
 }
 
+void Game::setNewState( int newState, int transitionType = 0 ) {
+  printf( "setting new state to %d\n", newState );
+  newState_ = newState;
+  transitionType_ = transitionType;
+}
+
 void Game::changeGameState( int newState, int transitionType ) {
   if( newState == PLAY ) {
     std::unique_ptr<GameState> playState ( new PlayState );
     gameStateMachine_ -> changeState( std::move( playState ) );
   } else if( newState == TRANSITION ) {
+    
     std::unique_ptr<GameState> transitionState ( new TransitionState( transitionType ) );
     gameStateMachine_ -> changeState( std::move( transitionState ) );
   } else if( newState == MENU ) {
     std::unique_ptr<GameState> menuState ( new MenuState );
     gameStateMachine_ -> changeState( std::move( menuState ) );
   }
+  newState_ = -1;
 }
 
 void Game::clean() {

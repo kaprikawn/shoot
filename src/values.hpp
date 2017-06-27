@@ -56,6 +56,7 @@ class Values {
     void updateCurrentStage( std::string currentStage ) { currentStage_ = currentStage; }
     void updateNextLevel( int nextLevel ) { nextLevel_ = nextLevel; }
     void updateNextStage( std::string  nextStage ) { nextStage_ = nextStage; }
+    void resetPoints() { points_ = 0; }
     
     void updatePoints( int points ) {
       printf( "adding %d points\n", points );

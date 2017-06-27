@@ -10,7 +10,7 @@ class TransitionState : public GameState {
     static const std::string  s_transitionID;
     
     int transitionType_ = LOADLEVEL;
-    int frameNum_ = 20;
+    int frameNum_ = 30;
     
     std::string displayText_;
     

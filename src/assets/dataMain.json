@@ -2,8 +2,8 @@
   {
     "properties" : {
         "objectType"        : "Hero"
-      , "height"            : 313
-      , "width"             : 206
+      , "height"            : 311
+      , "width"             : 205
       , "textureID"         : "hero"
       , "filename"          : "assets/hero.png"
       , "x"                 : 600
@@ -146,35 +146,11 @@
             , "fixedAnim"   : true
             , "animation"   : [
                 {
-                    "minFrame"        : 0
-                  , "maxFrame"        : 0
-                  , "duration"        : 300
-                  , "swapFrameAfter"  : 300
-                  , "swapAnimAfter"   : 300
-                  , "oscillate"       : false
-                }
-                , {
-                    "minFrame"        : 1
-                  , "maxFrame"        : 1
-                  , "duration"        : 250
-                  , "swapFrameAfter"  : 250
-                  , "swapAnimAfter"   : 250
-                  , "oscillate"       : false
-                }
-                , {
-                    "minFrame"        : 2
-                  , "maxFrame"        : 2
-                  , "duration"        : 200
-                  , "swapFrameAfter"  : 200
-                  , "swapAnimAfter"   : 200
-                  , "oscillate"       : false
-                }
-                , {
-                    "minFrame"        : 3
-                  , "maxFrame"        : 3
-                  , "duration"        : 150
-                  , "swapFrameAfter"  : 150
-                  , "swapAnimAfter"   : 150
+                    "minFrame"        : 6
+                  , "maxFrame"        : 6
+                  , "duration"        : 6000
+                  , "swapFrameAfter"  : 6000
+                  , "swapAnimAfter"   : 6000
                   , "oscillate"       : false
                 }
               ]

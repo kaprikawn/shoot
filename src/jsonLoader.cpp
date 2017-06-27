@@ -164,6 +164,7 @@ void JsonLoader::loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectD
   TheValues::Instance() -> updateCurrentStage( j[ "currentStage" ] );
   TheValues::Instance() -> updateNextLevel   ( j[ "nextLevel" ] );
   TheValues::Instance() -> updateNextStage   ( j[ "nextStage" ] );
+  TheValues::Instance() -> resetPoints();
   
 }
 
