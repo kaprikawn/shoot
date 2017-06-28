@@ -29,13 +29,13 @@ void Hero::handleInput() {
     if( TheInputHandler::Instance() -> isPressed( DODGE ) ) {
       spriteState_ = DODGING;
     } else if( TheInputHandler::Instance() -> isPressed( BOMB ) && bombCooldown_ > 1000 && TheValues::Instance() -> getBombs() > 0 ) {
-      spawnProjectile_ = PBOMB;
+      spawnProjectile_ = PROJECTILEHEROBOMB;
       TheValues::Instance() -> updateBombs( -1 );
       bombCooldown_ = 0;
     } else if( TheInputHandler::Instance() -> isPressed( FIRE ) ) {
       spriteState_ = FIRING;
       if( bulletCooldown_ > 100 ) {
-        spawnProjectile_ = PBULLET;
+        spawnProjectile_ = PROJECTILEHEROBULLET;
         bulletCooldown_ = 0;
       }
     } else {

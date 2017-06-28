@@ -11,8 +11,8 @@ int main( int argc, char* args[] ) {
   float   dt_ = 0.0f;
     
   
-  if( !TheGame::Instance() -> init( "Crosshair Shooter Game", 20, 20, constants::WIDTH, constants::HEIGHT, SDL_WINDOW_SHOWN ) ) {
-  //if( !TheGame::Instance() -> init( "Crosshair Shooter Game", 20, 20, 100, 100, SDL_WINDOW_SHOWN ) ) {
+  //if( !TheGame::Instance() -> init( "Crosshair Shooter Game", 20, 20, constants::WIDTH, constants::HEIGHT, SDL_WINDOW_SHOWN ) ) {
+  if( !TheGame::Instance() -> init( "Crosshair Shooter Game", 20, 20, 100, 100, SDL_WINDOW_SHOWN ) ) {
     std::cout << "Game initialisation failed" << std::endl;
   }
 

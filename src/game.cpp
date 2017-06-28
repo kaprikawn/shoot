@@ -41,17 +41,11 @@ bool Game::init( const char* title, int xpos, int ypos, int width, int height, i
   TheInputHandler::Instance() -> initialiseJoysticks();
   TheValues::Instance() -> init();
   
-  //gameStateMachine_ = new GameStateMachine();
   std::unique_ptr<GameStateMachine> gameStateMachine ( new GameStateMachine );
   gameStateMachine_ = std::move( gameStateMachine );
-  //gameStateMachine_ = make_unique<GameState>( new GameStateMachine );
   
-  
-  //gameStateMachine_ -> changeState( new PlayState() );
-  //std::unique_ptr<GameState> transitionState ( new TransitionState );
-  
-  //gameStateMachine_ -> changeState( std::move( transitionState ) );
-  Game::changeGameState( TRANSITION, SPLASH );
+  //Game::changeGameState( TRANSITION, SPLASH ); // production
+  Game::changeGameState( TRANSITION, LOADLEVEL ); // test
   
   running_ = true;
   

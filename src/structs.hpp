@@ -39,16 +39,17 @@ struct  ObjectData {
   int   hb_t_offset       = 0;
   int   hb_b_offset       = 0;
   int   spawnTime         = 0;
-  int   speed             = 1;
+  float speed             = 1.0f;
   int   hp                = 1;
   int   animDataIndex     = 0;
   bool  hasSpawned        = false;
-  bool  centerOffset;
+  bool  centerOffset      = false;
   
-  std::string   objectType = "unknown";
+  std::string   objectType    = "unknown";
+  std::string   objectTypeSub = "unknown";
   std::string   textureID;
   std::string   filename;
-  std::string   name = "noname";
+  std::string   name          = "noname";
   
   std::vector<StateData>  stateData;
   std::vector<Path>       pathData;
@@ -98,7 +99,10 @@ enum lastDirection {
 };
 
 enum ProjectileTypes {
-    UNDEF, PBULLET, PBOMB, EBULLET, EBOMB
+    PROJECTILEHEROBULLET    = 0  
+  , PROJECTILEENEMYBASIC    = 1
+  , PROJECTILEENEMYCHUCKER  = 2
+  , PROJECTILEHEROBOMB      = 3
 };
 
 struct ProjectileData {
@@ -109,7 +113,6 @@ struct ProjectileData {
   int   dstY;
   float speedFactor;
   bool  destroyAtDest = false;
-  bool  canDamage     = true;
 };
 
 struct Hitbox {

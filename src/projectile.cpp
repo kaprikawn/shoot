@@ -9,16 +9,14 @@ Projectile::Projectile( std::unique_ptr<ObjectData> objectData, ProjectileData &
   
   velocity_ *= projectileData.speedFactor;
   
-  if( projectileData.type == PBOMB || projectileData.type == EBOMB ) {
-  
+  if( projectileData.type == PROJECTILEHEROBOMB || projectileData.type == PROJECTILEENEMYCHUCKER ) {
+    
     int y = -1000 * projectileData.speedFactor;
     int g = sqrt( y * y ) * projectileData.speedFactor;
     g *= 2;
       
     elevationV_.setY( y );
     elevationG_.setY( g );
-    
-    projectileData_.canDamage = false;
     
   }
   
@@ -52,14 +50,14 @@ void Projectile::update( float dt, Uint32 msFrameDiff ) {
   Sprite::update( dt, msFrameDiff );
   
   if( Projectile::hasPassedDestination() ) {
-    if( projectileData_.type == PBOMB || projectileData_.type == EBOMB ) {
+    if( projectileData_.type == PROJECTILEHEROBOMB || projectileData_.type == PROJECTILEENEMYCHUCKER ) {
       velocity_.setX( 0 );
       velocity_.setY( 0 );
       spriteState_ = DYING;
       drawIndex_ += 10000; // make sure it appears in front
-      if( projectileData_.type == PBOMB ) {
+      if( projectileData_.type == PROJECTILEHEROBOMB ) {
         hostileToEnemy_ = true;
-      } else if( projectileData_.type == EBOMB ) {
+      } else if( projectileData_.type == PROJECTILEENEMYCHUCKER ) {
         hostileToHero_ = true;
       }
       

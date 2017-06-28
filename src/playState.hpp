@@ -18,12 +18,13 @@ class PlayState : public GameState {
     
     std::vector<std::unique_ptr<ObjectData>> commonObjectsData_; // hero, target etc.
     std::vector<std::unique_ptr<ObjectData>> levelObjectsData_; // enemies, scenary etc.
+    std::vector<std::unique_ptr<ObjectData>> projectileObjectsData_; // projectiles
     
     Hero*       hero_;
     Target*     target_;
     Hud*        hud_;
     
-    ObjectData  pBombObjectData_;
+    ObjectData  projectileData_;
     
     std::string backgroundFilename_;
     int         pointsNeeded_;

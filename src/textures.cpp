@@ -31,7 +31,6 @@ void Textures::drawFont( std::string text, int fontSize, std::string colour, int
   
   renderer_ = TheGame::Instance() -> getRenderer();
   
-  
   //SDL_SetRenderDrawColor( renderer_, 255, 255, 255, 255 );
   SDL_Surface* textSurface = TTF_RenderText_Solid( fonts_[ fontSize ], text.c_str(), colours_[ colour ] );
   SDL_Texture* textTexture = SDL_CreateTextureFromSurface( renderer_, textSurface );
@@ -45,19 +44,16 @@ void Textures::drawFont( std::string text, int fontSize, std::string colour, int
     SDL_QueryTexture( textTexture, NULL, NULL, &dstRect_.w, &dstRect_.h );
   }
   
-  
   SDL_RenderCopy( renderer_, textTexture, NULL, &dstRect_ );
   SDL_FreeSurface( textSurface );
-  
   
 }
 
 bool Textures::load( std::string filename, std::string id ) {
-  std::cout << "loading texture "<< id << " from " << filename << std::endl;
+  
   if( !loadedIDs_.empty() ) {
     for( unsigned int i = 0; i < loadedIDs_.size(); i++ ) {
       if( id == loadedIDs_[i] ) {
-        std::cout << "texture already loaded" << std::endl;
         return true;  // already loaded
       }
     }

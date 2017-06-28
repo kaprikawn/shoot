@@ -12,9 +12,9 @@ class JsonLoader {
   
   public:
     
-    void loadDataMain( std::vector<std::unique_ptr<ObjectData>>& commonObjectsData );
+    void loadDataMain( std::vector<std::unique_ptr<ObjectData>>& commonObjectsData, std::vector<std::unique_ptr<ObjectData>>& projectileObjectsData );
     
-    void loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectData>>& levelObjectsData, std::string& backgroundFilename, int& pointsNeeded );
+    void loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectData>>& levelObjectsData, std::vector<std::unique_ptr<ObjectData>>& projectileObjectsData, std::string& backgroundFilename, int& pointsNeeded );
     
 };
 

@@ -20,7 +20,7 @@
       , "hb_b_offset" : 10
       , "hp"          : 250
       , "speed"       : 100
-      
+
       , "spawns" : [
         {
             "spawnTime" : 2
@@ -288,6 +288,82 @@
       ]
     }
   ]
+  , "projectiles" : [
+      {
+          "objectType"      : "Projectile"
+        , "objectTypeSub"   : "projectileEnemyBasic"
+        , "projectileFor"   : "enemyBasic"
+        , "height"          : 16
+        , "width"           : 16
+        , "textureID"       : "projectileEnemyBasic"
+        , "filename"        : "assets/projectileEnemyBasic"
+        , "hb_l_offset"     : 0
+        , "hb_r_offset"     : 0
+        , "hb_t_offset"     : 0
+        , "hb_b_offset"     : 0
+        , "hp"              : 1
+        , "speed"           : 0.5
+        , "hostileToHero"   : true
+        , "hostileToEnemy"  : false
+        , "stateData" : [
+          {
+              "id"          : "DEFAULT"
+            , "spriteState" : 0
+            , "currentRow"  : 1
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 3
+                  , "duration"        : 350
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"       : true
+                  
+                }
+              ]
+          }
+        ]
+      }
+      , {
+          "objectType"      : "Projectile"
+        , "objectTypeSub"   : "projectileEnemyChucker"
+        , "projectileFor"   : "enemyBasic"
+        , "height"          : 16
+        , "width"           : 16
+        , "textureID"       : "projectileEnemyChucker"
+        , "filename"        : "assets/projectileEnemyChucker"
+        , "hb_l_offset"     : 0
+        , "hb_r_offset"     : 0
+        , "hb_t_offset"     : 0
+        , "hb_b_offset"     : 0
+        , "hp"              : 1
+        , "speed"           : 0.5
+        , "hostileToHero"   : true
+        , "hostileToEnemy"  : false
+        , "stateData" : [
+          {
+              "id"          : "DEFAULT"
+            , "spriteState" : 0
+            , "currentRow"  : 1
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 3
+                  , "duration"        : 350
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"       : true
+                  
+                }
+              ]
+          }
+        ]
+      }
+    ]
 }
       
       
