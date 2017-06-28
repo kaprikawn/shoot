@@ -148,9 +148,9 @@
                 {
                     "minFrame"        : 6
                   , "maxFrame"        : 6
-                  , "duration"        : 6000
-                  , "swapFrameAfter"  : 6000
-                  , "swapAnimAfter"   : 6000
+                  , "duration"        : 2000
+                  , "swapFrameAfter"  : 2000
+                  , "swapAnimAfter"   : 2000
                   , "oscillate"       : false
                 }
               ]

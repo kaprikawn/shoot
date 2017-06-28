@@ -23,6 +23,7 @@ class Textures {
 
     std::map<std::string, SDL_Texture*> textureMaps_;
     std::vector<std::string>            loadedIDs_;
+    std::map<std::string, SDL_Texture*>::iterator textureIterator_;
     
     std::map<int, TTF_Font*>    fonts_;
     std::vector<int>            loadedFonts_;
@@ -39,6 +40,7 @@ class Textures {
     bool load( std::string filename, std::string id );
     void drawFrame( DrawFrameParams& params );
     void draw( std::string id, int x, int y, int w, int h );
+    void clearFromTextureMap( std::string id );
     
     bool loadFont( int fontSize );
     void loadColours();

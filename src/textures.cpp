@@ -53,9 +53,11 @@ void Textures::drawFont( std::string text, int fontSize, std::string colour, int
 }
 
 bool Textures::load( std::string filename, std::string id ) {
+  std::cout << "loading texture "<< id << " from " << filename << std::endl;
   if( !loadedIDs_.empty() ) {
     for( unsigned int i = 0; i < loadedIDs_.size(); i++ ) {
       if( id == loadedIDs_[i] ) {
+        std::cout << "texture already loaded" << std::endl;
         return true;  // already loaded
       }
     }
@@ -116,5 +118,17 @@ void Textures::drawFrame( DrawFrameParams& params ) {
   
   SDL_RenderCopyEx( TheGame::Instance() -> getRenderer(), textureMaps_[ params.id ], &srcRect_, &dstRect_, 0, 0, flip_ );
   
+}
+
+void Textures::clearFromTextureMap( std::string id ) {
+  
+  textureMaps_.erase( id );
+  
+  for( unsigned int i = 0; i < loadedIDs_.size(); i++ ) {
+    if( id == loadedIDs_[i] ) {
+      loadedIDs_.erase( loadedIDs_.begin()+i );
+      return;
+    }
+  }
 }
 

@@ -125,7 +125,6 @@ void PlayState::levelBeaten( float dt, Uint32 msFrameDiff ) {
   for( unsigned i = spritesSize_; i-- > 0; ) {
     std::string objectType = sprites_[i] -> getObjectType();
     if( objectType != "Hero" && objectType != "Target" && objectType != "Scenary" ) {
-      printf( "deleting %d\n", i );
       sprites_[i] -> clean();
       delete sprites_[i];
       sprites_.erase( sprites_.begin() + i );
@@ -262,6 +261,8 @@ void PlayState::render() {
 }
 
 bool PlayState::onExit() {
+
+  TheTextures::Instance() -> clearFromTextureMap( "background" );
 
   delete hud_;
   delete hero_;
