@@ -39,7 +39,8 @@ struct  ObjectData {
   int   hb_t_offset       = 0;
   int   hb_b_offset       = 0;
   int   spawnTime         = 0;
-  float speed             = 1.0f;
+  int   speed             = 1;
+  float dtAdjust          = 1.0f;
   int   hp                = 1;
   int   animDataIndex     = 0;
   bool  hasSpawned        = false;

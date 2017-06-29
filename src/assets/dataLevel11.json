@@ -16,9 +16,9 @@
       , "width"           : 213
       , "textureID"       : "enemyBasic"
       , "filename"        : "assets/enemyBasic.png"
-      , "hb_l_offset"     : 20
-      , "hb_r_offset"     : 70
-      , "hb_t_offset"     : 10
+      , "hb_l_offset"     : 60
+      , "hb_r_offset"     : 60
+      , "hb_t_offset"     : 50
       , "hb_b_offset"     : 10
       , "hp"              : 250
       , "speed"           : 100
@@ -306,7 +306,8 @@
         , "hb_t_offset"     : 0
         , "hb_b_offset"     : 0
         , "hp"              : 1
-        , "speed"           : 0.5
+        , "speed"           : 1
+        , "dtAdjust"        : 0.5
         , "hostileToHero"   : true
         , "hostileToEnemy"  : false
         , "stateData" : [
@@ -319,7 +320,7 @@
             , "animation"   : [
                 {
                     "minFrame"        : 0
-                  , "maxFrame"        : 0
+                  , "maxFrame"        : 3
                   , "duration"        : 350
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
@@ -343,7 +344,8 @@
         , "hb_t_offset"     : 0
         , "hb_b_offset"     : 0
         , "hp"              : 1
-        , "speed"           : 0.5
+        , "speed"           : 1
+        , "dtAdjust"        : 0.5
         , "hostileToHero"   : true
         , "hostileToEnemy"  : false
         , "stateData" : [

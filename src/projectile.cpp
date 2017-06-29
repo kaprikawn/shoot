@@ -73,6 +73,10 @@ void Projectile::update( float dt, Uint32 msFrameDiff ) {
   if( fixedAnimDone_ ) {
     deleteSprite_ = true;
   }
+  
+  if( health_.getCurrentHp() < 1 ) {
+    deleteSprite_ = true;
+  }
 }
 
 void Projectile::render() {
