@@ -39,6 +39,8 @@ bool Animation::determineFrame( int spriteState, float dt, Uint32 mfFrameDiff
     currentIndex_ = 0;
   }
   
+  //printf( "size of animation data is %d\n", animationData_.size() );
+  
   if( fixedAnim_ && msSinceLastChange_ > animationData_[ currentIndex_ ].duration ) {
     currentIndex_++;
     if( currentIndex_ >= animationData_.size() ) {

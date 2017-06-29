@@ -46,7 +46,11 @@ bool Projectile::hasPassedDestination() {
 }
 
 void Projectile::update( float dt, Uint32 msFrameDiff ) {
-
+  
+  //std::cout << "size of animation data is " << ( *objectData_ ).stateData.size() << std::endl;
+  
+  //std::cout << "textureID is " << ( *objectData_ ).textureID << std::endl;
+  
   Sprite::update( dt, msFrameDiff );
   
   if( Projectile::hasPassedDestination() ) {

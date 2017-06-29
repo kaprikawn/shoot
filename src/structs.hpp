@@ -44,6 +44,7 @@ struct  ObjectData {
   int   animDataIndex     = 0;
   bool  hasSpawned        = false;
   bool  centerOffset      = false;
+  int   projectileType    = -1;
   
   std::string   objectType    = "unknown";
   std::string   objectTypeSub = "unknown";
@@ -99,10 +100,11 @@ enum lastDirection {
 };
 
 enum ProjectileTypes {
-    PROJECTILEHEROBULLET    = 0  
-  , PROJECTILEENEMYBASIC    = 1
-  , PROJECTILEENEMYCHUCKER  = 2
-  , PROJECTILEHEROBOMB      = 3
+    UNDEF                   = 0
+  , PROJECTILEHEROBULLET    = 1
+  , PROJECTILEENEMYBASIC    = 2
+  , PROJECTILEENEMYCHUCKER  = 3
+  , PROJECTILEHEROBOMB      = 4
 };
 
 struct ProjectileData {

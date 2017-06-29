@@ -30,6 +30,7 @@ void loadProjectiles( nlohmann::json p, std::vector<std::unique_ptr<ObjectData>>
     newObjectData -> hp             = p[ "hp" ];
     newObjectData -> speed          = p[ "speed" ];
     
+    //std::cout << "loading file " << p[ "filename" ] << " with textureID " << p[ "textureID" ] << std::endl;
     TheTextures::Instance() -> load( p[ "filename" ], p[ "textureID" ] );
     
     nlohmann::json sdRoot = p[ "stateData" ];
@@ -59,12 +60,14 @@ void loadProjectiles( nlohmann::json p, std::vector<std::unique_ptr<ObjectData>>
           newAnimationData.oscillate      = a[ "oscillate" ];
           
           newStateData.animData.push_back( newAnimationData );
-          //printf( "pushing back anim data\n" );
+          //if( p[ "objectTypeSub" ] == "projectileEnemyChucker" ) {
+          //  printf( "pushing back anim data\n" );
+          //}
         }
       }
       newObjectData -> stateData.push_back( newStateData );
     }
-    std::cout << "loading projectile " << newObjectData -> objectTypeSub << std::endl;
+    //std::cout << "loading projectile " << newObjectData -> objectTypeSub << std::endl;
     projectileObjectsData.push_back( std::move( newObjectData ) );
   }
 }
@@ -160,20 +163,22 @@ void JsonLoader::loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectD
       
       std::unique_ptr<ObjectData> newObjectData ( new ObjectData );
       
-      newObjectData -> objectType   = enemy[ "objectType" ];
-      newObjectData -> height       = enemy[ "height" ];
-      newObjectData -> width        = enemy[ "width" ];
-      newObjectData -> hb_l_offset  = enemy[ "hb_l_offset" ];
-      newObjectData -> hb_r_offset  = enemy[ "hb_r_offset" ];
-      newObjectData -> hb_t_offset  = enemy[ "hb_t_offset" ];
-      newObjectData -> hb_b_offset  = enemy[ "hb_b_offset" ];
-      newObjectData -> textureID    = enemy[ "textureID" ];
-      newObjectData -> filename     = enemy[ "filename" ];
-      newObjectData -> hp           = enemy[ "hp" ];
-      newObjectData -> speed        = enemy[ "speed" ];
-      newObjectData -> spawnTime    = eSpawn[ "spawnTime" ];
-      newObjectData -> x            = eSpawn[ "x" ];
-      newObjectData -> y            = eSpawn[ "y" ];
+      newObjectData -> objectType     = enemy[ "objectType" ];
+      newObjectData -> objectType     = enemy[ "objectTypeSub" ];
+      newObjectData -> projectileType = enemy[ "projectileType" ];
+      newObjectData -> height         = enemy[ "height" ];
+      newObjectData -> width          = enemy[ "width" ];
+      newObjectData -> hb_l_offset    = enemy[ "hb_l_offset" ];
+      newObjectData -> hb_r_offset    = enemy[ "hb_r_offset" ];
+      newObjectData -> hb_t_offset    = enemy[ "hb_t_offset" ];
+      newObjectData -> hb_b_offset    = enemy[ "hb_b_offset" ];
+      newObjectData -> textureID      = enemy[ "textureID" ];
+      newObjectData -> filename       = enemy[ "filename" ];
+      newObjectData -> hp             = enemy[ "hp" ];
+      newObjectData -> speed          = enemy[ "speed" ];
+      newObjectData -> spawnTime      = eSpawn[ "spawnTime" ];
+      newObjectData -> x              = eSpawn[ "x" ];
+      newObjectData -> y              = eSpawn[ "y" ];
       
       TheTextures::Instance() -> load( enemy[ "filename" ], enemy[ "textureID" ] );
       

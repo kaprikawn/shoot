@@ -23,7 +23,7 @@ void Enemy::calculateVelocity( int pathDataIndex ) {
   velocity_.normalize();
   velocity_ *= objectData_ -> speed;
   if( pathDataIndex_ > 0 ) {
-    spawnProjectile_ = PROJECTILEENEMYCHUCKER;
+    spawnProjectile_ = ( *objectData_ ).projectileType;
   }
   
   // if the projectile is going more horizontally than vertically

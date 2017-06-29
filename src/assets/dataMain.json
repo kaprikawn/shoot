@@ -280,11 +280,11 @@
       {
           "objectType"      : "Projectile"
         , "objectTypeSub"   : "projectileHeroBullet"
-        , "projectileFor"   : "hero"
-        , "height"          : 16
-        , "width"           : 16
+        , "projectileType"  : 0
+        , "height"          : 46
+        , "width"           : 46
         , "textureID"       : "projectileHeroBullet"
-        , "filename"        : "assets/projectileHeroBullet"
+        , "filename"        : "assets/projectileHeroBullet.png"
         , "hb_l_offset"     : 0
         , "hb_r_offset"     : 0
         , "hb_t_offset"     : 0
@@ -317,11 +317,12 @@
       , {
           "objectType"      : "Projectile"
         , "objectTypeSub"   : "projectileHeroBomb"
+        , "projectileType"  : 3
         , "projectileFor"   : "hero"
-        , "height"          : 16
-        , "width"           : 16
+        , "height"          : 46
+        , "width"           : 46
         , "textureID"       : "projectileHeroBomb"
-        , "filename"        : "assets/projectileHeroBomb"
+        , "filename"        : "assets/projectileHeroBomb.png"
         , "hb_l_offset"     : 0
         , "hb_r_offset"     : 0
         , "hb_t_offset"     : 0
@@ -340,10 +341,39 @@
             , "animation"   : [
                 {
                     "minFrame"        : 0
-                  , "maxFrame"        : 3
+                  , "maxFrame"        : 0
                   , "duration"        : 350
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
+                  , "oscillate"       : true
+                  
+                }
+              ]
+          }
+          , { "spriteState" : 1, "skip" : true }
+          , { "spriteState" : 2, "skip" : true }
+          , {
+              "id"          : "DYING"
+            , "spriteState" : 3
+            , "currentRow"  : 1
+            , "skip"        : false
+            , "fixedAnim"   : true
+            , "animation"   : [
+                {
+                    "minFrame"        : 1
+                  , "maxFrame"        : 1
+                  , "duration"        : 700
+                  , "swapFrameAfter"  : 700
+                  , "swapAnimAfter"   : 700
+                  , "oscillate"       : true
+                  
+                }
+                , {
+                    "minFrame"        : 2
+                  , "maxFrame"        : 2
+                  , "duration"        : 500
+                  , "swapFrameAfter"  : 500
+                  , "swapAnimAfter"   : 500
                   , "oscillate"       : true
                   
                 }

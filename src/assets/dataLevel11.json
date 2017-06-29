@@ -9,17 +9,19 @@
   , "nextStage"    : "1-2"
   , "enemies" : [
     {
-        "objectType" : "Enemy"
-      , "height"      : 213
-      , "width"       : 213
-      , "textureID"   : "enemyBasic"
-      , "filename"    : "assets/enemyBasic.png"
-      , "hb_l_offset" : 20
-      , "hb_r_offset" : 70
-      , "hb_t_offset" : 10
-      , "hb_b_offset" : 10
-      , "hp"          : 250
-      , "speed"       : 100
+        "objectType"      : "Enemy"
+      , "objectTypeSub"   : "enemyBasic"
+      , "projectileType"  : 2
+      , "height"          : 213
+      , "width"           : 213
+      , "textureID"       : "enemyBasic"
+      , "filename"        : "assets/enemyBasic.png"
+      , "hb_l_offset"     : 20
+      , "hb_r_offset"     : 70
+      , "hb_t_offset"     : 10
+      , "hb_b_offset"     : 10
+      , "hp"              : 250
+      , "speed"           : 100
 
       , "spawns" : [
         {
@@ -161,17 +163,19 @@
     }
     
     , {
-        "objectType" : "Enemy"
-      , "height"      : 247
-      , "width"       : 195
-      , "textureID"   : "enemyChucker"
-      , "filename"    : "assets/enemyChucker.png"
-      , "hb_l_offset" : 20
-      , "hb_r_offset" : 70
-      , "hb_t_offset" : 10
-      , "hb_b_offset" : 10
-      , "hp"          : 1000
-      , "speed"       : 70
+        "objectType"      : "Enemy"
+      , "objectTypeSub"   : "enemyChucker"
+      , "projectileType"  : 3
+      , "height"          : 247
+      , "width"           : 195
+      , "textureID"       : "enemyChucker"
+      , "filename"        : "assets/enemyChucker.png"
+      , "hb_l_offset"     : 20
+      , "hb_r_offset"     : 70
+      , "hb_t_offset"     : 10
+      , "hb_b_offset"     : 10
+      , "hp"              : 1000
+      , "speed"           : 70
       
       , "spawns" : [
         {
@@ -293,10 +297,10 @@
           "objectType"      : "Projectile"
         , "objectTypeSub"   : "projectileEnemyBasic"
         , "projectileFor"   : "enemyBasic"
-        , "height"          : 16
-        , "width"           : 16
+        , "height"          : 46
+        , "width"           : 46
         , "textureID"       : "projectileEnemyBasic"
-        , "filename"        : "assets/projectileEnemyBasic"
+        , "filename"        : "assets/projectileEnemyBasic.png"
         , "hb_l_offset"     : 0
         , "hb_r_offset"     : 0
         , "hb_t_offset"     : 0
@@ -315,7 +319,7 @@
             , "animation"   : [
                 {
                     "minFrame"        : 0
-                  , "maxFrame"        : 3
+                  , "maxFrame"        : 0
                   , "duration"        : 350
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
@@ -330,10 +334,10 @@
           "objectType"      : "Projectile"
         , "objectTypeSub"   : "projectileEnemyChucker"
         , "projectileFor"   : "enemyBasic"
-        , "height"          : 16
-        , "width"           : 16
+        , "height"          : 46
+        , "width"           : 46
         , "textureID"       : "projectileEnemyChucker"
-        , "filename"        : "assets/projectileEnemyChucker"
+        , "filename"        : "assets/projectileEnemyChucker.png"
         , "hb_l_offset"     : 0
         , "hb_r_offset"     : 0
         , "hb_t_offset"     : 0
@@ -352,10 +356,39 @@
             , "animation"   : [
                 {
                     "minFrame"        : 0
-                  , "maxFrame"        : 3
+                  , "maxFrame"        : 0
                   , "duration"        : 350
                   , "swapFrameAfter"  : 350
                   , "swapAnimAfter"   : 350
+                  , "oscillate"       : true
+                  
+                }
+              ]
+          }
+          , { "spriteState" : 1, "skip" : true }
+          , { "spriteState" : 2, "skip" : true }
+          , {
+              "id"          : "DYING"
+            , "spriteState" : 3
+            , "currentRow"  : 1
+            , "skip"        : false
+            , "fixedAnim"   : true
+            , "animation"   : [
+                {
+                    "minFrame"        : 1
+                  , "maxFrame"        : 1
+                  , "duration"        : 700
+                  , "swapFrameAfter"  : 700
+                  , "swapAnimAfter"   : 700
+                  , "oscillate"       : true
+                  
+                }
+                , {
+                    "minFrame"        : 2
+                  , "maxFrame"        : 2
+                  , "duration"        : 500
+                  , "swapFrameAfter"  : 500
+                  , "swapAnimAfter"   : 500
                   , "oscillate"       : true
                   
                 }
