@@ -7,12 +7,16 @@ Projectile::Projectile( std::unique_ptr<ObjectData> objectData, ProjectileData &
   
   velocity_ = Vector( Vector( projectileData.dstX, projectileData.dstY ) - Vector( projectileData.srcX, projectileData.srcY ) );
   
-  velocity_ *= projectileData.speedFactor;
+  //velocity_ *= projectileData.speedFactor;
+  
+  //velocity_.normalize();
+  velocity_ *= objectData_ -> speed;
+  //std::cout << "speedFactor is " << projectileData.speedFactor << std::endl;
   
   if( projectileData.type == PROJECTILEHEROBOMB || projectileData.type == PROJECTILEENEMYCHUCKER ) {
     
-    int y = -1000 * projectileData.speedFactor;
-    int g = sqrt( y * y ) * projectileData.speedFactor;
+    int y = -1000 * objectData_ -> speed;
+    int g = sqrt( y * y ) * objectData_ -> speed;
     g *= 2;
       
     elevationV_.setY( y );
@@ -25,6 +29,8 @@ Projectile::Projectile( std::unique_ptr<ObjectData> objectData, ProjectileData &
   if( abs( projectileData_.dstY - projectileData_.srcY ) < abs( projectileData_.dstX - projectileData_.srcX ) ) {
     testOnY_ = false;
   }
+  
+  //std::cout << "dt adjust is " << objectData.dtAdjust << std::endl;
 }
 
 bool Projectile::hasPassedDestination() {

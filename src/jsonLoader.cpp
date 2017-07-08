@@ -29,7 +29,7 @@ void loadProjectiles( nlohmann::json p, std::vector<std::unique_ptr<ObjectData>>
     newObjectData -> filename       = p[ "filename" ];
     newObjectData -> hp             = p[ "hp" ];
     newObjectData -> speed          = p[ "speed" ];
-    newObjectData -> dtAdjust       = p[ "dtAdjust" ];
+    //newObjectData -> dtAdjust       = p[ "dtAdjust" ];
     
     //std::cout << "loading file " << p[ "filename" ] << " with textureID " << p[ "textureID" ] << std::endl;
     TheTextures::Instance() -> load( p[ "filename" ], p[ "textureID" ] );

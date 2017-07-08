@@ -9,17 +9,173 @@
   , "nextStage"    : "1-3"
   , "enemies" : [
     {
-        "objectType" : "Enemy"
-      , "height"      : 247
-      , "width"       : 195
-      , "textureID"   : "enemyChucker"
-      , "filename"    : "assets/enemyChucker.png"
-      , "hb_l_offset" : 20
-      , "hb_r_offset" : 70
-      , "hb_t_offset" : 10
-      , "hb_b_offset" : 10
-      , "hp"          : 1000
-      , "speed"       : 100
+        "objectType"      : "Enemy"
+      , "objectTypeSub"   : "enemyBasic"
+      , "projectileType"  : 2
+      , "height"          : 213
+      , "width"           : 213
+      , "textureID"       : "enemyBasic"
+      , "filename"        : "assets/enemyBasic.png"
+      , "hb_l_offset"     : 60
+      , "hb_r_offset"     : 60
+      , "hb_t_offset"     : 50
+      , "hb_b_offset"     : 10
+      , "hp"              : 250
+      , "speed"           : 100
+
+      , "spawns" : [
+        {
+            "spawnTime" : 2
+          , "x" : 700
+          , "y" : 100
+          , "pathData" : [
+              { "x" : 820,  "y" : 100 }
+            , { "x" : 900,  "y" : 100 }
+            , { "x" : 1000, "y" : 100 }
+            , { "x" : 1300, "y" : 100 }
+            ]
+        }
+        , {
+            "spawnTime" : 4
+          , "x" : 600
+          , "y" : 200
+          , "pathData" : [
+              { "x" : 820,  "y" : 200 }
+            , { "x" : 900,  "y" : 200 }
+            , { "x" : 1000, "y" : 200 }
+            , { "x" : 1300, "y" : 200 }
+            ]
+        }
+      ]
+      
+      , "stateData" : [
+          {
+              "id"          : "DEFAULT"
+            , "spriteState" : 0
+            , "currentRow"  : 1
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 3
+                  , "duration"        : 350
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"       : true
+                  
+                }
+              ]
+          }
+          , {
+              "id"          : "MOVING"
+            , "spriteState" : 1
+            , "currentRow"  : 1
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 2
+                  , "duration"        : 150
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"       : true
+                  
+                }
+              ]
+          }
+          , {
+              "id"          : "FIRING"
+            , "spriteState" : 2
+            , "currentRow"  : 2
+            , "skip"        : false
+            , "fixedAnim"   : true
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 0
+                  , "duration"        : 300
+                  , "swapFrameAfter"  : 700
+                  , "swapAnimAfter"   : 700
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 1
+                  , "maxFrame"        : 1
+                  , "duration"        : 300
+                  , "swapFrameAfter"  : 500
+                  , "swapAnimAfter"   : 500
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 2
+                  , "maxFrame"        : 2
+                  , "duration"        : 300
+                  , "swapFrameAfter"  : 500
+                  , "swapAnimAfter"   : 500
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 3
+                  , "maxFrame"        : 3
+                  , "duration"        : 300
+                  , "swapFrameAfter"  : 500
+                  , "swapAnimAfter"   : 500
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 4
+                  , "maxFrame"        : 4
+                  , "duration"        : 300
+                  , "swapFrameAfter"  : 500
+                  , "swapAnimAfter"   : 500
+                  , "oscillate"       : false
+                }
+              ]
+          }
+          , {
+              "id"          : "DYING"
+            , "spriteState" : 3
+            , "currentRow"  : 1
+            , "skip"        : false
+            , "fixedAnim"   : true
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 1
+                  , "duration"        : 700
+                  , "swapFrameAfter"  : 700
+                  , "swapAnimAfter"   : 700
+                  , "oscillate"       : false
+                }
+                , {
+                    "minFrame"        : 2
+                  , "maxFrame"        : 3
+                  , "duration"        : 500
+                  , "swapFrameAfter"  : 500
+                  , "swapAnimAfter"   : 500
+                  , "oscillate"       : false
+                }
+              ]
+          }
+      ]
+    }
+    
+    , {
+        "objectType"      : "Enemy"
+      , "objectTypeSub"   : "enemyChucker"
+      , "projectileType"  : 3
+      , "height"          : 247
+      , "width"           : 195
+      , "textureID"       : "enemyChucker"
+      , "filename"        : "assets/enemyChucker.png"
+      , "hb_l_offset"     : 20
+      , "hb_r_offset"     : 70
+      , "hb_t_offset"     : 10
+      , "hb_b_offset"     : 10
+      , "hp"              : 1000
+      , "speed"           : 70
       
       , "spawns" : [
         {
@@ -136,6 +292,113 @@
       ]
     }
   ]
+  , "projectiles" : [
+      {
+          "objectType"      : "Projectile"
+        , "objectTypeSub"   : "projectileEnemyBasic"
+        , "projectileFor"   : "enemyBasic"
+        , "height"          : 46
+        , "width"           : 46
+        , "textureID"       : "projectileEnemyBasic"
+        , "filename"        : "assets/projectileEnemyBasic.png"
+        , "hb_l_offset"     : 0
+        , "hb_r_offset"     : 0
+        , "hb_t_offset"     : 0
+        , "hb_b_offset"     : 0
+        , "hp"              : 1
+        , "speed"           : 1
+        , "dtAdjust"        : 0.5
+        , "hostileToHero"   : true
+        , "hostileToEnemy"  : false
+        , "stateData" : [
+          {
+              "id"          : "DEFAULT"
+            , "spriteState" : 0
+            , "currentRow"  : 1
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 3
+                  , "duration"        : 350
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"       : true
+                  
+                }
+              ]
+          }
+        ]
+      }
+      , {
+          "objectType"      : "Projectile"
+        , "objectTypeSub"   : "projectileEnemyChucker"
+        , "projectileFor"   : "enemyBasic"
+        , "height"          : 46
+        , "width"           : 46
+        , "textureID"       : "projectileEnemyChucker"
+        , "filename"        : "assets/projectileEnemyChucker.png"
+        , "hb_l_offset"     : 0
+        , "hb_r_offset"     : 0
+        , "hb_t_offset"     : 0
+        , "hb_b_offset"     : 0
+        , "hp"              : 1
+        , "speed"           : 1
+        , "dtAdjust"        : 0.5
+        , "hostileToHero"   : true
+        , "hostileToEnemy"  : false
+        , "stateData" : [
+          {
+              "id"          : "DEFAULT"
+            , "spriteState" : 0
+            , "currentRow"  : 1
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 0
+                  , "duration"        : 350
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"       : true
+                  
+                }
+              ]
+          }
+          , { "spriteState" : 1, "skip" : true }
+          , { "spriteState" : 2, "skip" : true }
+          , {
+              "id"          : "DYING"
+            , "spriteState" : 3
+            , "currentRow"  : 1
+            , "skip"        : false
+            , "fixedAnim"   : true
+            , "animation"   : [
+                {
+                    "minFrame"        : 1
+                  , "maxFrame"        : 1
+                  , "duration"        : 700
+                  , "swapFrameAfter"  : 700
+                  , "swapAnimAfter"   : 700
+                  , "oscillate"       : true
+                  
+                }
+                , {
+                    "minFrame"        : 2
+                  , "maxFrame"        : 2
+                  , "duration"        : 500
+                  , "swapFrameAfter"  : 500
+                  , "swapAnimAfter"   : 500
+                  , "oscillate"       : true
+                  
+                }
+              ]
+          }
+        ]
+      }
+    ]
 }
       
       

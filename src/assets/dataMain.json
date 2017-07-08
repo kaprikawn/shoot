@@ -290,8 +290,7 @@
         , "hb_t_offset"     : 0
         , "hb_b_offset"     : 0
         , "hp"              : 1
-        , "speed"           : 1
-        , "dtAdjust"        : 1.0
+        , "speed"           : 7.0
         , "hostileToHero"   : false
         , "hostileToEnemy"  : true
         , "stateData" : [
@@ -329,7 +328,7 @@
         , "hb_t_offset"     : 0
         , "hb_b_offset"     : 0
         , "hp"              : 1
-        , "speed"           : 1
+        , "speed"           : 2.5
         , "dtAdjust"        : 1.0
         , "hostileToHero"   : false
         , "hostileToEnemy"  : true
