@@ -22,6 +22,8 @@ Projectile::Projectile( std::unique_ptr<ObjectData> objectData, ProjectileData &
     elevationV_.setY( y );
     elevationG_.setY( g );
     
+  } else if( projectileData.type == PROJECTILEENEMYBASIC ) {
+    hostileToHero_ = true;
   }
   
   // if the projectile is going more horizontally than vertically

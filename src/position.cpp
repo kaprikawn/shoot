@@ -37,10 +37,10 @@ void Position::updatePosition( Vector &velocity, float &dt, DrawFrameParams &ren
   if( ignoreScale ) {
     scale_ = 1.0f;
   } else {
-    scale_ = 0.5f + ( ( 1.0f - 0.5f ) * ( ( coordinates_.getY() + h_ ) / 720.0f ) );
+    scale_ = 0.1f + ( ( 1.0f - 0.1f ) * ( ( coordinates_.getY() + h_ ) / 720.0f ) );
   }
   if( scale_ > 1.0f ) { scale_ = 1.0f; }
-  if( scale_ < 0.5f ) { scale_ = 0.5f; }
+  if( scale_ < 0.1f ) { scale_ = 0.1f; }
   
   x_ = coordinates_.getX() + ( scale_ * ( w_ - ( w_ * scale_ ) ) );
   y_ = coordinates_.getY() + ( scale_ * ( h_ - ( h_ * scale_ ) ) ) + elevation;
