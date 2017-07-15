@@ -12,11 +12,21 @@ add_executable( game
   game.cpp main.cpp
 )
 
-include( FindPkgConfig )
+if( WIN32 )
 
-pkg_search_module( SDL2 REQUIRED sdl2 )
-pkg_search_module( SDL2IMAGE REQUIRED SDL2_image>=2.0.0 )
-pkg_search_module( SDL2TTF REQUIRED SDL2_ttf )
+  set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${shoot_SOURCE_DIR}/cmake")
+  set(SDL2_PATH "C:\\dev\\SDL\\VC\\SDL2-2.0.5")
+  set(SDL2_IMAGE_PATH "C:\\dev\\SDL\\VC\\SDL2_image-2.0.1")
+  set(SDL2_TTF_PATH "C:\\dev\\SDL\\VC\\SDL2_ttf-2.0.14")
+  
+else()
+  
+  include( FindPkgConfig )
+
+  pkg_search_module( SDL2 REQUIRED sdl2 )
+  pkg_search_module( SDL2IMAGE REQUIRED SDL2_image>=2.0.0 )
+  pkg_search_module( SDL2TTF REQUIRED SDL2_ttf )
+endif( WIN32 )
 
 include_directories( ${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIRS} ${SDL2TTF_INCLUDE_DIRS} )
 target_link_libraries( game ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${SDL2TTF_LIBRARIES} )
