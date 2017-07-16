@@ -8,7 +8,7 @@ add_executable( game
   gameStateMachine.cpp playState.cpp transitionState.cpp menuState.cpp
   values.cpp hud.cpp
   animation.cpp position.cpp collision.cpp
-  sprite.cpp hero.cpp target.cpp projectile.cpp enemy.cpp
+  sprite.cpp hero.cpp target.cpp projectile.cpp enemy.cpp scenary.cpp
   game.cpp main.cpp
 )
 

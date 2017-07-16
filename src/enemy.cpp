@@ -70,6 +70,8 @@ void Enemy::update( float dt, Uint32 msFrameDiff ) {
     pointsAwarded_ = true;
   }
   
+  std::cout << "enemy zIndex is " << zIndex_ << std::endl;
+  
 }
 
 void Enemy::renderLifebar() {

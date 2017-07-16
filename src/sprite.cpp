@@ -50,8 +50,9 @@ void Sprite::update( float dt, Uint32 mfFrameDiff ) {
   
   position_.updatePosition( velocity_, dt, renderParams_, ignoreScale_, elevation_ );
   
-  drawIndex_ = position_.getCoordinates().getY() + objectData_ -> height;
-  bottomY_ = drawIndex_;
+  
+  drawIndex_ = position_.getZIndex(); //position_.getCoordinates().getY() + objectData_ -> height;
+  zIndex_ = drawIndex_;
   
   if( velocity_.getX() < 0 ) {
     renderParams_.flip = true;

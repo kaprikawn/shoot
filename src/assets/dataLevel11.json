@@ -423,6 +423,46 @@
         ]
       }
     ]
+  , "scenary" : [
+      {
+        "objectType"      : "Scenary"
+      , "objectTypeSub"   : "purpleWall"
+      , "height"            : 300
+      , "width"             : 456
+      , "textureID"       : "purpleWall"
+      , "filename"        : "assets/purpleWall.png"
+      , "hb_l_offset"     : 0
+      , "hb_r_offset"     : 0
+      , "hb_t_offset"     : 0
+      , "hb_b_offset"     : 0
+      , "hp"              : 1000
+      , "speed"           : 0
+      , "x"               : 10
+      , "y"               : 10
+      , "stateData" : [
+          {
+              "id"          : "DEFAULT"
+            , "spriteState" : 0
+            , "currentRow"  : 1
+            , "skip"        : false
+            , "fixedAnim"   : false
+            , "animation"   : [
+                {
+                    "minFrame"        : 0
+                  , "maxFrame"        : 0
+                  , "duration"        : 350
+                  , "swapFrameAfter"  : 350
+                  , "swapAnimAfter"   : 350
+                  , "oscillate"       : true
+                  
+                }
+              ]
+          }
+          , { "spriteState" : 1, "skip" : true }
+          
+        ]
+      }
+    ]
 }
       
       

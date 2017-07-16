@@ -33,7 +33,7 @@ class Sprite {
     
     int         spawnProjectile_  = 0; // number refers to type of projectile
     int         drawIndex_; // for use in deciding which order to draw sprites in
-    int         bottomY_ = 0; // y coordinate of the bottom of the sprite
+    int         zIndex_ = 0; // y coordinate of the bottom of the sprite
     bool        deleteSprite_     = false;
     
     bool        testOnY_    = true; // whether to test whether passed position on X or Y
@@ -62,7 +62,7 @@ class Sprite {
     int   getDrawIndex()    { return drawIndex_; }
     int   getSpriteID()     { return objectData_ -> spriteID; }
     int   getSpriteState()  { return spriteState_; }
-    int   getBottomY()      { return bottomY_; }
+    int   getZIndex()       { return zIndex_; }
     
     bool  isHostileToHero()   { return hostileToHero_; }
     bool  isHostileToEnemy()  { return hostileToEnemy_; }

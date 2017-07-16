@@ -8,11 +8,15 @@
 #include "game.hpp"
 #include "values.hpp"
 
-void loadProjectiles( nlohmann::json p, std::vector<std::unique_ptr<ObjectData>>& projectileObjectsData ) {
+void loadProjectiles( nlohmann::json& pJson, std::vector<std::unique_ptr<ObjectData>>& projectileObjectsData ) {
   
   //nlohmann::json j = p[ "projectiles" ];
   
-  for( nlohmann::json::iterator it1 = p.begin(); it1 != p.end(); ++it1 ) {
+  //std::cout << "loading projectiles\n";
+  
+  //std::cout << p << std::endl;
+  
+  for( nlohmann::json::iterator it1 = pJson.begin(); it1 != pJson.end(); ++it1 ) {
     nlohmann::json p = *it1;
     
     std::unique_ptr<ObjectData> newObjectData ( new ObjectData );
@@ -73,7 +77,69 @@ void loadProjectiles( nlohmann::json p, std::vector<std::unique_ptr<ObjectData>>
   }
 }
 
-void JsonLoader::loadDataMain( std::vector<std::unique_ptr<ObjectData>>& commonObjectsData, std::vector<std::unique_ptr<ObjectData>>& projectileObjectsData ) {
+void loadScenary( nlohmann::json& sJson, std::vector<std::unique_ptr<ObjectData>>& levelObjectsData ) {
+  
+  for( nlohmann::json::iterator it1 = sJson.begin(); it1 != sJson.end(); ++it1 ) {
+    nlohmann::json s = *it1;
+    
+    std::unique_ptr<ObjectData> newObjectData ( new ObjectData );
+    
+    newObjectData -> objectType     = s[ "objectType" ];
+    newObjectData -> objectTypeSub  = s[ "objectTypeSub" ];
+    newObjectData -> height         = s[ "height" ];
+    newObjectData -> width          = s[ "width" ];
+    newObjectData -> hb_l_offset    = s[ "hb_l_offset" ];
+    newObjectData -> hb_r_offset    = s[ "hb_r_offset" ];
+    newObjectData -> hb_t_offset    = s[ "hb_t_offset" ];
+    newObjectData -> hb_b_offset    = s[ "hb_b_offset" ];
+    newObjectData -> textureID      = s[ "textureID" ];
+    newObjectData -> filename       = s[ "filename" ];
+    newObjectData -> hp             = s[ "hp" ];
+    newObjectData -> speed          = s[ "speed" ];
+    newObjectData -> x              = s[ "x" ];
+    newObjectData -> y              = s[ "y" ];
+    
+    TheTextures::Instance() -> load( s[ "filename" ], s[ "textureID" ] );
+    
+    nlohmann::json sdRoot = s[ "stateData" ];
+    
+    for( nlohmann::json::iterator sd1 = sdRoot.begin(); sd1 != sdRoot.end(); ++sd1 ) {
+      nlohmann::json sd = *sd1;
+      
+      StateData newStateData;
+      
+      newStateData.spriteState   = sd[ "spriteState" ];
+      
+      if( !sd[ "skip" ] ) {
+        newStateData.id         = sd[ "id" ];
+        newStateData.currentRow = sd[ "currentRow" ];
+        newStateData.fixedAnim  = sd[ "fixedAnim" ];
+        nlohmann::json aRoot    = sd[ "animation" ];
+        
+        for( nlohmann::json::iterator a1 = aRoot.begin(); a1 != aRoot.end(); ++a1 ) {
+          nlohmann::json a = *a1;
+          AnimationData newAnimationData;
+          
+          newAnimationData.minFrame       = a[ "minFrame" ];
+          newAnimationData.maxFrame       = a[ "maxFrame" ];
+          newAnimationData.duration       = a[ "duration" ];
+          newAnimationData.swapFrameAfter = a[ "swapFrameAfter" ];
+          newAnimationData.swapAnimAfter  = a[ "swapAnimAfter" ];
+          newAnimationData.oscillate      = a[ "oscillate" ];
+          
+          newStateData.animData.push_back( newAnimationData );
+          //printf( "pushing back anim data\n" );
+        }
+      }
+      newObjectData -> stateData.push_back( newStateData );
+    }
+    
+    levelObjectsData.push_back( std::move( newObjectData ) );
+  }
+  
+}
+
+void JsonLoader::loadDataMain( std::vector<std::unique_ptr<ObjectData>>& levelObjectsData, std::vector<std::unique_ptr<ObjectData>>& projectileObjectsData ) {
 
   std::ifstream fin( "assets/dataMain.json", std::ifstream::binary );
   nlohmann::json j;
@@ -137,10 +203,11 @@ void JsonLoader::loadDataMain( std::vector<std::unique_ptr<ObjectData>>& commonO
       newObjectData -> stateData.push_back( newStateData );
     }
     
-    commonObjectsData.push_back( std::move( newObjectData ) );
+    levelObjectsData.push_back( std::move( newObjectData ) );
   }
   
   loadProjectiles( j[ "projectiles" ], projectileObjectsData );
+  
   
 }
 
@@ -226,6 +293,9 @@ void JsonLoader::loadLevel( int levelNumber, std::vector<std::unique_ptr<ObjectD
     }
   }
   
+  //nlohmann::json s = j[ "scenary" ];
+  
+  loadScenary( j[ "scenary" ], levelObjectsData );
   loadProjectiles( j[ "projectiles" ], projectileObjectsData );
   
   backgroundFilename = j[ "background" ][ "filename" ];

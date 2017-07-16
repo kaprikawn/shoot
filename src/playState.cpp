@@ -8,6 +8,7 @@
 #include "textures.hpp"
 #include "projectile.hpp"
 #include "enemy.hpp"
+#include "scenary.hpp"
 #include "values.hpp"
 
 const std::string PlayState::s_playID = "PLAY";
@@ -40,12 +41,26 @@ bool PlayState::onEnter() {
     } else if( commonObjectsData_[i] -> objectType == "Target" ) {
       target_ = new Target( std::move( commonObjectsData_[i] ) );
       PlayState::add( target_ );
-    }/* else if( commonObjectsData_[i] -> objectType == "PBomb" ) {
-      pBombObjectData_ = ( *commonObjectsData_[i] );
-    }*/
+    }
   }
   
   PlayState::loadLevelFromFile( TheValues::Instance() -> getNextLevel() );
+  
+  // load scenary
+  if( !levelObjectsData_.empty() ) {
+    for( unsigned i = levelObjectsData_.size(); i-- > 0; ) {
+      if( levelObjectsData_[i] -> objectType == "Scenary" ) {
+        //Enemy* newEnemy = new Enemy( std::move( levelObjectsData_[i] ) );
+        //PlayState::add( newEnemy );
+        
+        Scenary* newScenary = new Scenary( std::move( levelObjectsData_[i] ) );
+        PlayState::add( newScenary );
+        
+        levelObjectsData_.erase( levelObjectsData_.begin() + i );
+      }
+    }
+  }
+  
   
   levelStart_ = SDL_GetTicks();
   
@@ -68,10 +83,6 @@ bool PlayState::loadLevelFromFile( int currentLevel ) {
 }
 
 void PlayState::spawnProjectile( int projectileType, Sprite* originSprite ) {
-  
-  if( projectileType == 0 ) {
-    printf( "hero firing\n" );
-  }
   
   ObjectData newObjectData;
   ProjectileData projectileData;
@@ -199,7 +210,7 @@ void PlayState::gameLogic( float dt, Uint32 msFrameDiff ) {
       if( spriteOnePos_ == 1 && spriteTwoPos_ > 1 && sprites_[0] -> getSpriteState() != DYING ) { // target hitting enemy / scenary
         if( target_ -> getSpriteState() == FIRING ) {
           if( spriteHit_ ) {
-            if( spriteHit_ -> getBottomY() < sprites_[spriteTwoPos_] -> getBottomY() ) {
+            if( spriteHit_ -> getZIndex() < sprites_[spriteTwoPos_] -> getZIndex() ) {
               spriteHit_ = sprites_[spriteTwoPos_];
             }
           } else {

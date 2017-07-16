@@ -15,6 +15,7 @@ class Position {
     int     w_; // width
     int     h_; // height
     float   scale_;
+    int     zIndex_; // position of bottom of the sprite
     
     int x_; // x of draw location for use in hitbox calculation
     int y_; // y of draw location for use in hitbox calculation
@@ -44,6 +45,9 @@ class Position {
     }
     void setY( float y ) {
       coordinates_.setY( y );
+    }
+    int getZIndex() {
+      return zIndex_;
     }
     
 };

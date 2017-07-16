@@ -52,6 +52,9 @@ void Position::updatePosition( Vector &velocity, float &dt, DrawFrameParams &ren
   
   Position::updateHitbox( velocity );
   
+  zIndex_ = y_ + ( h_ * scale_ );
+  //std::cout << "calculated zIndex is " << zIndex_ << std::endl;
+  
 }
 
 Vector Position::getSpriteCenter() {
