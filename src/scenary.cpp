@@ -10,7 +10,7 @@ Scenary::Scenary( std::unique_ptr<ObjectData> objectData ) : Sprite( std::move( 
 void Scenary::update( float dt, Uint32 msFrameDiff ) {
   Sprite::update( dt, msFrameDiff );
   
-  std::cout << "scenary zIndex is " << zIndex_ << std::endl;
+  //std::cout << "scenary zIndex is " << zIndex_ << std::endl;
   
 }
 
