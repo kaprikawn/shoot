@@ -57,23 +57,23 @@ bool InputHandler::isKeyDown( SDL_Scancode key ) {
 
 bool InputHandler::isPressed( int button ) {
   if( button == 0 ) {
-    if( keystates_[ SDL_SCANCODE_RIGHT ] == 1 || currentHat_ == SDL_HAT_RIGHT || currentHat_ == SDL_HAT_RIGHTUP || currentHat_ == SDL_HAT_RIGHTDOWN ) {
+    if( keystates_[ SDL_SCANCODE_RIGHT ] == 1 || keystates_[ SDL_SCANCODE_D ] == 1 || currentHat_ == SDL_HAT_RIGHT || currentHat_ == SDL_HAT_RIGHTUP || currentHat_ == SDL_HAT_RIGHTDOWN ) {
       return true;
     }
   } else if( button == 1 ) {
-    if( keystates_[ SDL_SCANCODE_LEFT ] == 1 || currentHat_ == SDL_HAT_LEFT || currentHat_ == SDL_HAT_LEFTUP || currentHat_ == SDL_HAT_LEFTDOWN ) {
+    if( keystates_[ SDL_SCANCODE_LEFT ] == 1 || keystates_[ SDL_SCANCODE_A ] == 1 || currentHat_ == SDL_HAT_LEFT || currentHat_ == SDL_HAT_LEFTUP || currentHat_ == SDL_HAT_LEFTDOWN ) {
       return true;
     }
   } else if( button == 2 ) {
-    if( keystates_[ SDL_SCANCODE_UP ] == 1 || currentHat_ == SDL_HAT_UP || currentHat_ == SDL_HAT_LEFTUP || currentHat_ == SDL_HAT_RIGHTUP ) {
+    if( keystates_[ SDL_SCANCODE_UP ] == 1 || keystates_[ SDL_SCANCODE_W ] == 1 || currentHat_ == SDL_HAT_UP || currentHat_ == SDL_HAT_LEFTUP || currentHat_ == SDL_HAT_RIGHTUP ) {
       return true;
     }
   } else if( button == 3 ) {
-    if( keystates_[ SDL_SCANCODE_DOWN ] == 1 || currentHat_ == SDL_HAT_DOWN || currentHat_ == SDL_HAT_LEFTDOWN || currentHat_ == SDL_HAT_RIGHTDOWN ) {
+    if( keystates_[ SDL_SCANCODE_DOWN ] == 1 || keystates_[ SDL_SCANCODE_S ] == 1 || currentHat_ == SDL_HAT_DOWN || currentHat_ == SDL_HAT_LEFTDOWN || currentHat_ == SDL_HAT_RIGHTDOWN ) {
       return true;
     }
   } else if( button == 4 ) { // fire
-    if( keystates_[ SDL_SCANCODE_Z ] == 1 ) {
+    if( keystates_[ SDL_SCANCODE_Z ] == 1 || keystates_[ SDL_SCANCODE_SPACE ] == 1  ) {
       return true;
     }
     if( gamepadsInitialised_ ) {
@@ -82,14 +82,15 @@ bool InputHandler::isPressed( int button ) {
       }
     }
   } else if( button == 5 ) { // roll
-    if( keystates_[ SDL_SCANCODE_X ] == 1 ) {
+    if( keystates_[ SDL_SCANCODE_X ] == 1 || keystates_[ SDL_SCANCODE_LSHIFT ] == 1 ) {
       return true;
     }
   } else if( button == 6 ) { // bomb
-    if( keystates_[ SDL_SCANCODE_C ] == 1 ) {
+    if( keystates_[ SDL_SCANCODE_C ] == 1 || keystates_[ SDL_SCANCODE_LCTRL ] ) {
       return true;
     }
-  } else if( button == 7 ) { // start
+  }
+  /*else if( button == 7 ) { // start
     if( keystates_[ SDL_SCANCODE_S ] == 1 ) {
       return true;
     }
@@ -105,7 +106,7 @@ bool InputHandler::isPressed( int button ) {
     if( keystates_[ SDL_SCANCODE_BACKSPACE ] == 1 ) {
       return true;
     }
-  }
+  }*/
   
   return false;
 }
