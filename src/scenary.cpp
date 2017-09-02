@@ -14,7 +14,7 @@ void Scenary::update( float dt, Uint32 msFrameDiff ) {
       spriteState_ = DAMAGED3;
     } else if( health_.getCurrentHp() < 510 ) {
       spriteState_ = DAMAGED2;
-    } else if( m_health.getCurrentHp() < 760 ) {
+    } else if( health_.getCurrentHp() < 760 ) {
       spriteState_ = DAMAGED1;
     }
   }
