@@ -15,6 +15,9 @@ then
 elif [ $HOSTNAME == "raspberrypi" ]
 then
   make -j4
+elif [ $HOSTNAME == "fedora" ]
+then
+  make -j4
 else
   make
 fi
