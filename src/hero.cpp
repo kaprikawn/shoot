@@ -114,6 +114,13 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
   bombCooldown_   += msFrameDiff;
   bulletCooldown_ += msFrameDiff;
   
+  
+  if( invCounter_ > 0 && renderParams_.invincible == false ) {
+    renderParams_.invincible = true;
+  } else if( invCounter_ < 1 && renderParams_.invincible == true ) {
+    renderParams_.invincible = false;
+  }
+  
 }
 
 void Hero::render() {

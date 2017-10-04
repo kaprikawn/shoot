@@ -98,6 +98,14 @@ void Textures::drawFrame( DrawFrameParams& params ) {
   dstRect_.w = params.dstW;
   dstRect_.h = params.dstH;// * params.scale;
   
+  if( params.invincible == true ) {
+    if( int( ( ( SDL_GetTicks() / 100 ) % 4 ) ) == 0 ) {
+      // if invicible flash every few frames
+      srcRect_.w = 0;
+      srcRect_.y = 0;
+    }
+  }
+  
   if( params.spriteID == -1 ) {
     std::cout << "params.id is " << params.id << std::endl;
     std::cout << "params.currentRow is " << params.currentRow << std::endl;

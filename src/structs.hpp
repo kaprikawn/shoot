@@ -68,8 +68,9 @@ struct DrawFrameParams {
   int   dstH;
   int   currentRow;
   int   currentFrame;
-  bool  flip = false;
-  int   spriteID = -1;
+  bool  flip        = false;
+  int   spriteID    = -1;
+  bool  invincible  = false;
 };
 
 enum SpriteState {
