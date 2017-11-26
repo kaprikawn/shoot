@@ -98,9 +98,11 @@ void Hero::update( float dt, Uint32 msFrameDiff ) {
       TheValues::Instance() -> updateLives( -1 );
       health_.setHp( 1 );
       health_.setInvCounter( 5000 );
+      renderParams_.invReason = INVREVIVED;
       //printf( "finished dying\n" );
-    } else if( spriteState_ == DODGING ) {
+    } else if( spriteState_ == DODGING && invCounter_ < 1 ) {
       health_.setInvCounter( 200 );
+      renderParams_.invReason = INVDODGE;
     } else if( spriteState_ == WINNING ) {
       TheGame::Instance() -> setNewState( TRANSITION, LOADLEVEL );
     }

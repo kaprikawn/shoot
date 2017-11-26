@@ -16,7 +16,8 @@ class Enemy : public Sprite {
     int   srcX_, srcY_, dstX_, dstY_;
     
     int yellowWidth_, redWidth_; // for lifebar
-    bool  pointsAwarded_ = false;
+    bool  pointsAwarded_  = false;
+    bool  hasAppeared_    = false; // whether enemy has appeared on screen yet
   
   public:
     

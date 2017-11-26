@@ -43,6 +43,13 @@ void Enemy::calculateVelocity( int pathDataIndex ) {
 
 void Enemy::update( float dt, Uint32 msFrameDiff ) {
   
+  if( hasAppeared_ == false && position_.isOutOfBounds() == false ) {
+    hasAppeared_ = true;
+  } else if( hasAppeared_ == true && position_.isOutOfBounds() == true ) {
+    deleteSprite_ = true;
+    return;
+  }
+  
   if( pathDataIndex_ == 0 ) {
     Enemy::calculateVelocity( pathDataIndex_ );
   }
@@ -51,7 +58,9 @@ void Enemy::update( float dt, Uint32 msFrameDiff ) {
     //recalculateVelocity_ = true;
     velocity_.setX( 0 );
     velocity_.setY( 0 );
-    spriteState_ = FIRING;
+    if( 1 == 1 ) {
+      spriteState_ = FIRING;
+    }
   }
   
   Sprite::update( dt, msFrameDiff );

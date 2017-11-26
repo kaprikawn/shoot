@@ -98,7 +98,7 @@ void Textures::drawFrame( DrawFrameParams& params ) {
   dstRect_.w = params.dstW;
   dstRect_.h = params.dstH;// * params.scale;
   
-  if( params.invincible == true ) {
+  if( params.invincible == true && params.invReason == INVREVIVED ) {
     if( int( ( ( SDL_GetTicks() / 100 ) % 4 ) ) == 0 ) {
       // if invicible flash every few frames
       srcRect_.w = 0;

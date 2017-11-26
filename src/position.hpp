@@ -20,6 +20,8 @@ class Position {
     int x_; // x of draw location for use in hitbox calculation
     int y_; // y of draw location for use in hitbox calculation
     
+    bool outOfBounds_ = false;
+    
     // how many pixels from the edge of the sprite should the hitbox start
     // because we don't necessarily want the hitbox to be the same size as the sprite
     int hb_l_offset_ = 0; // hitbox left offset
@@ -40,6 +42,7 @@ class Position {
     
     void    updateHitbox( Vector &velocity );
     Vector  getSpriteCenter();
+    bool    isOutOfBounds();
     void setX( float x ) {
       coordinates_.setX( x );
     }

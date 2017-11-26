@@ -56,6 +56,10 @@ struct  ObjectData {
   std::vector<Path>       pathData;
 };
 
+enum invReasons {
+  INVUNDEF, INVDODGE, INVREVIVED
+};
+
 struct DrawFrameParams {
   std::string id;
   int   srcX;
@@ -71,6 +75,7 @@ struct DrawFrameParams {
   bool  flip        = false;
   int   spriteID    = -1;
   bool  invincible  = false;
+  int   invReason   = 0;
 };
 
 enum SpriteState {

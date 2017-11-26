@@ -18,6 +18,18 @@ Position::Position( std::unique_ptr<ObjectData>& objectData ) :
   
 }
 
+
+bool Position::isOutOfBounds() {
+  if( coordinates_.getX() < ( 0 - w_ )
+   || coordinates_.getX() > 1280
+   || coordinates_.getY() < ( 0 - h_ )
+   || coordinates_.getY() > 720 ) {
+  
+    return true;
+  }
+  return false;
+}
+
 void Position::updateHitbox( Vector &velocity ) {
 
   if( velocity.getX() < 0 ) {

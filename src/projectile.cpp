@@ -85,6 +85,10 @@ void Projectile::update( float dt, Uint32 msFrameDiff ) {
   if( health_.getCurrentHp() < 1 ) {
     deleteSprite_ = true;
   }
+  
+  if( position_.isOutOfBounds() == true ) {
+    deleteSprite_ = true;
+  }
 }
 
 void Projectile::render() {
