@@ -73,7 +73,7 @@ bool InputHandler::isPressed( int button ) {
       return true;
     }
   } else if( button == 4 ) { // fire
-    if( keystates_[ SDL_SCANCODE_Z ] == 1 || keystates_[ SDL_SCANCODE_SPACE ] == 1  ) {
+    if( keystates_[ SDL_SCANCODE_Z ] == 1 || keystates_[ SDL_SCANCODE_I ] == 1 || keystates_[ SDL_SCANCODE_SPACE ] == 1  ) {
       return true;
     }
     if( gamepadsInitialised_ ) {
@@ -82,11 +82,11 @@ bool InputHandler::isPressed( int button ) {
       }
     }
   } else if( button == 5 ) { // roll
-    if( keystates_[ SDL_SCANCODE_X ] == 1 || keystates_[ SDL_SCANCODE_LSHIFT ] == 1 ) {
+    if( keystates_[ SDL_SCANCODE_X ] == 1 || keystates_[ SDL_SCANCODE_O ] == 1 || keystates_[ SDL_SCANCODE_LSHIFT ] == 1 ) {
       return true;
     }
   } else if( button == 6 ) { // bomb
-    if( keystates_[ SDL_SCANCODE_C ] == 1 || keystates_[ SDL_SCANCODE_LCTRL ] ) {
+    if( keystates_[ SDL_SCANCODE_C ] == 1 || keystates_[ SDL_SCANCODE_P ] == 1 || keystates_[ SDL_SCANCODE_LCTRL ] ) {
       return true;
     }
   }
