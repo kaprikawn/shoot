@@ -459,12 +459,49 @@
               ]
           }
           , { "spriteState" : 1, "skip" : true }
-          
+          , { "spriteState" : 2, "skip" : true }
+          , {
+              "id"          : "DYING"
+            , "spriteState" : 3
+            , "currentRow"  : 1
+            , "skip"        : false
+            , "fixedAnim"   : true
+            , "animation"   : [
+                {
+                    "minFrame"        : 4
+                  , "maxFrame"        : 5
+                  , "duration"        : 200
+                  , "swapFrameAfter"  : 500
+                  , "swapAnimAfter"   : 500
+                  , "oscillate"       : true
+                }
+                , {
+                    "minFrame"        : 6
+                  , "maxFrame"        : 7
+                  , "duration"        : 200
+                  , "swapFrameAfter"  : 700
+                  , "swapAnimAfter"   : 700
+                  , "oscillate"       : true
+                }
+                , {
+                    "minFrame"        : 8
+                  , "maxFrame"        : 9
+                  , "duration"        : 200
+                  , "swapFrameAfter"  : 700
+                  , "swapAnimAfter"   : 700
+                  , "oscillate"       : true
+                }
+                , {
+                    "minFrame"        : 10
+                  , "maxFrame"        : 10
+                  , "duration"        : 200
+                  , "swapFrameAfter"  : 700
+                  , "swapAnimAfter"   : 700
+                  , "oscillate"       : false
+                }
+              ]
+          }
         ]
       }
     ]
 }
-      
-      
-     
-  
