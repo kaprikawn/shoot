@@ -5,7 +5,7 @@ declare -a arr=( animation CMakeLists.txt collision enemy game gameState gameSta
 
 arr=( animation CMakeLists.txt enemy game gameState health hero playState position projectile scenary sprite structs target transitionState values vector dataLevel1.json dataMain.json edit )
 
-if [ $HOSTNAME == "archbox" ]
+if [ $HOSTNAME == "arch" ]
 then
   syscall="gedit "
 else
