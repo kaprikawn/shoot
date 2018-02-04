@@ -9,9 +9,9 @@ then
   exit 1
 fi
 
-if [ $HOSTNAME == "archbox" ]
+if [ $HOSTNAME == "arch" ]
 then
-  make -j4
+  make -j9
 elif [ $HOSTNAME == "raspberrypi" ]
 then
   make -j4
